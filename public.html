@@ -1,0 +1,411 @@
+]<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Publications | Project EquiFlow</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&family=Quicksand:wght@300;400;500;600;700&family=Pacifico&family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <style>
+    :root {
+      --logo-coral: #FF8566;
+      --logo-teal-deep: #1B4D4D;
+      --logo-teal-light: #7AD3D6;
+      --logo-yellow: #FFCB6B;
+      --cream: #FFFBF5;
+      --pure-white: #ffffff;
+      --text-main: #2D3436;
+      --nav-height: 90px;
+      --transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+    }
+
+    /* --- ANIMATIONS --- */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes slideInRight {
+      from { opacity: 0; transform: translateX(-20px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Quicksand', sans-serif;
+      background-color: var(--cream);
+      color: var(--text-main);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3 { font-family: 'Fredoka', sans-serif; }
+    .script-font { font-family: 'Pacifico', cursive; }
+
+    /* --- NAVIGATION --- */
+    .header {
+      height: var(--nav-height);
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(15px);
+      position: fixed;
+      top: 0; width: 100%; z-index: 1000;
+      display: flex; align-items: center;
+      transition: var(--transition);
+      border-bottom: 2px solid rgba(255, 133, 102, 0.1);
+    }
+    .nav-container { width: 92%; max-width: 1300px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+    .logo-area { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+    .logo-text { font-size: 1.6rem; color: var(--logo-coral); letter-spacing: -0.5px; }
+    .nav-links { display: flex; gap: 35px; align-items: center; }
+    .nav-item { text-decoration: none; color: var(--logo-teal-deep); font-weight: 600; transition: var(--transition); }
+    .nav-item:hover { color: var(--logo-coral); }
+    .btn-donate-nav {
+      background: var(--logo-coral); color: white; padding: 10px 28px; border-radius: 100px;
+      text-decoration: none; font-weight: 700; box-shadow: 0 4px 15px rgba(255, 133, 102, 0.2); transition: var(--transition);
+    }
+
+    /* --- HERO & DESCRIPTION --- */
+    .hero {
+      padding: calc(var(--nav-height) + 80px) 5% 60px;
+      text-align: center;
+      max-width: 1000px;
+      margin: 0 auto;
+      animation: fadeInUp 0.8s ease-out;
+    }
+    .hero h1 { font-size: clamp(2.5rem, 6vw, 4rem); color: var(--logo-teal-deep); margin-bottom: 20px; }
+    .hero-desc {
+      font-size: 1.15rem;
+      color: #555;
+      max-width: 800px;
+      margin: 0 auto 30px;
+      line-height: 1.8;
+    }
+    .publish-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--logo-coral);
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 1.1rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: var(--transition);
+      padding: 10px 20px;
+      border: 2px solid var(--logo-coral);
+      border-radius: 50px;
+    }
+    .publish-link:hover {
+      background: var(--logo-coral);
+      color: white;
+      transform: scale(1.05);
+    }
+
+    /* --- PUBLICATIONS GRID --- */
+    .pub-container {
+      max-width: 1200px;
+      margin: 20px auto 100px;
+      padding: 0 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+      gap: 40px;
+    }
+
+    .pub-card {
+      background: white;
+      border-radius: 40px;
+      padding: 45px;
+      cursor: pointer;
+      transition: var(--transition);
+      border: 1px solid rgba(0,0,0,0.03);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.02);
+      opacity: 0; /* for animation */
+      animation: fadeInUp 0.8s ease-out forwards;
+    }
+
+    /* Staggered animation delays */
+    .pub-card:nth-child(1) { animation-delay: 0.2s; }
+    .pub-card:nth-child(2) { animation-delay: 0.3s; }
+    .pub-card:nth-child(3) { animation-delay: 0.4s; }
+    .pub-card:nth-child(4) { animation-delay: 0.5s; }
+
+    .pub-card:hover {
+      transform: translateY(-15px);
+      box-shadow: 0 25px 50px rgba(67, 164, 173, 0.15);
+      border-color: var(--logo-teal-light);
+    }
+
+    .tag {
+      font-weight: 800;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--logo-coral);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .tag::before {
+      content: '';
+      width: 12px; height: 12px;
+      background: var(--logo-yellow);
+      border-radius: 50%;
+    }
+
+    .pub-title {
+      font-size: 1.9rem;
+      line-height: 1.2;
+      margin-bottom: 20px;
+      color: var(--logo-teal-deep);
+    }
+
+    .pub-excerpt {
+      font-size: 1.05rem;
+      color: #666;
+      margin-bottom: 30px;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .read-more-btn {
+      font-weight: 700;
+      color: var(--logo-teal-deep);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: 0.3s;
+    }
+    .pub-card:hover .read-more-btn { color: var(--logo-coral); }
+
+    /* --- MODAL --- */
+    .modal-overlay {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(27, 77, 77, 0.9);
+      backdrop-filter: blur(12px);
+      z-index: 2000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .modal-content {
+      background: white;
+      max-width: 850px;
+      width: 100%;
+      max-height: 85vh;
+      border-radius: 50px;
+      position: relative;
+      padding: 60px;
+      overflow-y: auto;
+      transform: translateY(50px);
+      opacity: 0;
+      transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .modal-overlay.active { display: flex; }
+    .modal-overlay.active .modal-content { 
+      transform: translateY(0); 
+      opacity: 1; 
+    }
+
+    .close-modal {
+      position: absolute;
+      top: 35px; right: 35px;
+      background: var(--cream);
+      border: none;
+      width: 50px; height: 50px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      color: var(--logo-teal-deep);
+      transition: 0.3s;
+    }
+    .close-modal:hover { background: var(--logo-coral); color: white; transform: rotate(90deg); }
+
+    footer {
+      background: white;
+      padding: 60px 20px;
+      text-align: center;
+      border-top: 1px solid rgba(0,0,0,0.05);
+    }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hero h1 { font-size: 2.5rem; }
+      .modal-content { padding: 40px 25px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVIGATION -->
+  <header class="header">
+    <div class="nav-container">
+      <a href="index.html" class="logo-area">
+        <svg width="40" height="40" viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="48" fill="#FF8566" fill-opacity="0.1" />
+            <path d="M20 50 Q 35 30, 50 50 T 80 50" stroke="#43A4AD" stroke-width="8" fill="none" stroke-linecap="round" />
+        </svg>
+        <span class="logo-text script-font">EquiFlow</span>
+      </a>
+      <nav class="nav-links">
+        <a href="index.html" class="nav-item">Home</a>
+        <a href="index.html#programs" class="nav-item">Programs</a>
+        <a href="#" class="nav-item" style="color: var(--logo-coral)">Publications</a>
+        <a href="index.html#involved" class="btn-donate-nav">Support Us</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <h1 class="script-font">The <span style="color: var(--logo-coral)">Voices</span> of EquiFlow</h1>
+    <p class="hero-desc">
+      Here you can find the latest updates and news from our global, national and local actions. From the impact of survivor-led child labour policy interventions to summaries of our events and open letters to decision-makers from our network of youth activists and student leaders.
+    </p>
+    <a href="#" class="publish-link">
+        Publish your article <i class="fa-solid fa-paper-plane" style="margin-left: 8px;"></i>
+    </a>
+  </section>
+
+  <!-- PUBLICATIONS GRID -->
+  <main class="pub-container">
+    <!-- Card 1 -->
+    <div class="pub-card" onclick="openModal('report1')">
+      <div>
+        <span class="tag">Global Action</span>
+        <h2 class="pub-title">NEW REPORT: UNEQUAL EDUCATION, UNEQUAL FUTURE</h2>
+        <p class="pub-excerpt">Justice for Africa, the All-Africa Students Union and 100 Million have launched a ground-breaking new report. Unequal Education, Unequal Future explores the systemic barriers...</p>
+      </div>
+      <div class="read-more-btn">Open Report <i class="fa-solid fa-expand"></i></div>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="pub-card" onclick="openModal('report2')">
+      <div>
+        <span class="tag">Policy Update</span>
+        <h2 class="pub-title">Survivor-Led Interventions in Child Labour</h2>
+        <p class="pub-excerpt">New data reveals the profound impact of survivor-centered policy designs on local communities. A summary of recent legislative successes in our national network...</p>
+      </div>
+      <div class="read-more-btn">Open Report <i class="fa-solid fa-expand"></i></div>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="pub-card" onclick="openModal('report3')">
+      <div>
+        <span class="tag">Open Letter</span>
+        <h2 class="pub-title">To Decision Makers: A Call for Digital Equity</h2>
+        <p class="pub-excerpt">Our network of youth activists has penned an open letter demanding immediate action on digital infrastructure for rural schools. Signed by 50+ student leaders...</p>
+      </div>
+      <div class="read-more-btn">Read Letter <i class="fa-solid fa-expand"></i></div>
+    </div>
+
+    <!-- Card 4 -->
+    <div class="pub-card" onclick="openModal('report4')">
+      <div>
+        <span class="tag">Event Summary</span>
+        <h2 class="pub-title">Dignity First: Youth Summit 2025 Highlights</h2>
+        <p class="pub-excerpt">Revisiting the most powerful moments from the annual summit. From student-led STEM workshops to creative storytelling panels that redefined activism...</p>
+      </div>
+      <div class="read-more-btn">View Summary <i class="fa-solid fa-expand"></i></div>
+    </div>
+  </main>
+
+  <!-- MODAL -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal-content">
+      <button class="close-modal" onclick="closeModal()"><i class="fa-solid fa-xmark"></i></button>
+      <div id="modalBody">
+        <!-- Content Injected via JS -->
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p class="script-font" style="color: var(--logo-coral); font-size: 1.5rem; margin-bottom: 10px;">EquiFlow</p>
+    <p style="font-size: 0.9rem; color: #999;">&copy; 2026 Project EquiFlow &bull; Driven by Dignity</p>
+  </footer>
+
+  <script>
+    const pubData = {
+      report1: {
+        tag: "Global Action",
+        title: "NEW REPORT: UNEQUAL EDUCATION, UNEQUAL FUTURE",
+        content: `
+          <p style="color: var(--logo-coral); font-weight: 800; margin-bottom: 15px;">GLOBAL RESEARCH ARCHIVE</p>
+          <h2 style="font-size: 2.2rem; line-height: 1.2; margin-bottom: 25px; color: var(--logo-teal-deep);">UNEQUAL EDUCATION, UNEQUAL FUTURE</h2>
+          <p style="font-size: 1.2rem; color: #444; margin-bottom: 20px;">Justice for Africa, the All-Africa Students Union and 100 Million have launched a ground-breaking new report Unequal Education, Unequal Future.</p>
+          <p style="margin-bottom: 20px;">The findings demonstrate that inequality is not just an accident of economics, but a result of policy decisions that prioritize certain demographics over others. This report serves as a baseline for our 2026 advocacy efforts.</p>
+          <div style="background: var(--cream); padding: 30px; border-radius: 25px; margin-top: 30px;">
+            <h4 style="color: var(--logo-teal-deep); margin-bottom: 10px;">Download Available</h4>
+            <p>The full 80-page technical report is available for registered student leaders via our network portal.</p>
+          </div>
+        `
+      },
+      report2: {
+        tag: "Policy Update",
+        title: "Survivor-Led Interventions in Child Labour",
+        content: `
+          <h2 style="font-size: 2.2rem; margin-bottom: 25px; color: var(--logo-teal-deep);">Survivor-Led Interventions</h2>
+          <p style="font-size: 1.15rem; line-height: 1.8;">By centering the voices of those who have experienced child labour, we've seen a 40% increase in policy effectiveness across our pilot regions.</p>
+          <p style="margin-top: 20px;">This report summarizes the legislative frameworks currently being proposed to national assemblies to ensure that child protection is not just a law, but a lived reality.</p>
+        `
+      },
+      report3: {
+        tag: "Open Letter",
+        title: "A Call for Digital Equity",
+        content: `
+          <h2 style="font-size: 2.2rem; margin-bottom: 25px; color: var(--logo-teal-deep);">To Decision Makers: A Call for Digital Equity</h2>
+          <p style="font-style: italic; color: #666; margin-bottom: 25px;">"We, the undersigned students, demand a future where our location does not limit our access to the world's knowledge."</p>
+          <p>This open letter outlines three key demands for educational reform focusing on high-speed internet as a fundamental human right for every student.</p>
+        `
+      },
+      report4: {
+        tag: "Event Summary",
+        title: "Dignity First: Youth Summit 2025",
+        content: `
+          <h2 style="font-size: 2.2rem; margin-bottom: 25px; color: var(--logo-teal-deep);">Dignity First Summit Highlights</h2>
+          <p>Over 500 youth activists gathered to share their stories of resilience and innovation. The summit concluded with the signing of the 'EquiFlow Accord', a commitment to localized social action.</p>
+          <div style="margin-top: 30px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+            <div style="background: var(--logo-yellow); height: 150px; border-radius: 20px; display: flex; align-items: center; justify-content: center; color: white; font-size: 3rem;"><i class="fa-solid fa-camera"></i></div>
+            <div style="background: var(--logo-teal-light); height: 150px; border-radius: 20px; display: flex; align-items: center; justify-content: center; color: white; font-size: 3rem;"><i class="fa-solid fa-video"></i></div>
+          </div>
+        `
+      }
+    };
+
+    function openModal(id) {
+      const data = pubData[id];
+      const body = document.getElementById('modalBody');
+      body.innerHTML = data.content;
+      document.getElementById('modalOverlay').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      document.getElementById('modalOverlay').classList.remove('active');
+      document.body.style.overflow = 'auto';
+    }
+
+    document.getElementById('modalOverlay').addEventListener('click', (e) => {
+      if(e.target.id === 'modalOverlay') closeModal();
+    });
+  </script>
+</body>
+</html>

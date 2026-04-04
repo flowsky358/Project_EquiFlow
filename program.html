@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Programs | Project EquiFlow</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&family=Quicksand:wght@300;400;500;600;700&family=Pacifico&family=Outfit:wght@100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        :root {
+            --logo-coral: #FF8566;
+            --logo-teal-deep: #1B4D4D;
+            --logo-teal-light: #7AD3D6;
+            --logo-yellow: #FFCB6B;
+            --cream: #FFFBF5;
+            --transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--cream);
+            color: var(--logo-teal-deep);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 { font-family: 'Fredoka', sans-serif; }
+        .script-font { font-family: 'Pacifico', cursive; }
+        .serif-font { font-family: 'Playfair Display', serif; }
+
+        /* Navigation Glass Effect */
+        #nav-container {
+            transition: all 0.4s ease;
+        }
+        .nav-scrolled {
+            background: rgba(255, 251, 245, 0.85);
+            backdrop-filter: blur(12px);
+            padding-top: 0.75rem;
+            padding-bottom: 0.75rem;
+            box-shadow: 0 10px 30px rgba(27, 77, 77, 0.05);
+        }
+
+        /* Animation Classes */
+        .reveal {
+            opacity: 0;
+            transform: translateY(60px);
+            transition: var(--transition);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Floating Animation */
+        .float-element {
+            animation: float 6s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+
+        .image-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 60px 20px 60px 20px;
+            box-shadow: 0 40px 80px rgba(27, 77, 77, 0.15);
+        }
+
+        /* Big Typography */
+        .giant-text {
+            font-size: clamp(3.5rem, 12vw, 9rem);
+            line-height: 0.8;
+            font-weight: 800;
+            letter-spacing: -0.04em;
+        }
+
+        .accent-pill {
+            display: inline-block;
+            padding: 10px 24px;
+            background: white;
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+        }
+
+        .nav-link {
+            position: relative;
+            padding: 0.5rem 0;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--logo-coral);
+            transition: width 0.3s_ease;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVIGATION BAR -->
+    <header id="nav-container" class="fixed top-0 w-full z-[1000] py-6">
+        <div class="max-w-[1400px] mx-auto px-8 flex justify-between items-center">
+            <a href="index.html" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 bg-[#FF8566] rounded-xl flex items-center justify-center transform group-hover:rotate-12 transition-all">
+                    <span class="text-white font-bold text-xl">E</span>
+                </div>
+                <span class="script-font text-2xl text-[#1B4D4D]">EquiFlow</span>
+            </a>
+
+            <nav class="hidden md:flex gap-10 items-center font-bold text-[#1B4D4D]">
+                <a href="#" class="nav-link hover:text-[#FF8566]">Home</a>
+                <a href="#" class="nav-link text-[#FF8566]">Programs</a>
+                <a href="#" class="nav-link hover:text-[#FF8566]">Our Story</a>
+                <a href="#" class="nav-link hover:text-[#FF8566]">Chapters</a>
+                <a href="#" class="bg-[#1B4D4D] text-white px-8 py-3 rounded-full hover:bg-[#FF8566] hover:scale-105 transition-all shadow-lg ml-4">
+                    Donate
+                </a>
+            </nav>
+
+            <button class="md:hidden text-[#1B4D4D]">
+                <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+            </button>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="min-h-[80vh] flex items-center pt-32 px-8">
+        <div class="max-w-7xl mx-auto w-full">
+            <div class="reveal active">
+                <span class="accent-pill text-[#FF8566]">EquiFlow Initiatives</span>
+                <h1 class="giant-text text-[#1B4D4D]">Empower <br><span class="text-[#FF8566]">Tomorrow.</span></h1>
+                <div class="flex flex-col md:flex-row items-end justify-between mt-12 gap-8">
+                    <p class="text-2xl text-gray-500 max-w-xl font-medium serif-font italic">
+                        Transforming passion into purpose through creativity, advocacy, and global connection.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROGRAM 1: EMPOWERMENT LETTERS (NOW FIRST) -->
+    <section id="letters" class="py-32 px-8 bg-white">
+        <div class="max-w-[1400px] mx-auto grid lg:grid-cols-2 gap-24 items-center">
+            <div class="reveal">
+                <div class="accent-pill text-[#FF8566] bg-[#FF856615]">EmpowerMENT Letters</div>
+                <h2 class="text-7xl font-bold mb-10 leading-[0.9] tracking-tighter">Written with <br><span class="text-[#FF8566] serif-font italic">Compassion.</span></h2>
+                
+                <div class="space-y-8 text-xl text-gray-600 leading-relaxed">
+                    <p>
+                        Our writing initiative bridges distances by delivering handwritten messages of hope to girls facing barriers to health and education. 
+                    </p>
+                    <p class="font-bold text-[#1B4D4D]">
+                        By fostering emotional resilience, we ensure every student knows they are part of a global community that values their future and their dreams.
+                    </p>
+                </div>
+
+                <div class="mt-12 p-8 border-l-4 border-[#FF8566] bg-[# cream] rounded-r-2xl shadow-sm">
+                    <h4 class="font-bold text-2xl mb-2 text-[#1B4D4D]">1,000+ Letters Sent</h4>
+                    <p class="text-gray-500">Connecting student advocates with communities worldwide to spread encouragement.</p>
+                </div>
+            </div>
+
+            <div class="relative reveal" style="transition-delay: 0.2s;">
+                <div class="image-container" style="border-radius: 20px 60px 20px 60px;">
+                    <div class="w-full h-[600px] bg-[#FF8566] flex items-center justify-center text-white p-12 text-center">
+                        <svg width="150" height="150" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="opacity-40 mb-8"><path d="M22 17a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V9.5C2 7 4 5 6.5 5H18c2.2 0 4 1.8 4 4v8Z"/><path d="m2 9.5 10 7 10-7"/></svg>
+                        <h3 class="text-4xl font-bold mb-4">Letter Exchange</h3>
+                        <p class="text-lg opacity-80">Building bridges across continents through the power of pen and paper.</p>
+                    </div>
+                </div>
+                <div class="absolute -top-10 -left-10 float-element hidden md:block">
+                    <div class="bg-white p-8 rounded-3xl shadow-2xl border border-gray-100 rotate-[-5deg]">
+                        <p class="text-[#FF8566] font-black text-4xl italic script-font">"You are capable"</p>
+                        <p class="text-gray-400 font-bold mt-2">— A Voice of Support</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROGRAM 2: CREATIVE ADVOCACY (NOW SECOND) -->
+    <section id="arts" class="py-32 px-8 overflow-hidden">
+        <div class="max-w-[1400px] mx-auto grid lg:grid-cols-2 gap-24 items-center">
+            <div class="order-2 lg:order-1 relative reveal">
+                <div class="image-container">
+                    <div class="w-full h-[700px] bg-[#7AD3D6] flex flex-col items-center justify-center text-white p-12 text-center">
+                        <svg class="mb-6 opacity-30" width="120" height="120" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><circle cx="12" cy="12" r="10"/><path d="m16 12-4-4-4 4M12 16V9"/></svg>
+                        <h3 class="text-4xl font-bold mb-4">The Creative Lab</h3>
+                        <p class="text-lg opacity-80">Where research meets artistry to solve global challenges.</p>
+                    </div>
+                </div>
+                <div class="absolute -bottom-12 -right-12 w-48 h-48 bg-[#FFCB6B] rounded-full mix-blend-multiply opacity-20 float-element"></div>
+            </div>
+
+            <div class="order-1 lg:order-2 reveal" style="transition-delay: 0.2s;">
+                <div class="accent-pill text-[#43A4AD] bg-[#7AD3D615]">Creative Advocacy</div>
+                <h2 class="text-7xl font-bold mb-10 leading-[0.9] tracking-tighter">Art as <br><span class="text-[#7AD3D6] serif-font italic">Expression.</span></h2>
+                
+                <div class="space-y-8 text-xl text-gray-600 leading-relaxed">
+                    <p>
+                        A sanctuary for expression. We provide platforms for girls to share writing, visual arts, and student-led research—empowering them to explore their curiosity and claim their intellectual property early on.
+                    </p>
+                    <p class="font-bold text-[#1B4D4D]">
+                        From STEM breakthroughs to social justice, our creators are dismantling barriers by telling their own stories through every medium imaginable.
+                    </p>
+                </div>
+                
+                <div class="grid grid-cols-2 gap-8 mt-16">
+                    <div class="flex items-center gap-4">
+                        <div class="w-14 h-14 bg-[#7AD3D620] rounded-2xl flex items-center justify-center text-[#43A4AD]">
+                            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-1.5"/><circle cx="8" cy="8" r="5"/></svg>
+                        </div>
+                        <span class="font-bold">The Art Gallery</span>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <div class="w-14 h-14 bg-[#FFCB6B20] rounded-2xl flex items-center justify-center text-[#FFCB6B]">
+                            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+                        </div>
+                        <span class="font-bold">Student Research</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="py-20 px-8 bg-white border-t border-gray-100">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-10">
+            <div class="flex items-center gap-4">
+                <div class="w-8 h-8 bg-[#FF8566] rounded flex items-center justify-center font-bold text-white">E</div>
+                <span class="font-bold text-gray-400 tracking-[0.3em] uppercase text-xs">Project EquiFlow</span>
+            </div>
+            <div class="flex gap-8 text-sm font-bold text-gray-400">
+                <a href="#" class="hover:text-[#FF8566]">Privacy</a>
+                <a href="#" class="hover:text-[#FF8566]">Terms</a>
+                <a href="#" class="hover:text-[#FF8566]">Support</a>
+            </div>
+            <p class="text-gray-300 text-xs font-bold uppercase">&copy; 2026 Driven by Dignity</p>
+        </div>
+    </footer>
+
+    <script>
+        // Scroll Reveal Observer
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // Navigation Background Toggle on Scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('nav-container');
+            if (window.scrollY > 50) {
+                nav.classList.add('nav-scrolled');
+            } else {
+                nav.classList.remove('nav-scrolled');
+            }
+        });
+    </script>
+</body>
+</html>

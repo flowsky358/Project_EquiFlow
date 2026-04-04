@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Start a Chapter | Project EquiFlow</title>
+    
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&family=Quicksand:wght@300;400;500;600;700&family=Pacifico&family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        :root {
+            --logo-coral: #FF8566;
+            --logo-teal: #43A4AD;
+            --logo-yellow: #FFCB6B;
+            --deep-teal: #1B4D4D; 
+            --cream: #FFFBF5;
+            --transition-bounce: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background-color: var(--cream);
+            color: #2D3436;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 { font-family: 'Fredoka', sans-serif; }
+        .script-font { font-family: 'Pacifico', cursive; }
+
+        /* Background Decorations */
+        .blob-bg {
+            position: absolute;
+            z-index: -1;
+            filter: blur(80px);
+            opacity: 0.3;
+            border-radius: 50%;
+        }
+
+        /* Animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(3deg); }
+        }
+        .float-icon { animation: float 4s ease-in-out infinite; }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: var(--transition-bounce);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Header Style */
+        .header {
+            position: fixed; top: 0; width: 100%; z-index: 1000;
+            padding: 20px 0; transition: 0.4s;
+            background: rgba(255, 251, 245, 0.8);
+            backdrop-filter: blur(10px);
+        }
+
+        /* Roadmap Elements */
+        .step-card {
+            background: white;
+            border-radius: 35px;
+            padding: 2.5rem;
+            transition: var(--transition-bounce);
+            border: 2px solid transparent;
+            box-shadow: 0 10px 30px rgba(27, 77, 77, 0.04);
+            position: relative;
+        }
+        .step-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--logo-teal);
+        }
+        .step-num {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--deep-teal);
+            color: white;
+            width: 45px;
+            height: 45px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-family: 'Fredoka';
+        }
+
+        /* Accordion */
+        .accordion-item {
+            background: white;
+            border-radius: 20px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        .accordion-trigger {
+            padding: 1.5rem 2rem;
+            width: 100%;
+            text-align: left;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 700;
+            color: var(--deep-teal);
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0, 1, 0, 1);
+            background: #fdfdfd;
+        }
+        .accordion-item.active .accordion-content {
+            max-height: 1000px;
+            transition: max-height 1s ease-in-out;
+            padding: 0 2rem 1.5rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- DECORATIVE BLOBS -->
+    <div class="blob-bg w-[500px] h-[500px] bg-[#FF8566] top-[-100px] right-[-100px]"></div>
+    <div class="blob-bg w-[400px] h-[400px] bg-[#43A4AD] bottom-[20%] left-[-100px]"></div>
+
+    <!-- NAVIGATION -->
+    <header class="header">
+        <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
+            <a href="index.html" class="script-font text-3xl text-[#FF8566]">EquiFlow</a>
+            <nav class="hidden md:flex gap-10 items-center font-bold text-[#1B4D4D]">
+                <a href="index.html" class="hover:text-[#FF8566] transition-all">Home</a>
+                <a href="#" class="text-[#FF8566]">Chapters</a>
+                <a href="#" class="hover:text-[#FF8566]">About</a>
+                <a href="#" class="bg-[#1B4D4D] text-white py-2 px-6 rounded-full hover:bg-[#FF8566] transition-all">Donate</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="pt-40 pb-20 px-6">
+        <div class="max-w-4xl mx-auto text-center reveal active">
+            <h1 class="text-6xl md:text-8xl font-black text-[#1B4D4D] mb-8 leading-tight">
+                Start a <span class="text-[#FF8566]">Chapter</span>.
+            </h1>
+            <p class="text-2xl text-gray-500 leading-relaxed mb-12">
+                Join a global network of student leaders working to end period poverty and educational barriers in their own communities.
+            </p>
+            <div class="flex justify-center gap-6">
+                <a href="#register" class="bg-[#43A4AD] text-white px-10 py-5 rounded-2xl text-lg font-bold shadow-xl shadow-[#43A4AD44] hover:scale-105 transition-all">Apply to Lead</a>
+                <a href="#process" class="bg-white text-[#1B4D4D] border-2 border-[#1B4D4D] px-10 py-5 rounded-2xl text-lg font-bold hover:bg-[#1B4D4D] hover:text-white transition-all">How it Works</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- INFO SPLIT -->
+    <section class="py-20 px-6">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 items-center">
+            <div class="bg-white p-12 rounded-[50px] shadow-2xl shadow-[#1b4d4d0a] reveal">
+                <h2 class="text-4xl font-black text-[#1B4D4D] mb-6 script-font">What is a Chapter?</h2>
+                <p class="text-lg text-gray-500 mb-6 leading-relaxed">
+                    An EquiFlow chapter is a local hub of our movement. Whether in a middle school, high school, or college, chapters are the boots-on-the-ground force that organizes drives and builds awareness.
+                </p>
+                <div class="space-y-4">
+                    <div class="flex items-start gap-4">
+                        <div class="w-10 h-10 bg-[#FF856622] rounded-lg flex items-center justify-center text-[#FF8566] shrink-0"><i class="fa-solid fa-users"></i></div>
+                        <div>
+                            <h4 class="font-bold text-[#1B4D4D]">Local Community</h4>
+                            <p class="text-gray-500">Form a team of 5-50+ passionate students.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-4">
+                        <div class="w-10 h-10 bg-[#43A4AD22] rounded-lg flex items-center justify-center text-[#43A4AD] shrink-0"><i class="fa-solid fa-bolt"></i></div>
+                        <div>
+                            <h4 class="font-bold text-[#1B4D4D]">Direct Impact</h4>
+                            <p class="text-gray-500">Lead fundraising drives and advocacy workshops.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="relative flex justify-center reveal">
+                <div class="absolute inset-0 flex items-center justify-center">
+                    <div class="w-80 h-80 bg-[#FFCB6B] opacity-20 rounded-full blur-3xl"></div>
+                </div>
+                <div class="float-icon">
+                    <i class="fa-solid fa-map-location-dot text-[12rem] text-[#FFCB6B]"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ROADMAP SECTION -->
+    <section id="process" class="py-32 bg-[#1B4D4D] relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <div class="text-center mb-24 reveal">
+                <h2 class="text-5xl font-black text-white mb-6">Four Steps to Launch</h2>
+                <p class="text-[#7AD3D6] text-xl font-medium">Your journey to becoming a Chapter President starts here.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
+                <!-- Step 1 -->
+                <div class="step-card reveal">
+                    <div class="step-num">1</div>
+                    <div class="w-16 h-16 bg-[#FF856622] text-[#FF8566] rounded-2xl flex items-center justify-center text-3xl mb-6">
+                        <i class="fa-solid fa-user-group"></i>
+                    </div>
+                    <h3 class="text-2xl font-black text-[#1B4D4D] mb-4">Build Your Core</h3>
+                    <p class="text-gray-500 leading-relaxed">Gather 5 friends to serve as your founding executive board.</p>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="step-card reveal" style="transition-delay: 0.1s;">
+                    <div class="step-num">2</div>
+                    <div class="w-16 h-16 bg-[#43A4AD22] text-[#43A4AD] rounded-2xl flex items-center justify-center text-3xl mb-6">
+                        <i class="fa-solid fa-school"></i>
+                    </div>
+                    <h3 class="text-2xl font-black text-[#1B4D4D] mb-4">Get Approved</h3>
+                    <p class="text-gray-500 leading-relaxed">Register as an official club at your school or community center.</p>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="step-card reveal" style="transition-delay: 0.2s;">
+                    <div class="step-num">3</div>
+                    <div class="w-16 h-16 bg-[#FFCB6B22] text-[#FFCB6B] rounded-2xl flex items-center justify-center text-3xl mb-6">
+                        <i class="fa-solid fa-pen-nib"></i>
+                    </div>
+                    <h3 class="text-2xl font-black text-[#1B4D4D] mb-4">Official Register</h3>
+                    <p class="text-gray-500 leading-relaxed">Complete our onboarding form to receive your Chapter Starter Kit.</p>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="step-card reveal" style="transition-delay: 0.3s;">
+                    <div class="step-num">4</div>
+                    <div class="w-16 h-16 bg-[#FF856622] text-[#FF8566] rounded-2xl flex items-center justify-center text-3xl mb-6">
+                        <i class="fa-solid fa-rocket"></i>
+                    </div>
+                    <h3 class="text-2xl font-black text-[#1B4D4D] mb-4">Launch Day</h3>
+                    <p class="text-gray-500 leading-relaxed">Host your first meeting and start your first supply drive!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ / TOOLKIT SECTION -->
+    <section class="py-32 px-6">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-4xl font-black text-[#1B4D4D] mb-4 script-font">Chapter Resources</h2>
+                <p class="text-xl text-gray-500">Everything you need to succeed is right here.</p>
+            </div>
+
+            <div class="reveal">
+                <div class="accordion-item">
+                    <button class="accordion-trigger" onclick="this.parentElement.classList.toggle('active')">
+                        Branding & Social Kit <i class="fa-solid fa-chevron-down"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <p class="text-gray-500 py-4">Download our official logos, Instagram templates, and flyer designs to make your chapter look professional from day one.</p>
+                        <a href="#" class="inline-block mt-2 font-bold text-[#FF8566] hover:underline">Download (.zip)</a>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-trigger" onclick="this.parentElement.classList.toggle('active')">
+                        Fundraising Guide <i class="fa-solid fa-chevron-down"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <p class="text-gray-500 py-4">A complete step-by-step PDF on how to host bake sales, donation drives, and corporate sponsorships.</p>
+                        <a href="#" class="inline-block mt-2 font-bold text-[#FF8566] hover:underline">View Guide</a>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-trigger" onclick="this.parentElement.classList.toggle('active')">
+                        Global Support Network <i class="fa-solid fa-chevron-down"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <p class="text-gray-500 py-4">Connect with other Chapter Presidents via our monthly Zoom calls and private Slack community.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-white pt-24 pb-12 px-6 border-t border-gray-100">
+        <div class="max-w-7xl mx-auto text-center">
+            <a href="index.html" class="script-font text-4xl text-[#FF8566] block mb-6">EquiFlow</a>
+            <p class="text-gray-400 font-bold mb-10">Student-Led. Impact-Driven. Globally Connected.</p>
+            <div class="flex justify-center gap-6 mb-12">
+                <a href="#" class="text-2xl text-gray-300 hover:text-[#FF8566] transition-all"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" class="text-2xl text-gray-300 hover:text-[#1B4D4D] transition-all"><i class="fa-brands fa-tiktok"></i></a>
+            </div>
+            <div class="pt-10 border-t border-gray-100 text-sm font-bold text-gray-400">
+                <p>© 2026 Cancer Kids First / Project EquiFlow. EIN: 84-3948071</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Scroll Reveal logic
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
