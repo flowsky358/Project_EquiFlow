@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Mission | Project EquiFlow</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Nunito:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        :root {
+            --coral:      #FFBDAB;
+            --coral-dark: #F5A488;
+            --coral-text: #C07060;
+            --teal:       #96D4D4;
+            --teal-light: #B0E0E0;
+            --teal-pale:  #EEF9F9;
+            --teal-dark:  #4E9898;
+            --deep-teal:  #3A6E6E;
+            --cream:      #FFF8F2;
+            --white:      #FFFFFF;
+            --ink:        #2E4E4E;
+            --ink-mid:    #4A6464;
+            --ink-light:  #7EAAAA;
+            --border:     #DDEEED;
+            --ff-serif:   'Outfit', sans-serif;
+            --ff-sans:    'Nunito', system-ui, sans-serif;
+            --ease:       cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: var(--ff-sans); background: var(--cream); color: var(--ink-mid); line-height: 1.7; overflow-x: hidden; }
+        h1, h2, h3, h4 { font-family: var(--ff-serif); line-height: 1.18; color: var(--ink); letter-spacing: -0.01em; }
+        a { text-decoration: none; }
+
+        .container { max-width: 1140px; margin: 0 auto; padding: 0 28px; }
+
+        /* ── REVEAL ── */
+        .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.75s var(--ease), transform 0.75s var(--ease); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        .reveal-left  { opacity: 0; transform: translateX(-44px); transition: opacity 0.8s var(--ease), transform 0.8s var(--ease); }
+        .reveal-left.active { opacity: 1; transform: translateX(0); }
+        .reveal-right { opacity: 0; transform: translateX(44px); transition: opacity 0.8s var(--ease), transform 0.8s var(--ease); }
+        .reveal-right.active { opacity: 1; transform: translateX(0); }
+
+        /* ── EYEBROW ── */
+        .eyebrow {
+            display: inline-block;
+            font-family: var(--ff-sans);
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--coral-text);
+            margin-bottom: 16px;
+        }
+
+        /* ── BUTTONS ── */
+        .btn {
+            display: inline-block;
+            font-family: var(--ff-sans);
+            font-size: 0.95rem;
+            font-weight: 600;
+            padding: 14px 32px;
+            border-radius: 8px;
+            border: 2px solid transparent;
+            cursor: pointer;
+            transition: all 0.3s var(--ease);
+        }
+        .btn-coral  { background: var(--coral-text); color: #fff; border-color: var(--coral-text); }
+        .btn-coral:hover { background: #B06050; border-color: #B06050; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(192,112,96,0.3); }
+        .btn-outline { background: transparent; color: var(--ink); border-color: var(--ink); }
+        .btn-outline:hover { background: var(--ink); color: #fff; transform: translateY(-2px); }
+
+        /* =============================================
+           NAVIGATION (shared with index.html)
+           ============================================= */
+        .site-header {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 200;
+            background: #fff;
+            border-bottom: 1px solid var(--border);
+            transition: box-shadow 0.3s ease;
+        }
+        .site-header.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.08); }
+        .nav-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 76px;
+        }
+        .logo { display: flex; flex-direction: column; line-height: 1; }
+        .logo-sub { font-family: var(--ff-sans); font-size: 0.6rem; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; color: var(--teal); margin-bottom: 2px; }
+        .logo-name { font-family: var(--ff-serif); font-size: 1.85rem; font-weight: 700; color: var(--ink); letter-spacing: -0.01em; }
+        .logo-name span { color: var(--coral); }
+
+        .nav-links { display: flex; align-items: center; gap: 2px; list-style: none; height: 100%; }
+        .nav-links > li { position: relative; height: 100%; display: flex; align-items: center; }
+        .nav-links > li > a { display: flex; align-items: center; gap: 6px; font-size: 1.08rem; font-weight: 500; color: var(--ink); padding: 10px 20px; border-radius: 8px; transition: color 0.2s, background 0.2s; white-space: nowrap; }
+        .nav-links > li > a:not(.btn-donate):hover { color: var(--teal-dark); background: var(--teal-pale); }
+        .nav-links > li.has-dropdown > a::after { content: ''; display: inline-block; width: 6px; height: 6px; border-right: 2px solid currentColor; border-bottom: 2px solid currentColor; transform: rotate(45deg) translateY(-2px); transition: transform 0.2s; opacity: 0.6; }
+        .nav-links > li.has-dropdown:hover > a::after,
+        .nav-links > li.has-dropdown.open > a::after { transform: rotate(-135deg) translateY(-2px); }
+
+        .nav-dropdown { position: absolute; top: calc(100% + 8px); left: 0; background: #fff; border: 1px solid var(--border); border-radius: 14px; padding: 8px; min-width: 200px; box-shadow: 0 16px 48px rgba(0,0,0,0.1); list-style: none; opacity: 0; visibility: hidden; transform: translateY(10px); transition: opacity 0.22s var(--ease), transform 0.22s var(--ease), visibility 0.22s; z-index: 300; }
+        .nav-links > li.has-dropdown:hover .nav-dropdown,
+        .nav-links > li.has-dropdown.open .nav-dropdown { opacity: 1; visibility: visible; transform: translateY(0); }
+        .nav-dropdown li a { display: block; font-size: 1rem; font-weight: 500; color: var(--ink-mid); padding: 11px 18px; border-radius: 8px; transition: background 0.18s, color 0.18s; }
+        .nav-dropdown li a:hover { background: var(--teal-pale); color: var(--teal-dark); }
+
+        .btn-donate { background: transparent !important; color: var(--ink) !important; padding: 11px 28px !important; border-radius: 100px !important; border: 2px solid var(--ink) !important; font-weight: 600 !important; font-size: 1.08rem !important; transition: background 0.2s, color 0.2s !important; margin-left: 8px; }
+        .btn-donate:hover { background: var(--ink) !important; color: #fff !important; }
+
+        .nav-hamburger { display: none; background: none; border: none; font-size: 1.6rem; color: var(--ink); cursor: pointer; }
+
+        @media (max-width: 900px) {
+            .nav-hamburger { display: block; }
+            .nav-inner { height: 64px; }
+            .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; align-items: stretch; height: auto; background: #fff; border-top: 1px solid var(--border); padding: 12px 20px 20px; gap: 2px; box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
+            .nav-links.open { display: flex; }
+            .nav-links > li { height: auto; }
+            .nav-dropdown { position: static; opacity: 1; visibility: visible; transform: none; box-shadow: none; border: none; padding: 4px 0 4px 16px; display: none; }
+            .nav-links > li.has-dropdown.open .nav-dropdown { display: block; }
+            .nav-links > li > a { font-size: 1.08rem; padding: 10px 12px; }
+            .btn-donate { margin: 8px 0 0; text-align: center; }
+        }
+
+        /* =============================================
+           HERO BANNER
+           ============================================= */
+        .mission-hero {
+            background: linear-gradient(135deg, #6AACAC 0%, #4E9292 60%, #3D8080 100%);
+            padding: 160px 0 100px;
+            position: relative;
+            overflow: hidden;
+        }
+        /* subtle dot texture */
+        .mission-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: radial-gradient(circle, rgba(255,255,255,0.06) 1.5px, transparent 1.5px);
+            background-size: 32px 32px;
+            pointer-events: none;
+        }
+        .mission-hero-eyebrow {
+            display: inline-block;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--coral);
+            margin-bottom: 24px;
+            background: rgba(255,189,171,0.12);
+            padding: 6px 16px;
+            border-radius: 100px;
+            border: 1px solid rgba(255,189,171,0.25);
+        }
+        .mission-hero h1 {
+            color: #fff;
+            font-size: clamp(3rem, 7vw, 6rem);
+            font-weight: 700;
+            line-height: 1.05;
+            max-width: 820px;
+            margin-bottom: 36px;
+        }
+        .mission-hero h1 em {
+            font-style: italic;
+            color: var(--coral);
+        }
+        .mission-hero-sub {
+            font-size: clamp(1.1rem, 2vw, 1.35rem);
+            color: rgba(255,255,255,0.75);
+            max-width: 560px;
+            line-height: 1.75;
+            margin-bottom: 48px;
+        }
+        /* floating blobs */
+        .mission-hero .blob-canvas { position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: 0; }
+        .mission-hero .blob { position: absolute; border-radius: 50%; filter: blur(80px); }
+        .mission-hero-content { position: relative; z-index: 1; }
+
+        @keyframes blobDrift1 {
+            0%,100% { transform: translate(0,0) scale(1); }
+            33%      { transform: translate(40px,-30px) scale(1.05); }
+            66%      { transform: translate(-20px,20px) scale(0.97); }
+        }
+        @keyframes blobDrift2 {
+            0%,100% { transform: translate(0,0) scale(1); }
+            40%      { transform: translate(-50px,30px) scale(1.08); }
+            70%      { transform: translate(30px,-20px) scale(0.95); }
+        }
+        @keyframes fadeSlideUp {
+            from { opacity: 0; transform: translateY(28px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        /* =============================================
+           BIG BELIEF BLOCK  (like CKF "We believe…")
+           ============================================= */
+        .belief-block {
+            background: var(--teal-pale);
+            padding: 100px 0;
+        }
+        .belief-block-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+        .belief-block-text h2 {
+            font-size: clamp(2.4rem, 5vw, 4rem);
+            font-weight: 700;
+            color: var(--ink);
+            line-height: 1.1;
+            margin-bottom: 32px;
+        }
+        .belief-block-text h2 em { font-style: italic; color: var(--teal-dark); }
+        .belief-block-text p {
+            font-size: 1.15rem;
+            color: var(--ink-mid);
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+        .belief-block-visual {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .belief-stat-card {
+            background: #fff;
+            border-radius: 20px;
+            padding: 32px 36px;
+            border-left: 5px solid var(--coral);
+            box-shadow: 0 8px 32px rgba(27,77,77,0.07);
+            transition: transform 0.3s var(--ease);
+        }
+        .belief-stat-card:nth-child(2) { border-left-color: var(--teal-dark); }
+        .belief-stat-card:nth-child(3) { border-left-color: #4E8860; }
+        .belief-stat-card:hover { transform: translateX(6px); }
+        .belief-stat-card .num {
+            font-family: var(--ff-serif);
+            font-size: clamp(2rem, 3vw, 2.8rem);
+            font-weight: 700;
+            color: var(--coral-text);
+            line-height: 1;
+            margin-bottom: 6px;
+        }
+        .belief-stat-card:nth-child(2) .num { color: var(--teal-dark); }
+        .belief-stat-card:nth-child(3) .num { color: #4E8860; }
+        .belief-stat-card .lbl { font-size: 0.95rem; color: var(--ink-mid); line-height: 1.5; }
+
+        @media (max-width: 820px) {
+            .belief-block-grid { grid-template-columns: 1fr; gap: 48px; }
+        }
+
+        /* =============================================
+           MISSION / VISION / GOAL — BIG TEXT ROWS
+           ============================================= */
+        .mvg-section { background: var(--white); padding: 100px 0; }
+        .mvg-row {
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            gap: 48px;
+            align-items: start;
+            padding: 56px 0;
+            border-bottom: 1px solid var(--border);
+        }
+        .mvg-row:first-child { border-top: 1px solid var(--border); }
+        .mvg-row-label {
+            padding-top: 8px;
+        }
+        .mvg-row-tag {
+            font-size: 0.65rem;
+            font-weight: 800;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            display: block;
+            margin-bottom: 12px;
+        }
+        .mvg-row:nth-child(1) .mvg-row-tag { color: var(--coral-text); }
+        .mvg-row:nth-child(2) .mvg-row-tag { color: var(--teal-dark); }
+        .mvg-row:nth-child(3) .mvg-row-tag { color: #4E8860; }
+        .mvg-row-icon {
+            width: 52px; height: 52px;
+            border-radius: 14px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.3rem;
+        }
+        .mvg-row:nth-child(1) .mvg-row-icon { background: rgba(192,112,96,0.12); color: var(--coral-text); }
+        .mvg-row:nth-child(2) .mvg-row-icon { background: rgba(78,152,152,0.12); color: var(--teal-dark); }
+        .mvg-row:nth-child(3) .mvg-row-icon { background: rgba(192,112,96,0.15); color: var(--coral-text); }
+        .mvg-row-body h2 {
+            font-size: clamp(2rem, 4vw, 3.4rem);
+            font-weight: 700;
+            color: var(--ink);
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+        .mvg-row-body h2 em { font-style: italic; }
+        .mvg-row:nth-child(1) .mvg-row-body h2 em { color: var(--coral-text); }
+        .mvg-row:nth-child(2) .mvg-row-body h2 em { color: var(--teal-dark); }
+        .mvg-row:nth-child(3) .mvg-row-body h2 em { color: #4E8860; }
+        .mvg-row-body p {
+            font-size: 1.1rem;
+            color: var(--ink-mid);
+            line-height: 1.85;
+            max-width: 640px;
+        }
+
+        @media (max-width: 720px) {
+            .mvg-row { grid-template-columns: 1fr; gap: 20px; }
+        }
+
+        /* =============================================
+           RIPPLE EFFECT — BIG TEXT BLOCK
+           ============================================= */
+        .ripple-section {
+            background: var(--deep-teal);
+            padding: 110px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        .ripple-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: radial-gradient(circle, rgba(255,255,255,0.05) 1.5px, transparent 1.5px);
+            background-size: 30px 30px;
+            pointer-events: none;
+        }
+        .ripple-inner { position: relative; z-index: 1; max-width: 860px; }
+        .ripple-eyebrow {
+            display: inline-block;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--coral);
+            margin-bottom: 36px;
+        }
+        .ripple-big {
+            font-family: var(--ff-serif);
+            font-size: clamp(2rem, 4.5vw, 3.6rem);
+            font-weight: 700;
+            color: #fff;
+            line-height: 1.2;
+            margin-bottom: 48px;
+        }
+        .ripple-big .hl-coral  { color: var(--coral); }
+        .ripple-big .hl-teal   { color: var(--teal-light); }
+        .ripple-big .hl-green  { color: #8FD5A6; }
+
+        .ripple-body {
+            font-family: var(--ff-sans);
+            font-size: clamp(1.2rem, 2.4vw, 1.6rem);
+            font-weight: 400;
+            color: rgba(255,255,255,0.82);
+            line-height: 1.75;
+        }
+        .ripple-body .hl-coral  { color: var(--coral);       font-weight: 600; }
+        .ripple-body .hl-teal   { color: var(--teal-light);  font-weight: 600; }
+        .ripple-body .hl-green  { color: #8FD5A6;            font-weight: 600; }
+
+        /* =============================================
+           CHANGE — TIMELINE
+           ============================================= */
+        .change-section {
+            background: var(--cream);
+            padding: 100px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        .change-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: radial-gradient(circle, rgba(192,112,96,0.1) 1.5px, transparent 1.5px);
+            background-size: 28px 28px;
+            pointer-events: none;
+        }
+        .section-header { margin-bottom: 72px; }
+        .section-header h2 {
+            font-size: clamp(2.2rem, 4vw, 3.4rem);
+            font-weight: 700;
+            margin-top: 10px;
+        }
+        .section-intro { font-size: 1.1rem; color: var(--ink-mid); max-width: 520px; margin-top: 14px; line-height: 1.75; }
+
+        .change-timeline { position: relative; max-width: 800px; }
+        .change-timeline::before {
+            content: '';
+            position: absolute;
+            left: 36px; top: 36px; bottom: 36px;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--coral), var(--teal), #B8DCA8);
+            border-radius: 2px;
+        }
+        .change-row {
+            display: flex;
+            gap: 44px;
+            align-items: flex-start;
+            padding-bottom: 56px;
+            position: relative;
+        }
+        .change-row:last-child { padding-bottom: 0; }
+        .change-dot {
+            width: 72px; height: 72px;
+            border-radius: 50%;
+            flex-shrink: 0;
+            display: flex; align-items: center; justify-content: center;
+            font-family: var(--ff-sans);
+            font-weight: 800;
+            font-size: 1rem;
+            position: relative; z-index: 1;
+            transition: transform 0.3s var(--ease);
+        }
+        .change-row:hover .change-dot { transform: scale(1.1); }
+        .change-row:nth-child(1) .change-dot { background: #FFE0D8; color: var(--coral-text); }
+        .change-row:nth-child(2) .change-dot { background: #D8F0F0; color: var(--teal-dark); }
+        .change-row:nth-child(3) .change-dot { background: #DCEFD8; color: #4E8860; }
+        .change-body { flex: 1; padding-top: 10px; }
+        .change-kicker { font-size: 0.68rem; font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 8px; display: block; }
+        .change-row:nth-child(1) .change-kicker { color: var(--coral-text); }
+        .change-row:nth-child(2) .change-kicker { color: var(--teal-dark); }
+        .change-row:nth-child(3) .change-kicker { color: #4E8860; }
+        .change-headline {
+            font-family: var(--ff-serif);
+            font-size: clamp(1.8rem, 3vw, 2.8rem);
+            font-weight: 700;
+            line-height: 1.15;
+            color: var(--ink);
+            margin-bottom: 14px;
+        }
+        .change-headline em { font-style: italic; }
+        .change-row:nth-child(1) .change-headline em { color: var(--coral-text); }
+        .change-row:nth-child(2) .change-headline em { color: var(--teal-dark); }
+        .change-row:nth-child(3) .change-headline em { color: #4E8860; }
+        .change-text { font-size: 1.05rem; color: var(--ink-mid); line-height: 1.8; max-width: 540px; }
+
+        /* =============================================
+           CORE BELIEFS CARDS
+           ============================================= */
+        .beliefs-section { background: var(--white); padding: 100px 0; }
+        .beliefs-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 56px;
+        }
+        .belief-card {
+            border-radius: 24px;
+            padding: 44px 36px 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease);
+        }
+        .belief-card:hover { transform: translateY(-8px); box-shadow: 0 24px 56px rgba(27,77,77,0.12); }
+        .belief-card:nth-child(1) { background: #FFF0EC; }
+        .belief-card:nth-child(2) { background: #EAF7F7; }
+        .belief-card:nth-child(3) { background: #EDF6E8; }
+        .belief-card-icon { width: 60px; height: 60px; border-radius: 18px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; }
+        .belief-card:nth-child(1) .belief-card-icon { background: rgba(192,112,96,0.15); color: var(--coral-text); }
+        .belief-card:nth-child(2) .belief-card-icon { background: rgba(78,152,152,0.15); color: var(--teal-dark); }
+        .belief-card:nth-child(3) .belief-card-icon { background: rgba(78,136,96,0.15);  color: #4E8860; }
+        .belief-card-num { font-size: 0.65rem; font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase; }
+        .belief-card:nth-child(1) .belief-card-num { color: var(--coral-text); }
+        .belief-card:nth-child(2) .belief-card-num { color: var(--teal-dark); }
+        .belief-card:nth-child(3) .belief-card-num { color: #4E8860; }
+        .belief-card h3 { font-size: clamp(1.2rem, 2vw, 1.55rem); font-weight: 700; color: var(--ink); line-height: 1.25; }
+        .belief-card h3 em { font-style: italic; }
+        .belief-card:nth-child(1) h3 em { color: var(--coral-text); }
+        .belief-card:nth-child(2) h3 em { color: var(--teal-dark); }
+        .belief-card:nth-child(3) h3 em { color: #4E8860; }
+        .belief-card p { font-size: 0.97rem; color: var(--ink-mid); line-height: 1.75; }
+        @media (max-width: 820px) { .beliefs-grid { grid-template-columns: 1fr; max-width: 480px; } }
+
+        /* =============================================
+           CTA BANNER
+           ============================================= */
+        .cta-banner {
+            background: linear-gradient(135deg, var(--deep-teal) 0%, var(--teal-dark) 100%);
+            padding: 100px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .cta-banner::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: radial-gradient(circle, rgba(255,255,255,0.05) 1.5px, transparent 1.5px);
+            background-size: 30px 30px;
+        }
+        .cta-banner-inner { position: relative; z-index: 1; max-width: 680px; margin: 0 auto; }
+        .cta-banner h2 { font-size: clamp(2rem, 4vw, 3.2rem); color: #fff; margin-bottom: 20px; }
+        .cta-banner p { font-size: 1.15rem; color: rgba(255,255,255,0.75); line-height: 1.75; margin-bottom: 40px; }
+        .cta-banner-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+        .btn-white { background: #fff; color: var(--deep-teal); border-color: #fff; font-weight: 700; }
+        .btn-white:hover { background: var(--cream); border-color: var(--cream); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+        .btn-outline-white { background: transparent; color: #fff; border: 2px solid rgba(255,255,255,0.5); }
+        .btn-outline-white:hover { border-color: #fff; background: rgba(255,255,255,0.1); transform: translateY(-2px); }
+
+        /* =============================================
+           FOOTER (minimal)
+           ============================================= */
+        .footer { background: var(--ink); padding: 60px 0 32px; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
+        .footer .logo-name { color: #fff; }
+        .footer .logo-name span { color: var(--coral); }
+        .footer .logo-sub { color: var(--teal-light); }
+        .footer-tagline { font-size: 0.9rem; color: rgba(255,255,255,0.45); margin-top: 16px; line-height: 1.7; max-width: 260px; }
+        .footer-col h4 { font-family: var(--ff-sans); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: 20px; }
+        .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+        .footer-col ul li a { font-size: 0.92rem; color: rgba(255,255,255,0.6); transition: color 0.2s; }
+        .footer-col ul li a:hover { color: #fff; }
+        .footer-bottom { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 28px; text-align: center; font-size: 0.8rem; color: rgba(255,255,255,0.3); }
+        @media (max-width: 820px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
+        @media (max-width: 480px) { .footer-grid { grid-template-columns: 1fr; } }
+
+    </style>
+    <link rel="stylesheet" href="transitions.css">
+</head>
+<body>
+
+    <!-- NAVIGATION -->
+    <header class="site-header" id="site-header">
+        <div class="container nav-inner">
+            <a href="index.html" class="logo">
+                <span class="logo-sub">Project</span>
+                <span class="logo-name">Equi<span>Flow</span></span>
+            </a>
+            <ul class="nav-links" id="nav-links">
+                <li class="has-dropdown">
+                    <a href="index.html">About</a>
+                    <ul class="nav-dropdown">
+                        <li><a href="mission.html">Our Mission</a></li>
+                    </ul>
+                </li>
+                <li><a href="program.html">Programs</a></li>
+                <li class="has-dropdown">
+                    <a href="#">Get Involved</a>
+                    <ul class="nav-dropdown">
+                        <li><a href="volunteer.html">Volunteer</a></li>
+                        <li><a href="chapter.html">Chapter</a></li>
+                        <li><a href="partner.html">Partner With Us</a></li>
+                    </ul>
+                </li>
+                <li><a href="donate.html" class="btn-donate">Donate</a></li>
+            </ul>
+            <button class="nav-hamburger" id="hamburger" aria-label="Open menu">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- HERO BANNER -->
+    <section class="mission-hero">
+        <div class="blob-canvas">
+            <div class="blob" style="width:500px;height:500px;top:-120px;right:-80px;background:#B0E0E0;opacity:0.25;animation:blobDrift2 18s ease-in-out infinite;"></div>
+            <div class="blob" style="width:320px;height:320px;bottom:-60px;left:-40px;background:#FFBDAB;opacity:0.22;animation:blobDrift1 13s ease-in-out infinite;"></div>
+        </div>
+        <div class="container mission-hero-content">
+            <span class="mission-hero-eyebrow">Our Mission</span>
+            <h1 style="animation:fadeSlideUp 0.9s 0.1s var(--ease) both;">
+                We believe every girl<br>deserves the chance to <em>lead.</em>
+            </h1>
+            <p class="mission-hero-sub" style="animation:fadeSlideUp 0.9s 0.3s var(--ease) both;">
+                Project EquiFlow exists to dismantle the systemic inequalities that keep girls and women from accessing education — and to build the pathways for them to rise.
+            </p>
+            <div style="display:flex;gap:16px;flex-wrap:wrap;animation:fadeSlideUp 0.9s 0.5s var(--ease) both;">
+                <a href="#mvg" class="btn" style="background:rgba(255,255,255,0.22);color:#fff;border-color:rgba(255,255,255,0.4);backdrop-filter:blur(6px);">Explore Our Work</a>
+                <a href="donate.html" class="btn btn-outline" style="color:#fff;border-color:rgba(255,255,255,0.5);">Support a Girl</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- BIG BELIEF BLOCK -->
+    <section class="belief-block" id="about-us">
+        <div class="container">
+            <div class="belief-block-grid">
+                <div class="belief-block-text reveal-left">
+                    <span class="eyebrow">Who We Are</span>
+                    <h2>We go where the<br>need is <em>greatest.</em></h2>
+                    <p>Project EquiFlow is a global nonprofit working in the world's most underserved communities — providing not just access to education, but the tools, mentorship, and community every girl needs to rise.</p>
+                    <p>Inspired by movements supporting Afghan women's right to learn, we take that urgency worldwide. Because every girl — regardless of geography — deserves the chance to lead her own future.</p>
+                </div>
+                <div class="belief-block-visual reveal-right">
+                    <div class="belief-stat-card reveal">
+                        <div class="num">130M+</div>
+                        <div class="lbl">Girls currently out of school globally</div>
+                    </div>
+                    <div class="belief-stat-card reveal" style="transition-delay:.1s">
+                        <div class="num">2.8×</div>
+                        <div class="lbl">Return on every $1 invested in girls' education</div>
+                    </div>
+                    <div class="belief-stat-card reveal" style="transition-delay:.2s">
+                        <div class="num">6×</div>
+                        <div class="lbl">More likely to immunize their children if educated</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MISSION / VISION / GOAL -->
+    <section class="mvg-section" id="mvg">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="eyebrow">Why We Exist</span>
+                <h2>Mission, Vision &amp; Goal</h2>
+                <p class="section-intro">Three commitments that guide every program, partnership, and decision we make.</p>
+            </div>
+
+            <div class="mvg-row reveal">
+                <div class="mvg-row-label">
+                    <span class="mvg-row-tag">Goal</span>
+                    <div class="mvg-row-icon"><i class="fa-solid fa-bullseye"></i></div>
+                </div>
+                <div class="mvg-row-body">
+                    <h2>Equal education for every girl —<br><em>no exceptions.</em></h2>
+                    <p>Dismantling the barriers of poverty, geography, and gender that keep girls out of classrooms worldwide. We exist to make this a reality — one community at a time.</p>
+                </div>
+            </div>
+
+            <div class="mvg-row reveal">
+                <div class="mvg-row-label">
+                    <span class="mvg-row-tag">Mission</span>
+                    <div class="mvg-row-icon"><i class="fa-solid fa-heart-pulse"></i></div>
+                </div>
+                <div class="mvg-row-body">
+                    <h2>Educate. Lead. <em>Connect.</em></h2>
+                    <p>Empowering girls and women in underserved communities by expanding access to education and creating real opportunities for growth, leadership, and connection — so every girl can define her own future.</p>
+                </div>
+            </div>
+
+            <div class="mvg-row reveal">
+                <div class="mvg-row-label">
+                    <span class="mvg-row-tag">Vision</span>
+                    <div class="mvg-row-icon"><i class="fa-solid fa-star"></i></div>
+                </div>
+                <div class="mvg-row-body">
+                    <h2>A world where every girl is <em>valued, respected, and leading.</em></h2>
+                    <p>We envision a world where women and girls have equitable access to school, work, and leadership — everywhere. Where no girl's potential is limited by where she was born.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- RIPPLE EFFECT -->
+    <section class="ripple-section">
+        <div class="container">
+            <div class="ripple-inner reveal">
+                <span class="ripple-eyebrow">The Ripple Effect</span>
+                <p class="ripple-big">
+                    Every girl we educate, every barrier we break, and every stigma we dismantle creates ripples that extend <span class="hl-coral">far beyond</span> her classroom.
+                </p>
+                <p class="ripple-body">
+                    When we <span class="hl-teal">put a girl in school</span>, we change how entire communities think about women's potential.
+                    When we <span class="hl-coral">develop young leaders</span>, we shift generational expectations about what girls can accomplish.
+                    When we <span class="hl-green">break stigmas together</span>, we build a foundation of dignity that <span class="hl-green">lasts long after</span> our work is done.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- HOW CHANGE HAPPENS -->
+    <section class="change-section" id="change">
+        <div class="container" style="position:relative;z-index:1;">
+            <div class="section-header reveal">
+                <span class="eyebrow">Our Ripple Effect</span>
+                <h2>How Change Happens</h2>
+                <p class="section-intro">Change doesn't happen all at once. It begins with one girl, then grows — and then it spreads.</p>
+            </div>
+            <div class="change-timeline">
+                <div class="change-row reveal">
+                    <div class="change-dot">01</div>
+                    <div class="change-body">
+                        <span class="change-kicker">Change</span>
+                        <div class="change-headline">begins when girls are <em>educated.</em></div>
+                        <p class="change-text">When a girl enters a classroom, her world expands — and so does her community's. Education is the single most powerful lever for lasting transformation.</p>
+                    </div>
+                </div>
+                <div class="change-row reveal">
+                    <div class="change-dot">02</div>
+                    <div class="change-body">
+                        <span class="change-kicker">Change</span>
+                        <div class="change-headline">grows when they find their <em>voice.</em></div>
+                        <p class="change-text">Educated girls who develop confidence and leadership skills don't just change their own lives — they become the changemakers their communities have been waiting for.</p>
+                    </div>
+                </div>
+                <div class="change-row reveal">
+                    <div class="change-dot">03</div>
+                    <div class="change-body">
+                        <span class="change-kicker">Change</span>
+                        <div class="change-headline">spreads when we <em>break stigmas together.</em></div>
+                        <p class="change-text">We speak openly about menstrual health because silence keeps girls home. Every girl deserves the resources and dignity to stay in school — and we won't stop until that is true everywhere.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CORE BELIEFS -->
+    <section class="beliefs-section" id="beliefs">
+        <div class="container">
+            <div class="section-header reveal" style="text-align:center;max-width:600px;margin-left:auto;margin-right:auto;">
+                <span class="eyebrow">The Heart of Our Work</span>
+                <h2>What We Know to Be True</h2>
+                <p class="section-intro" style="margin:14px auto 0;">Three convictions that drive every decision we make.</p>
+            </div>
+            <div class="beliefs-grid">
+                <div class="belief-card reveal">
+                    <div class="belief-card-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+                    <span class="belief-card-num">01 · Education</span>
+                    <h3>A classroom changes <em>everything.</em></h3>
+                    <p>Education is the most powerful lever for lasting change. Every girl deserves access — no exceptions, no barriers.</p>
+                </div>
+                <div class="belief-card reveal">
+                    <div class="belief-card-icon"><i class="fa-solid fa-people-group"></i></div>
+                    <span class="belief-card-num">02 · Leadership</span>
+                    <h3>Knowledge grows through <em>leadership.</em></h3>
+                    <p>We build confidence alongside curriculum — so educated girls become the voices their communities have been waiting for.</p>
+                </div>
+                <div class="belief-card reveal">
+                    <div class="belief-card-icon"><i class="fa-solid fa-hand-holding-heart"></i></div>
+                    <span class="belief-card-num">03 · Dignity</span>
+                    <h3>Silence is a barrier we <em>refuse to keep.</em></h3>
+                    <p>We speak openly about menstrual health — because a period should never be the reason a girl stops going to school.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA BANNER -->
+    <section class="cta-banner">
+        <div class="container">
+            <div class="cta-banner-inner reveal">
+                <span class="eyebrow" style="color:var(--coral);">Join the Movement</span>
+                <h2>Ready to be part of the change?</h2>
+                <p>Every contribution — financial, volunteer, or in partnership — helps a girl stay in school, find her voice, and lead her community.</p>
+                <div class="cta-banner-btns">
+                    <a href="donate.html" class="btn btn-white">Donate Now</a>
+                    <a href="volunteer.html" class="btn btn-outline-white">Volunteer</a>
+                    <a href="partner.html" class="btn btn-outline-white">Partner With Us</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <a href="index.html" class="logo">
+                        <span class="logo-sub">Project</span>
+                        <span class="logo-name">Equi<span>Flow</span></span>
+                    </a>
+                    <p class="footer-tagline">Forging pathways for women and girls in extreme poverty to learn, connect, and lead.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>About</h4>
+                    <ul>
+                        <li><a href="mission.html">Our Mission</a></li>
+                        <li><a href="index.html#beliefs">Our Beliefs</a></li>
+                        <li><a href="index.html#about">Who We Are</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Programs</h4>
+                    <ul>
+                        <li><a href="program.html">Education Access</a></li>
+                        <li><a href="program.html">Leadership</a></li>
+                        <li><a href="program.html">Menstrual Health</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Get Involved</h4>
+                    <ul>
+                        <li><a href="donate.html">Donate</a></li>
+                        <li><a href="volunteer.html">Volunteer</a></li>
+                        <li><a href="chapter.html">Chapter</a></li>
+                        <li><a href="partner.html">Partner</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© Project EquiFlow 2025, All Rights Reserved. &nbsp;·&nbsp; A registered 501(c)(3) nonprofit organization.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        /* ── Sticky nav ── */
+        const header = document.getElementById('site-header');
+        window.addEventListener('scroll', () => {
+            header.classList.toggle('scrolled', window.scrollY > 20);
+        }, { passive: true });
+
+        /* ── Mobile nav ── */
+        const hamburger = document.getElementById('hamburger');
+        const navLinks  = document.getElementById('nav-links');
+        hamburger.addEventListener('click', () => {
+            const open = navLinks.classList.toggle('open');
+            hamburger.innerHTML = open
+                ? '<i class="fa-solid fa-xmark"></i>'
+                : '<i class="fa-solid fa-bars"></i>';
+        });
+
+        /* ── Mobile dropdown toggles ── */
+        document.querySelectorAll('.nav-links .has-dropdown > a').forEach(a => {
+            a.addEventListener('click', e => {
+                if (window.innerWidth <= 900) {
+                    e.preventDefault();
+                    a.parentElement.classList.toggle('open');
+                }
+            });
+        });
+
+        /* ── Scroll reveal ── */
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    const delay = e.target.dataset.delay || 0;
+                    setTimeout(() => e.target.classList.add('active'), +delay);
+                    observer.unobserve(e.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach((el, i) => {
+            const siblings = el.parentElement.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+            if (siblings.length > 1) {
+                const idx = [...siblings].indexOf(el);
+                el.dataset.delay = idx * 100;
+            }
+            observer.observe(el);
+        });
+
+        /* ── 3D tilt on belief cards ── */
+        document.querySelectorAll('.belief-card').forEach(card => {
+            card.addEventListener('mousemove', e => {
+                const r = card.getBoundingClientRect();
+                const x = (e.clientX - r.left) / r.width  - 0.5;
+                const y = (e.clientY - r.top)  / r.height - 0.5;
+                card.style.transform = `perspective(600px) rotateY(${x * 8}deg) rotateX(${-y * 8}deg) translateY(-6px)`;
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = '';
+            });
+        });
+    </script>
+    <script src="transitions.js"></script>
+</body>
+</html>

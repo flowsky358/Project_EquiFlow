@@ -4,278 +4,623 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Our Programs | Project EquiFlow</title>
-    
-    <!-- Fonts -->
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&family=Quicksand:wght@300;400;500;600;700&family=Pacifico&family=Outfit:wght@100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Nunito:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <style>
         :root {
-            --logo-coral: #FF8566;
-            --logo-teal-deep: #1B4D4D;
-            --logo-teal-light: #7AD3D6;
-            --logo-yellow: #FFCB6B;
-            --cream: #FFFBF5;
-            --transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            --coral:      #FFBDAB;
+            --coral-dark: #F5A488;
+            --coral-text: #C07060;
+            --teal:       #96D4D4;
+            --teal-light: #B0E0E0;
+            --teal-pale:  #EEF9F9;
+            --teal-dark:  #4E9898;
+            --deep-teal:  #3A6E6E;
+            --green:      #4E8860;
+            --green-pale: #EDF6E8;
+            --green-light:#8FD5A6;
+            --cream:      #FFF8F2;
+            --white:      #FFFFFF;
+            --ink:        #2E4E4E;
+            --ink-mid:    #4A6464;
+            --ink-light:  #7EAAAA;
+            --border:     #DDEEED;
+            --ff-serif:   'Outfit', sans-serif;
+            --ff-sans:    'Nunito', system-ui, sans-serif;
+            --ease:       cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        body {
-            font-family: 'Outfit', sans-serif;
-            background-color: var(--cream);
-            color: var(--logo-teal-deep);
-            overflow-x: hidden;
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: var(--ff-sans); background: var(--cream); color: var(--ink-mid); line-height: 1.7; overflow-x: hidden; }
+        h1, h2, h3, h4 { font-family: var(--ff-serif); line-height: 1.18; color: var(--ink); letter-spacing: -0.01em; }
+        a { text-decoration: none; }
+        .container { max-width: 1140px; margin: 0 auto; padding: 0 28px; }
+
+        /* ── REVEAL ── */
+        .reveal       { opacity: 0; transform: translateY(28px); transition: opacity 0.75s var(--ease), transform 0.75s var(--ease); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        .reveal-left  { opacity: 0; transform: translateX(-44px); transition: opacity 0.8s var(--ease), transform 0.8s var(--ease); }
+        .reveal-left.active { opacity: 1; transform: translateX(0); }
+        .reveal-right { opacity: 0; transform: translateX(44px); transition: opacity 0.8s var(--ease), transform 0.8s var(--ease); }
+        .reveal-right.active { opacity: 1; transform: translateX(0); }
+
+        .eyebrow { display: inline-block; font-family: var(--ff-sans); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 16px; }
+
+        .btn { display: inline-block; font-family: var(--ff-sans); font-size: 0.95rem; font-weight: 600; padding: 14px 32px; border-radius: 8px; border: 2px solid transparent; cursor: pointer; transition: all 0.3s var(--ease); }
+        .btn-coral  { background: var(--coral-text); color: #fff; border-color: var(--coral-text); }
+        .btn-coral:hover { background: #B06050; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(192,112,96,0.3); }
+        .btn-teal   { background: var(--teal-dark); color: #fff; border-color: var(--teal-dark); }
+        .btn-teal:hover { background: var(--deep-teal); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(78,152,152,0.3); }
+        .btn-green  { background: var(--green); color: #fff; border-color: var(--green); }
+        .btn-green:hover { background: #3D6E4A; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(78,136,96,0.3); }
+        .btn-outline-white { background: rgba(255,255,255,0.15); color: #fff; border: 2px solid rgba(255,255,255,0.45); }
+        .btn-outline-white:hover { background: rgba(255,255,255,0.28); transform: translateY(-1px); }
+
+        /* =============================================
+           NAVIGATION
+           ============================================= */
+        .site-header { position: fixed; top: 0; left: 0; right: 0; z-index: 200; background: #fff; border-bottom: 1px solid var(--border); transition: box-shadow 0.3s ease; }
+        .site-header.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.08); }
+        .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 76px; }
+        .logo { display: flex; flex-direction: column; line-height: 1; }
+        .logo-sub { font-family: var(--ff-sans); font-size: 0.6rem; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; color: var(--teal); margin-bottom: 2px; }
+        .logo-name { font-family: var(--ff-serif); font-size: 1.85rem; font-weight: 700; color: var(--ink); letter-spacing: -0.01em; }
+        .logo-name span { color: var(--coral-dark); }
+        .nav-links { display: flex; align-items: center; gap: 2px; list-style: none; height: 100%; }
+        .nav-links > li { position: relative; height: 100%; display: flex; align-items: center; }
+        .nav-links > li > a { display: flex; align-items: center; gap: 6px; font-size: 1.08rem; font-weight: 500; color: var(--ink); padding: 10px 20px; border-radius: 8px; transition: color 0.2s, background 0.2s; white-space: nowrap; }
+        .nav-links > li > a:not(.btn-donate):hover { color: var(--teal-dark); background: var(--teal-pale); }
+        .nav-links > li.has-dropdown > a::after { content: ''; display: inline-block; width: 6px; height: 6px; border-right: 2px solid currentColor; border-bottom: 2px solid currentColor; transform: rotate(45deg) translateY(-2px); transition: transform 0.2s; opacity: 0.6; }
+        .nav-links > li.has-dropdown:hover > a::after,
+        .nav-links > li.has-dropdown.open > a::after { transform: rotate(-135deg) translateY(-2px); }
+        .nav-dropdown { position: absolute; top: calc(100% + 8px); left: 0; background: #fff; border: 1px solid var(--border); border-radius: 14px; padding: 8px; min-width: 200px; box-shadow: 0 16px 48px rgba(0,0,0,0.1); list-style: none; opacity: 0; visibility: hidden; transform: translateY(10px); transition: opacity 0.22s var(--ease), transform 0.22s var(--ease), visibility 0.22s; z-index: 300; }
+        .nav-links > li.has-dropdown:hover .nav-dropdown,
+        .nav-links > li.has-dropdown.open .nav-dropdown { opacity: 1; visibility: visible; transform: translateY(0); }
+        .nav-dropdown li a { display: block; font-size: 1rem; font-weight: 500; color: var(--ink-mid); padding: 11px 18px; border-radius: 8px; transition: background 0.18s, color 0.18s; }
+        .nav-dropdown li a:hover { background: var(--teal-pale); color: var(--teal-dark); }
+        .btn-donate { background: transparent !important; color: var(--ink) !important; padding: 11px 28px !important; border-radius: 100px !important; border: 2px solid var(--ink) !important; font-weight: 600 !important; font-size: 1.08rem !important; transition: background 0.2s, color 0.2s !important; margin-left: 8px; }
+        .btn-donate:hover { background: var(--ink) !important; color: #fff !important; }
+        .nav-hamburger { display: none; background: none; border: none; font-size: 1.6rem; color: var(--ink); cursor: pointer; }
+        @media (max-width: 900px) {
+            .nav-hamburger { display: block; }
+            .nav-inner { height: 64px; }
+            .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; align-items: stretch; height: auto; background: #fff; border-top: 1px solid var(--border); padding: 12px 20px 20px; gap: 2px; box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
+            .nav-links.open { display: flex; }
+            .nav-links > li { height: auto; }
+            .nav-dropdown { position: static; opacity: 1; visibility: visible; transform: none; box-shadow: none; border: none; padding: 4px 0 4px 16px; display: none; }
+            .nav-links > li.has-dropdown.open .nav-dropdown { display: block; }
+            .nav-links > li > a { font-size: 1.08rem; padding: 10px 12px; }
+            .btn-donate { margin: 8px 0 0; text-align: center; }
         }
 
-        h1, h2, h3 { font-family: 'Fredoka', sans-serif; }
-        .script-font { font-family: 'Pacifico', cursive; }
-        .serif-font { font-family: 'Playfair Display', serif; }
+        /* =============================================
+           HERO
+           ============================================= */
+        @keyframes fadeSlideUp { from { opacity:0; transform:translateY(28px); } to { opacity:1; transform:translateY(0); } }
+        @keyframes blobDrift1  { 0%,100%{transform:translate(0,0) scale(1);} 33%{transform:translate(40px,-30px) scale(1.05);} 66%{transform:translate(-20px,20px) scale(0.97);} }
+        @keyframes blobDrift2  { 0%,100%{transform:translate(0,0) scale(1);} 40%{transform:translate(-50px,30px) scale(1.08);} 70%{transform:translate(30px,-20px) scale(0.95);} }
 
-        /* Navigation Glass Effect */
-        #nav-container {
-            transition: all 0.4s ease;
-        }
-        .nav-scrolled {
-            background: rgba(255, 251, 245, 0.85);
-            backdrop-filter: blur(12px);
-            padding-top: 0.75rem;
-            padding-bottom: 0.75rem;
-            box-shadow: 0 10px 30px rgba(27, 77, 77, 0.05);
-        }
-
-        /* Animation Classes */
-        .reveal {
-            opacity: 0;
-            transform: translateY(60px);
-            transition: var(--transition);
-        }
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Floating Animation */
-        .float-element {
-            animation: float 6s ease-in-out infinite;
-        }
-        @keyframes float {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(5deg); }
-        }
-
-        .image-container {
+        .prog-hero {
+            background: linear-gradient(135deg, #6AACAC 0%, #4E9292 60%, #3D8080 100%);
+            padding: 160px 0 100px;
             position: relative;
             overflow: hidden;
-            border-radius: 60px 20px 60px 20px;
-            box-shadow: 0 40px 80px rgba(27, 77, 77, 0.15);
+        }
+        .prog-hero::before { content:''; position:absolute; inset:0; background-image:radial-gradient(circle,rgba(255,255,255,0.06) 1.5px,transparent 1.5px); background-size:32px 32px; pointer-events:none; }
+        .blob-canvas { position:absolute; inset:0; overflow:hidden; pointer-events:none; z-index:0; }
+        .blob { position:absolute; border-radius:50%; filter:blur(80px); }
+        .prog-hero-content { position:relative; z-index:1; }
+        .prog-hero-eyebrow { display:inline-block; font-size:0.7rem; font-weight:700; letter-spacing:0.22em; text-transform:uppercase; color:#fff; margin-bottom:24px; background:rgba(255,255,255,0.18); padding:6px 16px; border-radius:100px; border:1px solid rgba(255,255,255,0.3); }
+        .prog-hero h1 { color:#fff; font-size:clamp(3rem,7vw,5.8rem); font-weight:700; line-height:1.05; max-width:800px; margin-bottom:28px; text-shadow:0 2px 24px rgba(0,0,0,0.12); }
+        .prog-hero h1 em { font-style:italic; color:var(--coral); }
+        .prog-hero-sub { font-size:clamp(1.05rem,2vw,1.3rem); color:rgba(255,255,255,0.8); max-width:540px; line-height:1.75; margin-bottom:44px; }
+
+        /* pillar nav pills */
+        .pillar-nav { display:flex; gap:12px; flex-wrap:wrap; margin-top:8px; }
+        .pillar-pill { display:inline-flex; align-items:center; gap:8px; padding:10px 22px; border-radius:100px; font-size:0.9rem; font-weight:600; border:2px solid rgba(255,255,255,0.35); color:#fff; background:rgba(255,255,255,0.12); transition:background 0.2s,border-color 0.2s; cursor:pointer; }
+        .pillar-pill:hover { background:rgba(255,255,255,0.25); border-color:rgba(255,255,255,0.6); }
+
+        /* =============================================
+           WHY IT MATTERS STRIP
+           ============================================= */
+        .why-strip { background:var(--ink); padding:72px 0; }
+        .why-strip-inner { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:rgba(255,255,255,0.08); }
+        .why-stat { padding:40px 44px; background:var(--ink); text-align:center; }
+        .why-stat .num { font-family:var(--ff-serif); font-size:clamp(2.4rem,4vw,3.6rem); font-weight:700; line-height:1; margin-bottom:12px; }
+        .why-stat:nth-child(1) .num { color:var(--coral); }
+        .why-stat:nth-child(2) .num { color:var(--teal-light); }
+        .why-stat:nth-child(3) .num { color:var(--green-light); }
+        .why-stat .lbl { font-size:0.95rem; color:rgba(255,255,255,0.6); line-height:1.55; }
+        @media(max-width:720px){ .why-strip-inner{ grid-template-columns:1fr; } }
+
+        /* =============================================
+           PILLAR SECTIONS
+           ============================================= */
+        .pillar-section { padding:110px 0; position:relative; overflow:hidden; }
+        .pillar-section:nth-child(odd) { background:var(--white); }
+        .pillar-section:nth-child(even) { background:var(--cream); }
+
+        .pillar-grid { display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center; }
+        .pillar-grid.flip { }
+        .pillar-grid.flip .pillar-visual { order:-1; }
+
+        /* pillar label / number */
+        .pillar-tag { display:flex; align-items:center; gap:12px; margin-bottom:20px; }
+        .pillar-num { font-family:var(--ff-sans); font-size:0.65rem; font-weight:800; letter-spacing:0.2em; text-transform:uppercase; }
+        .pillar-icon-sm { width:44px; height:44px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:1.1rem; }
+
+        /* pillar 1 — coral */
+        .p1 .pillar-num { color:var(--coral-text); }
+        .p1 .pillar-icon-sm { background:rgba(192,112,96,0.14); color:var(--coral-text); }
+        .p1 .pillar-accent { background:var(--coral-text); }
+        .p1 h2 em { color:var(--coral-text); }
+        .p1 .why-box { border-left-color:var(--coral); }
+        .p1 .what-item i { color:var(--coral-text); }
+
+        /* pillar 2 — teal */
+        .p2 .pillar-num { color:var(--teal-dark); }
+        .p2 .pillar-icon-sm { background:rgba(78,152,152,0.14); color:var(--teal-dark); }
+        .p2 .pillar-accent { background:var(--teal-dark); }
+        .p2 h2 em { color:var(--teal-dark); }
+        .p2 .why-box { border-left-color:var(--teal); }
+        .p2 .what-item i { color:var(--teal-dark); }
+
+        /* pillar 3 — green */
+        .p3 .pillar-num { color:var(--green); }
+        .p3 .pillar-icon-sm { background:rgba(78,136,96,0.14); color:var(--green); }
+        .p3 .pillar-accent { background:var(--green); }
+        .p3 h2 em { color:var(--green); }
+        .p3 .why-box { border-left-color:var(--green-light); }
+        .p3 .what-item i { color:var(--green); }
+
+        .pillar-accent { width:56px; height:5px; border-radius:3px; margin-bottom:28px; }
+
+        .pillar-section h2 { font-size:clamp(2rem,4vw,3.2rem); font-weight:700; margin-bottom:18px; line-height:1.1; }
+        .pillar-section h2 em { font-style:italic; }
+        .pillar-lead { font-size:1.1rem; color:var(--ink-mid); line-height:1.8; margin-bottom:32px; }
+
+        /* why box */
+        .why-box { background:var(--cream); border-left:5px solid; border-radius:0 14px 14px 0; padding:24px 28px; margin-bottom:32px; }
+        .why-box h4 { font-family:var(--ff-sans); font-size:0.68rem; font-weight:800; letter-spacing:0.18em; text-transform:uppercase; color:var(--ink-light); margin-bottom:10px; }
+        .why-box p { font-size:1rem; color:var(--ink-mid); line-height:1.75; }
+
+        /* what we do items */
+        .what-list { display:flex; flex-direction:column; gap:16px; margin-bottom:36px; }
+        .what-item { display:flex; align-items:flex-start; gap:16px; }
+        .what-item i { font-size:1.1rem; margin-top:3px; flex-shrink:0; }
+        .what-item-body strong { display:block; font-family:var(--ff-sans); font-size:0.95rem; font-weight:700; color:var(--ink); margin-bottom:3px; }
+        .what-item-body span { font-size:0.92rem; color:var(--ink-mid); line-height:1.6; }
+
+        /* visual card */
+        .pillar-visual { position:relative; }
+        .pillar-img-card {
+            border-radius:24px;
+            overflow:hidden;
+            aspect-ratio:4/5;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            position:relative;
+        }
+        .p1 .pillar-img-card { background:linear-gradient(145deg,#FFF0EC,#FFE0D8); }
+        .p2 .pillar-img-card { background:linear-gradient(145deg,#EAF7F7,#D0EEEE); }
+        .p3 .pillar-img-card { background:linear-gradient(145deg,#EDF6E8,#D8EDD4); }
+        .pillar-img-card img { width:100%; height:100%; object-fit:cover; }
+        .pillar-float-stat {
+            position:absolute;
+            bottom:-24px; right:-24px;
+            background:#fff;
+            border-radius:18px;
+            padding:20px 26px;
+            box-shadow:0 12px 40px rgba(0,0,0,0.1);
+            max-width:220px;
+        }
+        .pillar-float-stat .f-num { font-family:var(--ff-serif); font-size:2.2rem; font-weight:700; line-height:1; margin-bottom:4px; }
+        .p1 .pillar-float-stat .f-num { color:var(--coral-text); }
+        .p2 .pillar-float-stat .f-num { color:var(--teal-dark); }
+        .p3 .pillar-float-stat .f-num { color:var(--green); }
+        .pillar-float-stat .f-lbl { font-size:0.82rem; color:var(--ink-mid); line-height:1.4; }
+
+        /* decorative large icon bg */
+        .pillar-img-icon { font-size:8rem; opacity:0.12; color:var(--ink); }
+
+        @media(max-width:860px){
+            .pillar-grid { grid-template-columns:1fr; gap:48px; }
+            .pillar-grid.flip .pillar-visual { order:0; }
+            .pillar-float-stat { right:12px; bottom:-12px; }
         }
 
-        /* Big Typography */
-        .giant-text {
-            font-size: clamp(3.5rem, 12vw, 9rem);
-            line-height: 0.8;
-            font-weight: 800;
-            letter-spacing: -0.04em;
-        }
+        /* =============================================
+           CTA BANNER
+           ============================================= */
+        .cta-banner { background:linear-gradient(135deg,var(--deep-teal) 0%,var(--teal-dark) 100%); padding:100px 0; text-align:center; position:relative; overflow:hidden; }
+        .cta-banner::before { content:''; position:absolute; inset:0; background-image:radial-gradient(circle,rgba(255,255,255,0.05) 1.5px,transparent 1.5px); background-size:30px 30px; }
+        .cta-inner { position:relative; z-index:1; max-width:680px; margin:0 auto; }
+        .cta-banner h2 { font-size:clamp(2rem,4vw,3.2rem); color:#fff; margin-bottom:20px; }
+        .cta-banner p { font-size:1.15rem; color:rgba(255,255,255,0.75); line-height:1.75; margin-bottom:40px; }
+        .cta-btns { display:flex; gap:16px; justify-content:center; flex-wrap:wrap; }
+        .btn-white { background:#fff; color:var(--deep-teal); border-color:#fff; font-weight:700; }
+        .btn-white:hover { background:var(--cream); transform:translateY(-2px); box-shadow:0 8px 24px rgba(0,0,0,0.15); }
 
-        .accent-pill {
-            display: inline-block;
-            padding: 10px 24px;
-            background: white;
-            border-radius: 100px;
-            font-size: 0.75rem;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 0.2em;
-            margin-bottom: 2rem;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
-        }
-
-        .nav-link {
-            position: relative;
-            padding: 0.5rem 0;
-        }
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background-color: var(--logo-coral);
-            transition: width 0.3s_ease;
-        }
-        .nav-link:hover::after {
-            width: 100%;
-        }
+        /* =============================================
+           FOOTER
+           ============================================= */
+        .footer { background:var(--ink); padding:60px 0 32px; }
+        .footer-grid { display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:48px; margin-bottom:48px; }
+        .footer .logo-name { color:#fff; }
+        .footer .logo-name span { color:var(--coral-dark); }
+        .footer .logo-sub { color:var(--teal-light); }
+        .footer-tagline { font-size:0.9rem; color:rgba(255,255,255,0.45); margin-top:16px; line-height:1.7; max-width:260px; }
+        .footer-col h4 { font-family:var(--ff-sans); font-size:0.7rem; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:rgba(255,255,255,0.35); margin-bottom:20px; }
+        .footer-col ul { list-style:none; display:flex; flex-direction:column; gap:10px; }
+        .footer-col ul li a { font-size:0.92rem; color:rgba(255,255,255,0.6); transition:color 0.2s; }
+        .footer-col ul li a:hover { color:#fff; }
+        .footer-bottom { border-top:1px solid rgba(255,255,255,0.08); padding-top:28px; text-align:center; font-size:0.8rem; color:rgba(255,255,255,0.3); }
+        @media(max-width:820px){ .footer-grid{ grid-template-columns:1fr 1fr; } }
+        @media(max-width:480px){ .footer-grid{ grid-template-columns:1fr; } }
     </style>
+    <link rel="stylesheet" href="transitions.css">
 </head>
 <body>
 
-    <!-- NAVIGATION BAR -->
-    <header id="nav-container" class="fixed top-0 w-full z-[1000] py-6">
-        <div class="max-w-[1400px] mx-auto px-8 flex justify-between items-center">
-            <a href="index.html" class="flex items-center gap-3 group">
-                <div class="w-10 h-10 bg-[#FF8566] rounded-xl flex items-center justify-center transform group-hover:rotate-12 transition-all">
-                    <span class="text-white font-bold text-xl">E</span>
-                </div>
-                <span class="script-font text-2xl text-[#1B4D4D]">EquiFlow</span>
+    <!-- NAVIGATION -->
+    <header class="site-header" id="site-header">
+        <div class="container nav-inner">
+            <a href="index.html" class="logo">
+                <span class="logo-sub">Project</span>
+                <span class="logo-name">Equi<span>Flow</span></span>
             </a>
-
-            <nav class="hidden md:flex gap-10 items-center font-bold text-[#1B4D4D]">
-                <a href="#" class="nav-link hover:text-[#FF8566]">Home</a>
-                <a href="#" class="nav-link text-[#FF8566]">Programs</a>
-                <a href="#" class="nav-link hover:text-[#FF8566]">Our Story</a>
-                <a href="#" class="nav-link hover:text-[#FF8566]">Chapters</a>
-                <a href="#" class="bg-[#1B4D4D] text-white px-8 py-3 rounded-full hover:bg-[#FF8566] hover:scale-105 transition-all shadow-lg ml-4">
-                    Donate
-                </a>
-            </nav>
-
-            <button class="md:hidden text-[#1B4D4D]">
-                <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+            <ul class="nav-links" id="nav-links">
+                <li class="has-dropdown">
+                    <a href="index.html">About</a>
+                    <ul class="nav-dropdown">
+                        <li><a href="mission.html">Our Mission</a></li>
+                    </ul>
+                </li>
+                <li><a href="program.html">Programs</a></li>
+                <li class="has-dropdown">
+                    <a href="#">Get Involved</a>
+                    <ul class="nav-dropdown">
+                        <li><a href="volunteer.html">Volunteer</a></li>
+                        <li><a href="chapter.html">Chapter</a></li>
+                        <li><a href="partner.html">Partner With Us</a></li>
+                    </ul>
+                </li>
+                <li><a href="donate.html" class="btn-donate">Donate</a></li>
+            </ul>
+            <button class="nav-hamburger" id="hamburger" aria-label="Open menu">
+                <i class="fa-solid fa-bars"></i>
             </button>
         </div>
     </header>
 
-    <!-- HERO SECTION -->
-    <section class="min-h-[80vh] flex items-center pt-32 px-8">
-        <div class="max-w-7xl mx-auto w-full">
-            <div class="reveal active">
-                <span class="accent-pill text-[#FF8566]">EquiFlow Initiatives</span>
-                <h1 class="giant-text text-[#1B4D4D]">Empower <br><span class="text-[#FF8566]">Tomorrow.</span></h1>
-                <div class="flex flex-col md:flex-row items-end justify-between mt-12 gap-8">
-                    <p class="text-2xl text-gray-500 max-w-xl font-medium serif-font italic">
-                        Transforming passion into purpose through creativity, advocacy, and global connection.
-                    </p>
+    <!-- HERO -->
+    <section class="prog-hero">
+        <div class="blob-canvas">
+            <div class="blob" style="width:480px;height:480px;top:-100px;right:-60px;background:#B0E0E0;opacity:0.22;animation:blobDrift2 18s ease-in-out infinite;"></div>
+            <div class="blob" style="width:300px;height:300px;bottom:-60px;left:-40px;background:#FFBDAB;opacity:0.2;animation:blobDrift1 13s ease-in-out infinite;"></div>
+        </div>
+        <div class="container prog-hero-content">
+            <span class="prog-hero-eyebrow">Our Programs</span>
+            <h1 style="animation:fadeSlideUp 0.9s 0.1s var(--ease) both;">
+                Three pillars.<br>One <em>mission.</em>
+            </h1>
+            <p class="prog-hero-sub" style="animation:fadeSlideUp 0.9s 0.3s var(--ease) both;">
+                Everything we do flows through three interconnected areas of impact — each one essential, each one making the others stronger.
+            </p>
+            <div class="pillar-nav" style="animation:fadeSlideUp 0.9s 0.5s var(--ease) both;">
+                <a href="#education" class="pillar-pill"><i class="fa-solid fa-book-open"></i> Education Access</a>
+                <a href="#leadership" class="pillar-pill"><i class="fa-solid fa-people-group"></i> Leadership</a>
+                <a href="#health" class="pillar-pill"><i class="fa-solid fa-hand-holding-heart"></i> Menstrual Health</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- WHY IT MATTERS STRIP -->
+    <div class="why-strip">
+        <div class="container">
+            <div class="why-strip-inner">
+                <div class="why-stat reveal">
+                    <div class="num">130M+</div>
+                    <div class="lbl">Girls currently out of school globally — more than any other group</div>
+                </div>
+                <div class="why-stat reveal">
+                    <div class="num">1 in 5</div>
+                    <div class="lbl">Girls in developing countries misses school every month due to her period</div>
+                </div>
+                <div class="why-stat reveal">
+                    <div class="num">$2.80</div>
+                    <div class="lbl">Returned to communities for every $1 invested in girls' education</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════
+         PILLAR 1 — EDUCATION ACCESS
+         ═══════════════════════════════════════ -->
+    <section class="pillar-section p1" id="education">
+        <div class="container">
+            <div class="pillar-grid">
+                <div class="pillar-text reveal-left">
+                    <div class="pillar-tag">
+                        <div class="pillar-icon-sm"><i class="fa-solid fa-book-open"></i></div>
+                        <span class="pillar-num">Pillar One &nbsp;·&nbsp; Education Access</span>
+                    </div>
+                    <div class="pillar-accent"></div>
+                    <h2>Every girl deserves a seat<br>in the <em>classroom.</em></h2>
+                    <p class="pillar-lead">Cost is one of the biggest reasons girls drop out — not lack of desire to learn. We remove the financial barriers standing between a girl and her education.</p>
+
+                    <div class="why-box">
+                        <h4>Why This Matters</h4>
+                        <p>In many of the communities we serve, families must choose between buying food and paying for school supplies. When a girl can't afford a pencil or a uniform, she simply stays home. Over time, those missed days turn into missed years — and a future that never had the chance to unfold.</p>
+                    </div>
+
+                    <div class="what-list">
+                        <div class="what-item">
+                            <i class="fa-solid fa-backpack"></i>
+                            <div class="what-item-body">
+                                <strong>School Supplies &amp; Materials</strong>
+                                <span>We fund books, notebooks, pens, uniforms, and bags — everything a girl needs to walk into a classroom ready to learn.</span>
+                            </div>
+                        </div>
+                        <div class="what-item">
+                            <i class="fa-solid fa-graduation-cap"></i>
+                            <div class="what-item-body">
+                                <strong>Scholarships</strong>
+                                <span>For girls whose families cannot cover tuition or school fees, we provide direct scholarships so financial hardship is never a reason to stop learning.</span>
+                            </div>
+                        </div>
+                        <div class="what-item">
+                            <i class="fa-solid fa-circle-check"></i>
+                            <div class="what-item-body">
+                                <strong>Long-Term Support</strong>
+                                <span>We follow girls through their education journey — from primary school through higher education — so a single setback doesn't end it all.</span>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="donate.html" class="btn btn-coral">Support a Scholar</a>
+                </div>
+
+                <div class="pillar-visual reveal-right">
+                    <div class="pillar-img-card">
+                        <img src="image/IMG_2250.png" alt="Girls in an outdoor education workshop" />
+                    </div>
+                    <div class="pillar-float-stat">
+                        <div class="f-num">6×</div>
+                        <div class="f-lbl">More likely to immunize their children if educated</div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- PROGRAM 1: EMPOWERMENT LETTERS (NOW FIRST) -->
-    <section id="letters" class="py-32 px-8 bg-white">
-        <div class="max-w-[1400px] mx-auto grid lg:grid-cols-2 gap-24 items-center">
-            <div class="reveal">
-                <div class="accent-pill text-[#FF8566] bg-[#FF856615]">EmpowerMENT Letters</div>
-                <h2 class="text-7xl font-bold mb-10 leading-[0.9] tracking-tighter">Written with <br><span class="text-[#FF8566] serif-font italic">Compassion.</span></h2>
-                
-                <div class="space-y-8 text-xl text-gray-600 leading-relaxed">
-                    <p>
-                        Our writing initiative bridges distances by delivering handwritten messages of hope to girls facing barriers to health and education. 
-                    </p>
-                    <p class="font-bold text-[#1B4D4D]">
-                        By fostering emotional resilience, we ensure every student knows they are part of a global community that values their future and their dreams.
-                    </p>
-                </div>
-
-                <div class="mt-12 p-8 border-l-4 border-[#FF8566] bg-[# cream] rounded-r-2xl shadow-sm">
-                    <h4 class="font-bold text-2xl mb-2 text-[#1B4D4D]">1,000+ Letters Sent</h4>
-                    <p class="text-gray-500">Connecting student advocates with communities worldwide to spread encouragement.</p>
-                </div>
-            </div>
-
-            <div class="relative reveal" style="transition-delay: 0.2s;">
-                <div class="image-container" style="border-radius: 20px 60px 20px 60px;">
-                    <div class="w-full h-[600px] bg-[#FF8566] flex items-center justify-center text-white p-12 text-center">
-                        <svg width="150" height="150" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="opacity-40 mb-8"><path d="M22 17a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V9.5C2 7 4 5 6.5 5H18c2.2 0 4 1.8 4 4v8Z"/><path d="m2 9.5 10 7 10-7"/></svg>
-                        <h3 class="text-4xl font-bold mb-4">Letter Exchange</h3>
-                        <p class="text-lg opacity-80">Building bridges across continents through the power of pen and paper.</p>
+    <!-- ═══════════════════════════════════════
+         PILLAR 2 — LEADERSHIP & COMMUNITY
+         ═══════════════════════════════════════ -->
+    <section class="pillar-section p2" id="leadership">
+        <div class="container">
+            <div class="pillar-grid flip">
+                <div class="pillar-text reveal-right">
+                    <div class="pillar-tag">
+                        <div class="pillar-icon-sm"><i class="fa-solid fa-people-group"></i></div>
+                        <span class="pillar-num">Pillar Two &nbsp;·&nbsp; Leadership &amp; Community</span>
                     </div>
+                    <div class="pillar-accent"></div>
+                    <h2>Education is just the<br>beginning of her <em>power.</em></h2>
+                    <p class="pillar-lead">A girl who can read is powerful. A girl who knows how to lead, speak up, and build community? She changes the world. That's what this pillar is for.</p>
+
+                    <div class="why-box">
+                        <h4>Why This Matters</h4>
+                        <p>Girls in underserved communities are often taught to be quiet, to follow, to shrink. Even when they make it to school, many have never been shown how to find their voice. Without intentional leadership development, educated girls can still be held back by the expectation that they stay silent. We refuse to let that happen.</p>
+                    </div>
+
+                    <div class="what-list">
+                        <div class="what-item">
+                            <i class="fa-solid fa-chalkboard-user"></i>
+                            <div class="what-item-body">
+                                <strong>Leadership Workshops</strong>
+                                <span>Hands-on workshops teaching public speaking, problem-solving, civic engagement, and community organizing — skills that turn students into changemakers.</span>
+                            </div>
+                        </div>
+                        <div class="what-item">
+                            <i class="fa-solid fa-users"></i>
+                            <div class="what-item-body">
+                                <strong>Peer Networks &amp; Mentorship</strong>
+                                <span>We connect girls with mentors and peers who look like them and have walked similar paths — so they know that leadership is for them, too.</span>
+                            </div>
+                        </div>
+                        <div class="what-item">
+                            <i class="fa-solid fa-trophy"></i>
+                            <div class="what-item-body">
+                                <strong>Community Leadership Roles</strong>
+                                <span>We actively place program graduates in community roles — from local advocacy groups to youth councils — so they can put their skills to work immediately.</span>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="volunteer.html" class="btn btn-teal">Get Involved</a>
                 </div>
-                <div class="absolute -top-10 -left-10 float-element hidden md:block">
-                    <div class="bg-white p-8 rounded-3xl shadow-2xl border border-gray-100 rotate-[-5deg]">
-                        <p class="text-[#FF8566] font-black text-4xl italic script-font">"You are capable"</p>
-                        <p class="text-gray-400 font-bold mt-2">— A Voice of Support</p>
+
+                <div class="pillar-visual reveal-left">
+                    <div class="pillar-img-card">
+                        <img src="image/IMG_9459.png" alt="Girls gathered together around a fire" />
+                    </div>
+                    <div class="pillar-float-stat">
+                        <div class="f-num">3×</div>
+                        <div class="f-lbl">More likely to reinvest earnings into their communities</div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- PROGRAM 2: CREATIVE ADVOCACY (NOW SECOND) -->
-    <section id="arts" class="py-32 px-8 overflow-hidden">
-        <div class="max-w-[1400px] mx-auto grid lg:grid-cols-2 gap-24 items-center">
-            <div class="order-2 lg:order-1 relative reveal">
-                <div class="image-container">
-                    <div class="w-full h-[700px] bg-[#7AD3D6] flex flex-col items-center justify-center text-white p-12 text-center">
-                        <svg class="mb-6 opacity-30" width="120" height="120" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><circle cx="12" cy="12" r="10"/><path d="m16 12-4-4-4 4M12 16V9"/></svg>
-                        <h3 class="text-4xl font-bold mb-4">The Creative Lab</h3>
-                        <p class="text-lg opacity-80">Where research meets artistry to solve global challenges.</p>
+    <!-- ═══════════════════════════════════════
+         PILLAR 3 — MENSTRUAL HEALTH & DIGNITY
+         ═══════════════════════════════════════ -->
+    <section class="pillar-section p3" id="health">
+        <div class="container">
+            <div class="pillar-grid">
+                <div class="pillar-text reveal-left">
+                    <div class="pillar-tag">
+                        <div class="pillar-icon-sm"><i class="fa-solid fa-hand-holding-heart"></i></div>
+                        <span class="pillar-num">Pillar Three &nbsp;·&nbsp; Menstrual Health &amp; Dignity</span>
                     </div>
-                </div>
-                <div class="absolute -bottom-12 -right-12 w-48 h-48 bg-[#FFCB6B] rounded-full mix-blend-multiply opacity-20 float-element"></div>
-            </div>
+                    <div class="pillar-accent"></div>
+                    <h2>A period should never end<br>a girl's <em>education.</em></h2>
+                    <p class="pillar-lead">In too many communities, menstruation is shrouded in shame and silence — and it costs girls their schooling. We speak openly about it, and we show up with real resources.</p>
 
-            <div class="order-1 lg:order-2 reveal" style="transition-delay: 0.2s;">
-                <div class="accent-pill text-[#43A4AD] bg-[#7AD3D615]">Creative Advocacy</div>
-                <h2 class="text-7xl font-bold mb-10 leading-[0.9] tracking-tighter">Art as <br><span class="text-[#7AD3D6] serif-font italic">Expression.</span></h2>
-                
-                <div class="space-y-8 text-xl text-gray-600 leading-relaxed">
-                    <p>
-                        A sanctuary for expression. We provide platforms for girls to share writing, visual arts, and student-led research—empowering them to explore their curiosity and claim their intellectual property early on.
-                    </p>
-                    <p class="font-bold text-[#1B4D4D]">
-                        From STEM breakthroughs to social justice, our creators are dismantling barriers by telling their own stories through every medium imaginable.
-                    </p>
+                    <div class="why-box">
+                        <h4>Why This Matters</h4>
+                        <p>1 in 5 girls in developing countries misses school every month because of her period — whether from lack of products, fear of stigma, or no safe place to manage her health. Over the course of a school year, that adds up to weeks of missed learning. Over a school career, it can mean the difference between graduating and dropping out entirely.</p>
+                    </div>
+
+                    <div class="what-list">
+                        <div class="what-item">
+                            <i class="fa-solid fa-box-open"></i>
+                            <div class="what-item-body">
+                                <strong>Menstrual Product Donations</strong>
+                                <span>We donate pads, reusable products, and hygiene kits directly to girls in the communities we serve — so no girl has to stay home because she lacks supplies.</span>
+                            </div>
+                        </div>
+                        <div class="what-item">
+                            <i class="fa-solid fa-comments"></i>
+                            <div class="what-item-body">
+                                <strong>Breaking the Stigma</strong>
+                                <span>We run open conversations in schools and communities about menstrual health — normalizing the conversation and dismantling the shame that keeps girls silent and home.</span>
+                            </div>
+                        </div>
+                        <div class="what-item">
+                            <i class="fa-solid fa-school"></i>
+                            <div class="what-item-body">
+                                <strong>Safe School Environments</strong>
+                                <span>We work to ensure schools have private, safe facilities so girls can manage their health with dignity and focus on learning.</span>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="donate.html" class="btn btn-green">Donate Products</a>
                 </div>
-                
-                <div class="grid grid-cols-2 gap-8 mt-16">
-                    <div class="flex items-center gap-4">
-                        <div class="w-14 h-14 bg-[#7AD3D620] rounded-2xl flex items-center justify-center text-[#43A4AD]">
-                            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-1.5"/><circle cx="8" cy="8" r="5"/></svg>
-                        </div>
-                        <span class="font-bold">The Art Gallery</span>
+
+                <div class="pillar-visual reveal-right">
+                    <div class="pillar-img-card">
+                        <img src="image/IMG_0309.png" alt="Girls holding menstrual health kits" />
                     </div>
-                    <div class="flex items-center gap-4">
-                        <div class="w-14 h-14 bg-[#FFCB6B20] rounded-2xl flex items-center justify-center text-[#FFCB6B]">
-                            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
-                        </div>
-                        <span class="font-bold">Student Research</span>
+                    <div class="pillar-float-stat">
+                        <div class="f-num">1 in 5</div>
+                        <div class="f-lbl">Girls misses school monthly due to her period</div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA BANNER -->
+    <section class="cta-banner">
+        <div class="container">
+            <div class="cta-inner reveal">
+                <span class="eyebrow" style="color:var(--coral);">Make a Difference</span>
+                <h2>Ready to help a girl<br>stay in school?</h2>
+                <p>Whether you donate, volunteer, or spread the word — every action moves us closer to a world where no girl's future is decided by poverty, stigma, or circumstance.</p>
+                <div class="cta-btns">
+                    <a href="donate.html" class="btn btn-white">Donate Now</a>
+                    <a href="volunteer.html" class="btn btn-outline-white">Volunteer</a>
+                    <a href="partner.html" class="btn btn-outline-white">Partner With Us</a>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- FOOTER -->
-    <footer class="py-20 px-8 bg-white border-t border-gray-100">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-10">
-            <div class="flex items-center gap-4">
-                <div class="w-8 h-8 bg-[#FF8566] rounded flex items-center justify-center font-bold text-white">E</div>
-                <span class="font-bold text-gray-400 tracking-[0.3em] uppercase text-xs">Project EquiFlow</span>
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <a href="index.html" class="logo">
+                        <span class="logo-sub">Project</span>
+                        <span class="logo-name">Equi<span>Flow</span></span>
+                    </a>
+                    <p class="footer-tagline">Forging pathways for women and girls in extreme poverty to learn, connect, and lead.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>About</h4>
+                    <ul>
+                        <li><a href="mission.html">Our Mission</a></li>
+                        <li><a href="index.html#beliefs">Our Beliefs</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Programs</h4>
+                    <ul>
+                        <li><a href="#education">Education Access</a></li>
+                        <li><a href="#leadership">Leadership</a></li>
+                        <li><a href="#health">Menstrual Health</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Get Involved</h4>
+                    <ul>
+                        <li><a href="donate.html">Donate</a></li>
+                        <li><a href="volunteer.html">Volunteer</a></li>
+                        <li><a href="chapter.html">Chapter</a></li>
+                        <li><a href="partner.html">Partner</a></li>
+                    </ul>
+                </div>
             </div>
-            <div class="flex gap-8 text-sm font-bold text-gray-400">
-                <a href="#" class="hover:text-[#FF8566]">Privacy</a>
-                <a href="#" class="hover:text-[#FF8566]">Terms</a>
-                <a href="#" class="hover:text-[#FF8566]">Support</a>
+            <div class="footer-bottom">
+                <p>© Project EquiFlow 2025, All Rights Reserved. &nbsp;·&nbsp; A registered 501(c)(3) nonprofit organization.</p>
             </div>
-            <p class="text-gray-300 text-xs font-bold uppercase">&copy; 2026 Driven by Dignity</p>
         </div>
     </footer>
 
     <script>
-        // Scroll Reveal Observer
+        /* ── Sticky nav ── */
+        const header = document.getElementById('site-header');
+        window.addEventListener('scroll', () => {
+            header.classList.toggle('scrolled', window.scrollY > 20);
+        }, { passive: true });
+
+        /* ── Mobile nav ── */
+        const hamburger = document.getElementById('hamburger');
+        const navLinks  = document.getElementById('nav-links');
+        hamburger.addEventListener('click', () => {
+            const open = navLinks.classList.toggle('open');
+            hamburger.innerHTML = open
+                ? '<i class="fa-solid fa-xmark"></i>'
+                : '<i class="fa-solid fa-bars"></i>';
+        });
+        document.querySelectorAll('.nav-links .has-dropdown > a').forEach(a => {
+            a.addEventListener('click', e => {
+                if (window.innerWidth <= 900) {
+                    e.preventDefault();
+                    a.parentElement.classList.toggle('open');
+                }
+            });
+        });
+
+        /* ── Scroll reveal ── */
         const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    const delay = e.target.dataset.delay || 0;
+                    setTimeout(() => e.target.classList.add('active'), +delay);
+                    observer.unobserve(e.target);
                 }
             });
         }, { threshold: 0.1 });
 
-        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-        // Navigation Background Toggle on Scroll
-        window.addEventListener('scroll', () => {
-            const nav = document.getElementById('nav-container');
-            if (window.scrollY > 50) {
-                nav.classList.add('nav-scrolled');
-            } else {
-                nav.classList.remove('nav-scrolled');
+        document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach((el, i) => {
+            const siblings = el.parentElement.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+            if (siblings.length > 1) {
+                const idx = [...siblings].indexOf(el);
+                el.dataset.delay = idx * 100;
             }
+            observer.observe(el);
         });
     </script>
+    <script src="transitions.js"></script>
 </body>
 </html>

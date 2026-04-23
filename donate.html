@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donate | Project EquiFlow</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Nunito:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        :root {
+            --coral:      #FFBDAB;
+            --coral-dark: #F5A488;
+            --coral-text: #C07060;
+            --teal:       #96D4D4;
+            --teal-light: #B0E0E0;
+            --teal-pale:  #EEF9F9;
+            --teal-dark:  #4E9898;
+            --deep-teal:  #3A6E6E;
+            --green:      #4E8860;
+            --green-pale: #EDF6E8;
+            --green-light:#8FD5A6;
+            --cream:      #FFF8F2;
+            --white:      #FFFFFF;
+            --ink:        #2E4E4E;
+            --ink-mid:    #4A6464;
+            --ink-light:  #7EAAAA;
+            --border:     #DDEEED;
+            --ff-serif:   'Outfit', sans-serif;
+            --ff-sans:    'Nunito', system-ui, sans-serif;
+            --ease:       cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: var(--ff-sans); background: var(--cream); color: var(--ink-mid); line-height: 1.7; overflow-x: hidden; }
+        h1, h2, h3, h4 { font-family: var(--ff-serif); line-height: 1.18; color: var(--ink); letter-spacing: -0.01em; }
+        a { text-decoration: none; }
+        .container { max-width: 1140px; margin: 0 auto; padding: 0 28px; }
+
+        /* REVEAL */
+        .reveal        { opacity: 0; transform: translateY(28px); transition: opacity 0.75s var(--ease), transform 0.75s var(--ease); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        .reveal-left   { opacity: 0; transform: translateX(-44px); transition: opacity 0.8s var(--ease), transform 0.8s var(--ease); }
+        .reveal-left.active  { opacity: 1; transform: translateX(0); }
+        .reveal-right  { opacity: 0; transform: translateX(44px); transition: opacity 0.8s var(--ease), transform 0.8s var(--ease); }
+        .reveal-right.active { opacity: 1; transform: translateX(0); }
+
+        .btn { display: inline-block; font-family: var(--ff-sans); font-size: 0.95rem; font-weight: 600; padding: 14px 32px; border-radius: 8px; border: 2px solid transparent; cursor: pointer; transition: all 0.3s var(--ease); }
+        .btn-coral  { background: var(--coral-text); color: #fff; border-color: var(--coral-text); }
+        .btn-coral:hover { background: #B06050; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(192,112,96,0.3); }
+        .btn-green  { background: var(--green); color: #fff; border-color: var(--green); }
+        .btn-green:hover { background: #3D6E4A; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(78,136,96,0.3); }
+        .btn-white  { background: #fff; color: var(--deep-teal); border-color: #fff; font-weight: 700; }
+        .btn-white:hover { background: var(--cream); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+        .btn-outline-white { background: rgba(255,255,255,0.15); color: #fff; border: 2px solid rgba(255,255,255,0.45); }
+        .btn-outline-white:hover { background: rgba(255,255,255,0.28); transform: translateY(-1px); }
+
+        /* =============================================
+           NAVIGATION
+        ============================================= */
+        .site-header { position: fixed; top: 0; left: 0; right: 0; z-index: 200; background: #fff; border-bottom: 1px solid var(--border); transition: box-shadow 0.3s ease; }
+        .site-header.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.08); }
+        .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 76px; }
+        .logo { display: flex; flex-direction: column; line-height: 1; }
+        .logo-sub  { font-family: var(--ff-sans); font-size: 0.6rem; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; color: var(--teal); margin-bottom: 2px; }
+        .logo-name { font-family: var(--ff-serif); font-size: 1.85rem; font-weight: 700; color: var(--ink); letter-spacing: -0.01em; }
+        .logo-name span { color: var(--coral-dark); }
+        .nav-links { display: flex; align-items: center; gap: 2px; list-style: none; height: 100%; }
+        .nav-links > li { position: relative; height: 100%; display: flex; align-items: center; }
+        .nav-links > li > a { display: flex; align-items: center; gap: 6px; font-size: 1.08rem; font-weight: 500; color: var(--ink); padding: 10px 20px; border-radius: 8px; transition: color 0.2s, background 0.2s; white-space: nowrap; }
+        .nav-links > li > a:not(.btn-donate):hover { color: var(--teal-dark); background: var(--teal-pale); }
+        .nav-links > li.has-dropdown > a::after { content: ''; display: inline-block; width: 6px; height: 6px; border-right: 2px solid currentColor; border-bottom: 2px solid currentColor; transform: rotate(45deg) translateY(-2px); transition: transform 0.2s; opacity: 0.6; }
+        .nav-links > li.has-dropdown:hover > a::after,
+        .nav-links > li.has-dropdown.open > a::after { transform: rotate(-135deg) translateY(-2px); }
+        .nav-dropdown { position: absolute; top: calc(100% + 8px); left: 0; background: #fff; border: 1px solid var(--border); border-radius: 14px; padding: 8px; min-width: 200px; box-shadow: 0 16px 48px rgba(0,0,0,0.1); list-style: none; opacity: 0; visibility: hidden; transform: translateY(10px); transition: opacity 0.22s var(--ease), transform 0.22s var(--ease), visibility 0.22s; z-index: 300; }
+        .nav-links > li.has-dropdown:hover .nav-dropdown,
+        .nav-links > li.has-dropdown.open .nav-dropdown { opacity: 1; visibility: visible; transform: translateY(0); }
+        .nav-dropdown li a { display: block; font-size: 1rem; font-weight: 500; color: var(--ink-mid); padding: 11px 18px; border-radius: 8px; transition: background 0.18s, color 0.18s; }
+        .nav-dropdown li a:hover { background: var(--teal-pale); color: var(--teal-dark); }
+        .btn-donate { background: transparent !important; color: var(--ink) !important; padding: 11px 28px !important; border-radius: 100px !important; border: 2px solid var(--ink) !important; font-weight: 600 !important; font-size: 1.08rem !important; transition: background 0.2s, color 0.2s !important; margin-left: 8px; }
+        .btn-donate:hover { background: var(--ink) !important; color: #fff !important; }
+        .nav-hamburger { display: none; background: none; border: none; font-size: 1.6rem; color: var(--ink); cursor: pointer; }
+        @media (max-width: 900px) {
+            .nav-hamburger { display: block; }
+            .nav-inner { height: 64px; }
+            .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; align-items: stretch; height: auto; background: #fff; border-top: 1px solid var(--border); padding: 12px 20px 20px; gap: 2px; box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
+            .nav-links.open { display: flex; }
+            .nav-links > li { height: auto; }
+            .nav-dropdown { position: static; opacity: 1; visibility: visible; transform: none; box-shadow: none; border: none; padding: 4px 0 4px 16px; display: none; }
+            .nav-links > li.has-dropdown.open .nav-dropdown { display: block; }
+            .nav-links > li > a { font-size: 1.08rem; padding: 10px 12px; }
+            .btn-donate { margin: 8px 0 0; text-align: center; }
+        }
+
+        /* =============================================
+           ANIMATIONS
+        ============================================= */
+        @keyframes fadeSlideUp { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes blobDrift1  { 0%,100%{transform:translate(0,0) scale(1);} 33%{transform:translate(40px,-30px) scale(1.05);} 66%{transform:translate(-20px,20px) scale(0.97);} }
+        @keyframes blobDrift2  { 0%,100%{transform:translate(0,0) scale(1);} 40%{transform:translate(-50px,30px) scale(1.08);} 70%{transform:translate(30px,-20px) scale(0.95);} }
+
+        /* =============================================
+           HERO
+        ============================================= */
+        .donate-hero {
+            background: linear-gradient(135deg, #2E4E4E 0%, #3A6E6E 55%, #4E9898 100%);
+            padding: 130px 0 110px;
+            position: relative;
+            overflow: hidden;
+        }
+        .donate-hero::before {
+            content: '';
+            position: absolute; inset: 0;
+            background-image: radial-gradient(circle, rgba(255,255,255,0.05) 1.5px, transparent 1.5px);
+            background-size: 32px 32px;
+            pointer-events: none;
+        }
+        .blob-canvas { position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: 0; }
+        .blob { position: absolute; border-radius: 50%; filter: blur(80px); }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 460px;
+            gap: 72px;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Hero left */
+        .hero-pill {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.28);
+            border-radius: 100px; padding: 7px 18px;
+            font-size: 0.7rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase;
+            color: #fff; margin-bottom: 28px;
+            animation: fadeSlideUp 0.8s var(--ease) both;
+        }
+        .hero-pill i { font-size: 0.75rem; color: var(--coral); }
+        .hero-left h1 {
+            font-size: clamp(2.8rem, 5.5vw, 5rem); color: #fff; font-weight: 700;
+            line-height: 1.06; margin-bottom: 26px;
+            animation: fadeSlideUp 0.8s 0.1s var(--ease) both;
+        }
+        .hero-left h1 em { color: var(--coral); font-style: italic; }
+        .hero-sub {
+            font-size: clamp(1rem, 1.8vw, 1.18rem); color: rgba(255,255,255,0.72);
+            line-height: 1.82; max-width: 480px; margin-bottom: 48px;
+            animation: fadeSlideUp 0.8s 0.2s var(--ease) both;
+        }
+        .hero-stats {
+            display: flex; gap: 0; flex-wrap: wrap;
+            animation: fadeSlideUp 0.8s 0.3s var(--ease) both;
+        }
+        .hero-stat { padding: 0 32px 0 0; }
+        .hero-stat + .hero-stat { border-left: 1px solid rgba(255,255,255,0.2); padding-left: 32px; }
+        .hs-num { font-family: var(--ff-serif); font-size: 2.4rem; font-weight: 700; color: #fff; line-height: 1; }
+        .hs-lbl { font-size: 0.76rem; color: rgba(255,255,255,0.5); margin-top: 5px; }
+
+        /* Donation card */
+        .donation-card {
+            background: #fff;
+            border-radius: 28px;
+            padding: 38px 34px 32px;
+            box-shadow: 0 48px 110px rgba(0,0,0,0.28), 0 0 0 1px rgba(255,255,255,0.06);
+            animation: fadeSlideUp 0.9s 0.15s var(--ease) both;
+            position: relative;
+        }
+        .donation-card::before {
+            content: '';
+            position: absolute; top: -2px; left: -2px; right: -2px; bottom: -2px;
+            border-radius: 30px;
+            background: linear-gradient(135deg, rgba(255,189,171,0.55), rgba(150,212,212,0.35), rgba(255,189,171,0.2));
+            z-index: -1;
+        }
+
+        .card-title { font-family: var(--ff-serif); font-size: 1.55rem; color: var(--ink); margin-bottom: 5px; }
+        .card-sub   { font-size: 0.82rem; color: var(--ink-light); display: flex; align-items: center; gap: 6px; margin-bottom: 24px; }
+        .card-sub i { color: var(--green); font-size: 0.78rem; }
+
+        /* Frequency toggle */
+        .freq-toggle { display: flex; background: #f1f5f5; border-radius: 100px; padding: 5px; gap: 4px; margin-bottom: 26px; }
+        .freq-btn { flex: 1; padding: 10px 14px; border: none; border-radius: 100px; font-family: var(--ff-sans); font-size: 0.87rem; font-weight: 600; cursor: pointer; background: transparent; color: var(--ink-mid); transition: all 0.26s var(--ease); }
+        .freq-btn.active { background: var(--coral-text); color: #fff; box-shadow: 0 4px 14px rgba(192,112,96,0.3); }
+        .freq-badge { display: inline-block; background: rgba(78,136,96,0.15); color: var(--green); font-size: 0.62rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 2px 7px; border-radius: 100px; margin-left: 5px; vertical-align: middle; }
+
+        /* Amount grid */
+        .amount-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 9px; margin-bottom: 12px; }
+        .amount-btn { padding: 13px 6px; border: 2px solid var(--border); border-radius: 12px; font-family: var(--ff-sans); font-size: 1rem; font-weight: 700; background: #fff; color: var(--ink); cursor: pointer; transition: all 0.22s var(--ease); text-align: center; }
+        .amount-btn:hover { border-color: var(--coral-text); color: var(--coral-text); background: rgba(192,112,96,0.04); }
+        .amount-btn.active { border-color: var(--coral-text); background: rgba(192,112,96,0.09); color: var(--coral-text); box-shadow: 0 4px 14px rgba(192,112,96,0.18); transform: translateY(-1px); }
+
+        /* Custom amount */
+        .custom-wrap   { position: relative; margin-bottom: 18px; }
+        .custom-prefix { position: absolute; left: 16px; top: 50%; transform: translateY(-50%); font-size: 0.98rem; font-weight: 700; color: var(--ink-mid); pointer-events: none; }
+        .custom-input  { width: 100%; padding: 13px 16px 13px 30px; border: 2px solid var(--border); border-radius: 12px; font-family: var(--ff-sans); font-size: 0.98rem; font-weight: 600; color: var(--ink); outline: none; transition: border-color 0.2s, box-shadow 0.2s; background: #fafafa; }
+        .custom-input:focus { border-color: var(--coral-text); background: #fff; box-shadow: 0 0 0 4px rgba(192,112,96,0.08); }
+        .custom-input::placeholder { color: #bbb; font-weight: 400; }
+
+        /* Impact preview */
+        .impact-preview {
+            background: linear-gradient(135deg, rgba(255,189,171,0.13), rgba(150,212,212,0.08));
+            border: 1px solid rgba(192,112,96,0.22);
+            border-radius: 14px; padding: 15px 18px; margin-bottom: 22px;
+            display: flex; align-items: flex-start; gap: 13px; min-height: 70px;
+            transition: all 0.3s var(--ease);
+        }
+        .impact-icon-wrap { width: 38px; height: 38px; border-radius: 10px; background: rgba(192,112,96,0.13); color: var(--coral-text); display: flex; align-items: center; justify-content: center; font-size: 0.95rem; flex-shrink: 0; }
+        .impact-label { font-size: 0.72rem; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; color: var(--coral-text); margin-bottom: 3px; }
+        .impact-desc  { font-size: 0.84rem; color: var(--ink-mid); line-height: 1.5; }
+
+        /* Form */
+        .form-row    { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px; }
+        .form-field  { display: flex; flex-direction: column; gap: 5px; margin-bottom: 10px; }
+        .form-label  { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-mid); }
+        .form-input  { padding: 12px 15px; border: 2px solid var(--border); border-radius: 10px; font-family: var(--ff-sans); font-size: 0.91rem; color: var(--ink); outline: none; transition: border-color 0.2s, box-shadow 0.2s; background: #fafafa; }
+        .form-input:focus { border-color: var(--teal-dark); background: #fff; box-shadow: 0 0 0 4px rgba(78,152,152,0.08); }
+        .form-input::placeholder { color: #c0c0c0; }
+
+        /* Submit */
+        .donate-submit {
+            width: 100%; padding: 17px; border: none; border-radius: 14px;
+            background: linear-gradient(135deg, #C07060, #B06050);
+            color: #fff; font-family: var(--ff-sans); font-size: 1.05rem; font-weight: 700;
+            cursor: pointer; margin-top: 14px;
+            transition: all 0.3s var(--ease);
+            display: flex; align-items: center; justify-content: center; gap: 10px;
+            position: relative; overflow: hidden;
+        }
+        .donate-submit::after { content:''; position:absolute; inset:0; background:linear-gradient(135deg,rgba(255,255,255,0.12),transparent); opacity:0; transition:opacity 0.2s; }
+        .donate-submit:hover { transform: translateY(-2px); box-shadow: 0 14px 40px rgba(192,112,96,0.45); }
+        .donate-submit:hover::after { opacity: 1; }
+        .donate-submit.success { background: linear-gradient(135deg, var(--green), #3D6E4A) !important; }
+
+        /* Trust strip */
+        .trust-row  { display: flex; align-items: center; justify-content: center; gap: 16px; margin-top: 16px; flex-wrap: wrap; }
+        .trust-item { display: flex; align-items: center; gap: 5px; font-size: 0.73rem; color: var(--ink-light); font-weight: 500; }
+        .trust-item i { color: var(--green); font-size: 0.76rem; }
+        .trust-dot  { width: 3px; height: 3px; background: var(--border); border-radius: 50%; }
+
+        @media (max-width: 1020px) {
+            .hero-grid { grid-template-columns: 1fr; gap: 56px; }
+            .donate-hero { padding: 110px 0 80px; }
+        }
+        @media (max-width: 600px) {
+            .amount-grid { grid-template-columns: repeat(2,1fr); }
+            .form-row    { grid-template-columns: 1fr; }
+            .donation-card { padding: 28px 22px; }
+        }
+
+        /* =============================================
+           TRANSPARENCY
+        ============================================= */
+        .trust-section { padding: 110px 0; background: var(--white); }
+        .trust-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 88px; align-items: center; }
+        .trust-text h2    { font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 20px; }
+        .trust-text h2 em { font-style: italic; color: var(--green); }
+        .trust-text h2    { margin-bottom: 36px; }
+        .trust-text p     { font-size: 1.05rem; color: var(--ink-mid); line-height: 1.82; margin-bottom: 32px; }
+        .trust-badges { display: flex; flex-direction: column; gap: 18px; }
+        .trust-badge  { display: flex; align-items: flex-start; gap: 18px; background: var(--cream); border-radius: 16px; padding: 24px 26px; border: 1px solid var(--border); transition: box-shadow 0.25s; }
+        .trust-badge:hover { box-shadow: 0 8px 28px rgba(0,0,0,0.07); }
+        .tb-icon { width: 46px; height: 46px; border-radius: 13px; display: flex; align-items: center; justify-content: center; font-size: 1.15rem; flex-shrink: 0; }
+        .tb-green .tb-icon { background: rgba(78,136,96,0.12); color: var(--green); }
+        .tb-teal  .tb-icon { background: rgba(78,152,152,0.12); color: var(--teal-dark); }
+        .tb-coral .tb-icon { background: rgba(192,112,96,0.12); color: var(--coral-text); }
+        .tb-body strong { display: block; font-family: var(--ff-sans); font-size: 0.95rem; font-weight: 700; color: var(--ink); margin-bottom: 5px; }
+        .tb-body span   { font-size: 0.87rem; color: var(--ink-mid); line-height: 1.6; }
+        @media (max-width: 820px) { .trust-grid { grid-template-columns: 1fr; gap: 52px; } }
+
+        /* =============================================
+           OTHER WAYS TO GIVE
+        ============================================= */
+        .ways-section { padding: 110px 0; background: var(--cream); }
+        .ways-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 26px; }
+        .ways-card { background: #fff; border-radius: 20px; padding: 36px 30px; border: 1px solid var(--border); transition: all 0.3s var(--ease); }
+        .ways-card:hover { transform: translateY(-6px); box-shadow: 0 20px 56px rgba(0,0,0,0.08); }
+        .ways-icon { width: 54px; height: 54px; border-radius: 15px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; margin-bottom: 22px; }
+        .ways-card:nth-child(1) .ways-icon { background: rgba(192,112,96,0.11); color: var(--coral-text); }
+        .ways-card:nth-child(2) .ways-icon { background: rgba(78,152,152,0.11); color: var(--teal-dark); }
+        .ways-card:nth-child(3) .ways-icon { background: rgba(78,136,96,0.11); color: var(--green); }
+        .ways-card h3 { font-size: 1.28rem; margin-bottom: 12px; }
+        .ways-card p  { font-size: 0.9rem; color: var(--ink-mid); line-height: 1.72; margin-bottom: 24px; }
+        .ways-link { font-size: 0.87rem; font-weight: 700; color: var(--teal-dark); display: inline-flex; align-items: center; gap: 6px; transition: gap 0.22s; }
+        .ways-link:hover { gap: 10px; }
+        @media (max-width: 820px) { .ways-grid { grid-template-columns: 1fr; } }
+
+        /* =============================================
+           CTA BANNER
+        ============================================= */
+        .cta-banner { background: linear-gradient(135deg, var(--deep-teal) 0%, var(--teal-dark) 100%); padding: 100px 0; text-align: center; position: relative; overflow: hidden; }
+        .cta-banner::before { content:''; position:absolute; inset:0; background-image:radial-gradient(circle,rgba(255,255,255,0.05) 1.5px,transparent 1.5px); background-size:30px 30px; }
+        .cta-inner { position: relative; z-index: 1; max-width: 660px; margin: 0 auto; }
+        .cta-banner h2    { font-size: clamp(2rem,4vw,3.2rem); color: #fff; margin-bottom: 18px; }
+        .cta-banner h2 em { font-style: italic; color: var(--coral); }
+        .cta-banner p     { font-size: 1.12rem; color: rgba(255,255,255,0.72); line-height: 1.78; margin-bottom: 40px; }
+        .cta-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+
+        /* =============================================
+           FOOTER
+        ============================================= */
+        .footer { background: var(--ink); padding: 60px 0 32px; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
+        .footer .logo-name      { color: #fff; }
+        .footer .logo-name span { color: var(--coral-dark); }
+        .footer .logo-sub       { color: var(--teal-light); }
+        .footer-tagline { font-size: 0.9rem; color: rgba(255,255,255,0.42); margin-top: 16px; line-height: 1.72; max-width: 260px; }
+        .footer-col h4  { font-family: var(--ff-sans); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.33); margin-bottom: 20px; }
+        .footer-col ul  { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+        .footer-col ul li a { font-size: 0.92rem; color: rgba(255,255,255,0.58); transition: color 0.2s; }
+        .footer-col ul li a:hover { color: #fff; }
+        .footer-bottom { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 28px; text-align: center; font-size: 0.8rem; color: rgba(255,255,255,0.28); }
+        @media (max-width: 820px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
+        @media (max-width: 480px) { .footer-grid { grid-template-columns: 1fr; } }
+    </style>
+    <link rel="stylesheet" href="transitions.css">
+</head>
+<body>
+
+    <!-- NAVIGATION -->
+    <header class="site-header" id="site-header">
+        <div class="container nav-inner">
+            <a href="index.html" class="logo">
+                <span class="logo-sub">Project</span>
+                <span class="logo-name">Equi<span>Flow</span></span>
+            </a>
+            <ul class="nav-links" id="nav-links">
+                <li class="has-dropdown">
+                    <a href="index.html">About</a>
+                    <ul class="nav-dropdown">
+                        <li><a href="mission.html">Our Mission</a></li>
+                    </ul>
+                </li>
+                <li><a href="program.html">Programs</a></li>
+                <li class="has-dropdown">
+                    <a href="#">Get Involved</a>
+                    <ul class="nav-dropdown">
+                        <li><a href="volunteer.html">Volunteer</a></li>
+                        <li><a href="chapter.html">Chapter</a></li>
+                        <li><a href="partner.html">Partner With Us</a></li>
+                    </ul>
+                </li>
+                <li><a href="donate.html" class="btn-donate">Donate</a></li>
+            </ul>
+            <button class="nav-hamburger" id="hamburger" aria-label="Open menu">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- HERO + DONATION FORM -->
+    <section class="donate-hero">
+        <div class="blob-canvas">
+            <div class="blob" style="width:650px;height:650px;top:-180px;left:-220px;background:rgba(150,212,212,0.14);animation:blobDrift1 15s ease-in-out infinite;"></div>
+            <div class="blob" style="width:550px;height:550px;bottom:-140px;right:-140px;background:rgba(255,189,171,0.12);animation:blobDrift2 20s ease-in-out infinite;"></div>
+            <div class="blob" style="width:350px;height:350px;top:30%;left:42%;background:rgba(78,152,152,0.07);animation:blobDrift1 25s 5s ease-in-out infinite;"></div>
+        </div>
+
+        <div class="container">
+            <div class="hero-grid">
+
+                <!-- LEFT: headline + stats -->
+                <div class="hero-left">
+                    <div class="hero-pill">
+                        <i class="fa-solid fa-heart"></i>
+                        Make a Difference Today
+                    </div>
+                    <h1>Your gift<br>changes<br>her <em>story.</em></h1>
+                    <p class="hero-sub">
+                        Every dollar goes directly to school supplies, menstrual health resources, and leadership opportunities for girls who need them most — zero overhead.
+                    </p>
+                    <div class="hero-stats">
+                        <div class="hero-stat">
+                            <div class="hs-num">3</div>
+                            <div class="hs-lbl">Countries reached</div>
+                        </div>
+                        <div class="hero-stat">
+                            <div class="hs-num">100%</div>
+                            <div class="hs-lbl">Goes to programs</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- RIGHT: donation card -->
+                <div class="donation-card">
+                    <div class="card-title">Make Your Gift</div>
+                    <div class="card-sub">
+                        <i class="fa-solid fa-lock"></i>
+                        Secure &amp; tax-deductible &nbsp;·&nbsp; 501(c)(3) nonprofit
+                    </div>
+
+                    <!-- Frequency toggle -->
+                    <div class="freq-toggle" id="freq-toggle">
+                        <button class="freq-btn active" data-freq="onetime">Give Once</button>
+                        <button class="freq-btn" data-freq="monthly">
+                            Monthly <span class="freq-badge">Sustaining</span>
+                        </button>
+                    </div>
+
+                    <!-- Amount buttons (JS renders) -->
+                    <div class="amount-grid" id="amount-grid"></div>
+
+                    <!-- Custom amount -->
+                    <div class="custom-wrap">
+                        <span class="custom-prefix">$</span>
+                        <input type="number" class="custom-input" id="custom-amount" placeholder="Other amount" min="1">
+                    </div>
+
+                    <!-- Dynamic impact preview -->
+                    <div class="impact-preview">
+                        <div class="impact-icon-wrap">
+                            <i class="fa-solid fa-backpack" id="impact-icon"></i>
+                        </div>
+                        <div>
+                            <div class="impact-label" id="impact-title">School Essentials</div>
+                            <div class="impact-desc"  id="impact-desc">Covers notebooks, pens, and basic supplies for one girl for a full month.</div>
+                        </div>
+                    </div>
+
+                    <!-- Name + Email -->
+                    <div class="form-row">
+                        <div class="form-field" style="margin-bottom:0">
+                            <label class="form-label">First Name</label>
+                            <input type="text" class="form-input" placeholder="Jane">
+                        </div>
+                        <div class="form-field" style="margin-bottom:0">
+                            <label class="form-label">Last Name</label>
+                            <input type="text" class="form-input" placeholder="Doe">
+                        </div>
+                    </div>
+                    <div class="form-field">
+                        <label class="form-label">Email Address</label>
+                        <input type="email" class="form-input" placeholder="jane@example.com">
+                    </div>
+
+                    <!-- CTA button -->
+                    <button class="donate-submit" id="donate-btn">
+                        <i class="fa-solid fa-heart"></i>
+                        <span id="btn-text">Donate $25 Once</span>
+                    </button>
+
+                    <!-- Trust strip -->
+                    <div class="trust-row">
+                        <div class="trust-item"><i class="fa-solid fa-shield-halved"></i> SSL Encrypted</div>
+                        <div class="trust-dot"></div>
+                        <div class="trust-item"><i class="fa-solid fa-check-circle"></i> Tax-deductible</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- TRANSPARENCY -->
+    <section class="trust-section">
+        <div class="container">
+            <div class="trust-grid">
+                <div class="reveal-left">
+                    <span class="section-eyebrow" style="color:var(--green);display:block;margin-bottom:14px;">Transparency Promise</span>
+                    <h2>We earn your<br><em>trust</em> every day.</h2>
+                    <a href="mission.html" class="btn btn-green">See Our Mission &nbsp;<i class="fa-solid fa-arrow-right" style="font-size:0.85em;"></i></a>
+                </div>
+                <div class="trust-badges reveal-right">
+                    <div class="trust-badge tb-green">
+                        <div class="tb-icon"><i class="fa-solid fa-circle-check"></i></div>
+                        <div class="tb-body">
+                            <strong>100% Goes to Programs</strong>
+                            <span>Every dollar you donate is channeled directly into education, health, and leadership programs — zero admin deductions.</span>
+                        </div>
+                    </div>
+                    <div class="trust-badge tb-teal">
+                        <div class="tb-icon"><i class="fa-solid fa-building-columns"></i></div>
+                        <div class="tb-body">
+                            <strong>Registered 501(c)(3)</strong>
+                            <span>Project EquiFlow is a fully registered nonprofit. All donations are tax-deductible to the fullest extent permitted by law.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- OTHER WAYS TO GIVE -->
+    <section class="ways-section">
+        <div class="container">
+            <div class="section-head reveal">
+                <span class="section-eyebrow" style="color:var(--teal-dark)">More Ways to Help</span>
+                <h2>Other ways to<br><em>make an impact</em></h2>
+                <p>Beyond a one-time gift, there are several powerful ways to sustain the change we're building together.</p>
+            </div>
+            <div class="ways-grid">
+                <div class="ways-card reveal" data-delay="0">
+                    <div class="ways-icon"><i class="fa-solid fa-rotate"></i></div>
+                    <h3>Monthly Giving</h3>
+                    <p>Become a sustaining donor and provide reliable, year-round support. Even $10/month creates lasting change for girls in our programs.</p>
+                    <a href="#" class="ways-link" onclick="document.querySelector('[data-freq=monthly]').click();window.scrollTo({top:0,behavior:'smooth'});return false;">
+                        Start giving monthly <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+                <div class="ways-card reveal" data-delay="120">
+                    <div class="ways-icon"><i class="fa-solid fa-building"></i></div>
+                    <h3>Corporate Matching</h3>
+                    <p>Many employers match employee donations dollar-for-dollar. Check with your HR team — you could double your impact at no extra cost.</p>
+                    <a href="partner.html" class="ways-link">
+                        Partner with us <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+                <div class="ways-card reveal" data-delay="240">
+                    <div class="ways-icon"><i class="fa-solid fa-box-open"></i></div>
+                    <h3>In-Kind Donations</h3>
+                    <p>We gratefully accept school supplies, menstrual health products, and other goods that directly support our program participants.</p>
+                    <a href="volunteer.html" class="ways-link">
+                        Learn how to contribute <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA BANNER -->
+    <section class="cta-banner">
+        <div class="cta-inner">
+            <h2>Every girl deserves a <em>chance.</em></h2>
+            <p>Join thousands of supporters who believe in a world where every girl is educated, healthy, and ready to lead.</p>
+            <div class="cta-btns">
+                <a href="#" class="btn btn-white" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">Donate Now</a>
+                <a href="volunteer.html" class="btn btn-outline-white">Get Involved</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <a href="index.html" class="logo">
+                        <span class="logo-sub">Project</span>
+                        <span class="logo-name">Equi<span>Flow</span></span>
+                    </a>
+                    <p class="footer-tagline">Empowering girls through education, health, and leadership — one community at a time.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>About</h4>
+                    <ul>
+                        <li><a href="mission.html">Our Mission</a></li>
+                        <li><a href="index.html#beliefs">Our Beliefs</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Programs</h4>
+                    <ul>
+                        <li><a href="program.html#education">Education</a></li>
+                        <li><a href="program.html#leadership">Leadership</a></li>
+                        <li><a href="program.html#health">Menstrual Health</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Get Involved</h4>
+                    <ul>
+                        <li><a href="donate.html">Donate</a></li>
+                        <li><a href="volunteer.html">Volunteer</a></li>
+                        <li><a href="chapter.html">Chapter</a></li>
+                        <li><a href="partner.html">Partner</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© Project EquiFlow 2025, All Rights Reserved. &nbsp;·&nbsp; A registered 501(c)(3) nonprofit organization.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        /* ──────────────────────────────────
+           DONATION FORM
+        ────────────────────────────────── */
+        const impactData = {
+            onetime: {
+                10:  { icon: 'fa-backpack',       title: 'School Essentials',     desc: 'Covers notebooks, pens, and school supplies for one girl for a full month.' },
+                25:  { icon: 'fa-kit-medical',    title: 'Health & Dignity Kit',  desc: 'Provides a full semester of menstrual health products so no girl misses school.' },
+                50:  { icon: 'fa-users',          title: 'Leadership Workshop',   desc: 'Sponsors a girl\'s seat in our confidence-building leadership training.' },
+                100: { icon: 'fa-graduation-cap', title: 'Scholarship Month',     desc: 'Funds one month of scholarship support, keeping a girl in school and on track.' },
+                250: { icon: 'fa-star',           title: 'Complete Support Kit',  desc: 'Covers a full kit: school supplies, health products, and a workshop seat.' },
+                500: { icon: 'fa-heart',          title: 'Full Semester Support', desc: 'Covers a complete semester of comprehensive support for one girl.' },
+            },
+            monthly: {
+                5:   { icon: 'fa-backpack',       title: 'Monthly Supplies',      desc: 'Keeps one girl stocked with school essentials every single month.' },
+                10:  { icon: 'fa-kit-medical',    title: 'Monthly Health Kit',    desc: 'Ensures a girl never misses school due to period poverty — month after month.' },
+                25:  { icon: 'fa-users',          title: 'Ongoing Workshops',     desc: 'Gives a girl continuous access to our leadership programs all year long.' },
+                50:  { icon: 'fa-graduation-cap', title: 'Scholarship Path',      desc: 'Sustains scholarship support month after month, changing her future.' },
+                100: { icon: 'fa-star',           title: 'Full Monthly Support',  desc: 'Comprehensively supports one girl\'s entire education journey every month.' },
+                250: { icon: 'fa-globe',          title: 'Community Impact',      desc: 'Funds a full classroom\'s worth of resources, month after month.' },
+            }
+        };
+
+        const freqAmounts = {
+            onetime: [10, 25, 50, 100, 250, 500],
+            monthly: [5,  10, 25,  50, 100, 250]
+        };
+
+        let currentFreq   = 'onetime';
+        let currentAmount = 25;
+
+        const amountGrid  = document.getElementById('amount-grid');
+        const customInput = document.getElementById('custom-amount');
+
+        function getImpact(amount, freq) {
+            const tiers = Object.keys(impactData[freq]).map(Number).sort((a, b) => a - b);
+            let tier = tiers[0];
+            for (const t of tiers) { if (amount >= t) tier = t; }
+            return impactData[freq][tier];
+        }
+
+        function updateUI() {
+            const data = getImpact(currentAmount, currentFreq);
+            document.getElementById('impact-icon').className = 'fa-solid ' + data.icon;
+            document.getElementById('impact-title').textContent = data.title;
+            document.getElementById('impact-desc').textContent  = data.desc;
+
+            const freqLabel = currentFreq === 'monthly' ? '/mo' : ' Once';
+            const display   = Number.isInteger(currentAmount)
+                ? currentAmount
+                : parseFloat(currentAmount).toFixed(2);
+            const btnSpan = document.getElementById('btn-text');
+            if (btnSpan) btnSpan.textContent = 'Donate $' + display + freqLabel;
+        }
+
+        function buildGrid(freq) {
+            amountGrid.innerHTML = '';
+            freqAmounts[freq].forEach(amt => {
+                const btn = document.createElement('button');
+                btn.className   = 'amount-btn' + (amt === currentAmount ? ' active' : '');
+                btn.dataset.amt = amt;
+                btn.textContent = '$' + amt;
+                btn.addEventListener('click', () => {
+                    currentAmount = amt;
+                    customInput.value = '';
+                    amountGrid.querySelectorAll('.amount-btn').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    updateUI();
+                });
+                amountGrid.appendChild(btn);
+            });
+        }
+
+        buildGrid(currentFreq);
+        updateUI();
+
+        /* Frequency toggle */
+        document.getElementById('freq-toggle').querySelectorAll('.freq-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.freq-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentFreq   = btn.dataset.freq;
+                currentAmount = freqAmounts[currentFreq][1];
+                customInput.value = '';
+                buildGrid(currentFreq);
+                updateUI();
+            });
+        });
+
+        /* Custom amount */
+        customInput.addEventListener('input', () => {
+            const val = parseFloat(customInput.value);
+            amountGrid.querySelectorAll('.amount-btn').forEach(b => b.classList.remove('active'));
+            if (val > 0) { currentAmount = val; updateUI(); }
+        });
+
+        /* Submit — thank-you state */
+        document.getElementById('donate-btn').addEventListener('click', () => {
+            const btn = document.getElementById('donate-btn');
+            const freqLabel = currentFreq === 'monthly' ? '/mo' : ' Once';
+            const display   = Number.isInteger(currentAmount)
+                ? currentAmount
+                : parseFloat(currentAmount).toFixed(2);
+
+            btn.classList.add('success');
+            btn.innerHTML = '<i class="fa-solid fa-check"></i> <span>Thank you! Redirecting…</span>';
+
+            setTimeout(() => {
+                btn.classList.remove('success');
+                btn.innerHTML = '<i class="fa-solid fa-heart"></i> <span id="btn-text">Donate $' + display + freqLabel + '</span>';
+            }, 3000);
+        });
+
+        /* ──────────────────────────────────
+           STICKY NAV
+        ────────────────────────────────── */
+        const header = document.getElementById('site-header');
+        window.addEventListener('scroll', () => {
+            header.classList.toggle('scrolled', window.scrollY > 20);
+        }, { passive: true });
+
+        /* ──────────────────────────────────
+           MOBILE NAV
+        ────────────────────────────────── */
+        const hamburger = document.getElementById('hamburger');
+        const navLinks  = document.getElementById('nav-links');
+        hamburger.addEventListener('click', () => {
+            const open = navLinks.classList.toggle('open');
+            hamburger.innerHTML = open
+                ? '<i class="fa-solid fa-xmark"></i>'
+                : '<i class="fa-solid fa-bars"></i>';
+        });
+        document.querySelectorAll('.nav-links .has-dropdown > a').forEach(a => {
+            a.addEventListener('click', e => {
+                if (window.innerWidth <= 900) {
+                    e.preventDefault();
+                    a.parentElement.classList.toggle('open');
+                }
+            });
+        });
+
+        /* ──────────────────────────────────
+           SCROLL REVEAL
+        ────────────────────────────────── */
+        const revealObs = new IntersectionObserver(entries => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    const delay = e.target.dataset.delay || 0;
+                    setTimeout(() => e.target.classList.add('active'), +delay);
+                    revealObs.unobserve(e.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => {
+            revealObs.observe(el);
+        });
+    </script>
+    <script src="transitions.js"></script>
+</body>
+</html>

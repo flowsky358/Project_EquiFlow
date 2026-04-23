@@ -1,0 +1,170 @@
+/* ═══════════════════════════════════════════════════════════
+   PROJECT EQUIFLOW — Shared Transition & Graphics Layer
+   transitions.css
+═══════════════════════════════════════════════════════════ */
+
+/* ── 1. CUSTOM CURSOR — removed ──────────────────────── */
+
+/* ── 2. PARTICLE CANVAS (hero) ────────────────────────── */
+.pef-particle-canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* ── 3. BUTTON RIPPLE ─────────────────────────────────── */
+@keyframes pef-ripple {
+    0%   { transform: scale(0); opacity: 0.5; }
+    100% { transform: scale(1); opacity: 0; }
+}
+.pef-ripple-el {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.38);
+    pointer-events: none;
+    animation: pef-ripple 0.65s ease-out forwards;
+}
+
+/* ── 4. SECTION PROGRESS DOTS ─────────────────────────── */
+#pef-section-dots {
+    position: fixed;
+    right: 22px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 150;
+}
+.pef-sdot {
+    display: block;
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: rgba(78, 152, 152, 0.25);
+    border: 1.5px solid rgba(78, 152, 152, 0.4);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+}
+.pef-sdot::before {
+    content: attr(data-label);
+    position: absolute;
+    right: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(46, 78, 78, 0.85);
+    color: #fff;
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    padding: 3px 8px;
+    border-radius: 4px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+}
+.pef-sdot:hover::before { opacity: 1; }
+.pef-sdot.active {
+    background: #4E9898;
+    border-color: #4E9898;
+    transform: scale(1.55);
+    box-shadow: 0 0 0 3px rgba(78, 152, 152, 0.2);
+}
+.pef-sdot:hover:not(.active) {
+    background: rgba(78, 152, 152, 0.55);
+}
+@media (max-width: 768px) { #pef-section-dots { display: none; } }
+
+/* ── 5. EM tag solid coral color ─────────────────────── */
+@keyframes pef-shimmer {
+    0%   { background-position: -300% center; }
+    100% { background-position:  300% center; }
+}
+.pef-shimmer-em {
+    color: #FFBDAB !important;
+    -webkit-text-fill-color: #FFBDAB !important;
+}
+
+/* ── 6. ANIMATED GRADIENT BORDER on CTA/Stats sections ── */
+@keyframes pef-border-spin {
+    0%   { --angle: 0deg; }
+    100% { --angle: 360deg; }
+}
+.pef-glow-section {
+    position: relative;
+}
+.pef-glow-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        135deg,
+        rgba(255,189,171,0.08) 0%,
+        rgba(150,212,212,0.08) 33%,
+        rgba(255,189,171,0.08) 66%,
+        rgba(150,212,212,0.08) 100%
+    );
+    background-size: 300% 300%;
+    animation: pef-bg-shift 8s ease infinite;
+    pointer-events: none;
+    z-index: 0;
+}
+@keyframes pef-bg-shift {
+    0%, 100% { background-position: 0% 50%; }
+    50%       { background-position: 100% 50%; }
+}
+
+/* ── 7. NAV LINK HOVER UNDERLINE (non-dropdown, non-donate only) ── */
+.nav-links > li:not(.has-dropdown) > a:not(.btn-donate) {
+    position: relative;
+}
+.nav-links > li:not(.has-dropdown) > a:not(.btn-donate)::before {
+    content: '';
+    position: absolute;
+    bottom: 10px; left: 18px; right: 18px;
+    height: 2px;
+    background: currentColor;
+    border-radius: 2px;
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 0.25s ease;
+    opacity: 0.4;
+}
+.nav-links > li:not(.has-dropdown) > a:not(.btn-donate):hover::before {
+    transform: scaleX(1);
+}
+
+/* ── 8. ENHANCED SCROLL REVEAL variants ──────────────── */
+.reveal-rotate {
+    opacity: 0;
+    transform: translateY(24px) rotate(-2deg);
+    transition: opacity 0.8s cubic-bezier(0.16,1,0.3,1),
+                transform 0.8s cubic-bezier(0.16,1,0.3,1);
+}
+.reveal-rotate.active { opacity: 1; transform: translateY(0) rotate(0deg); }
+
+.reveal-clip {
+    clip-path: inset(0 0 100% 0);
+    transition: clip-path 0.85s cubic-bezier(0.16,1,0.3,1);
+}
+.reveal-clip.active { clip-path: inset(0 0 0% 0); }
+
+/* ── 9. CARD GLOW on hover ───────────────────────────── */
+.pef-tilt-card {
+    transition: transform 0.4s cubic-bezier(0.16,1,0.3,1),
+                box-shadow 0.4s cubic-bezier(0.16,1,0.3,1);
+}
+
+/* ── 10. PAGE-LOAD OVERLAY ───────────────────────────── */
+#pef-page-loader {
+    position: fixed;
+    inset: 0;
+    background: #fff;
+    z-index: 9998;
+    pointer-events: none;
+    transition: opacity 0.55s ease;
+}
+#pef-page-loader.out { opacity: 0; }

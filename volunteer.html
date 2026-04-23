@@ -1,433 +1,602 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Programs | Project EquiFlow</title>
-  
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&family=Quicksand:wght@300;400;500;600;700&family=Pacifico&family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Volunteer | Project EquiFlow</title>
 
-  <style>
-    :root {
-      --logo-coral: #FF8566; 
-      --logo-teal-deep: #43A4AD; 
-      --logo-teal-light: #7AD3D6; 
-      --logo-yellow: #FFCB6B; 
-      --deep-teal: #1B4D4D; 
-      --cream: #FFFBF5;
-      --pure-white: #ffffff;
-      --text-main: #2D3436;
-      --nav-height: 90px;
-      --transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
-      
-      /* Vibrant Track Colors */
-      --track-pub: #6C5CE7;
-      --track-art: #FD79A8;
-      --track-out: #FAB1A0;
-    }
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Nunito:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-    /* --- ANIMATIONS --- */
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(40px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+    <style>
+        :root {
+            --coral:      #FFBDAB;
+            --coral-dark: #F5A488;
+            --coral-text: #C07060;
+            --teal:       #96D4D4;
+            --teal-light: #B0E0E0;
+            --teal-pale:  #EEF9F9;
+            --teal-dark:  #4E9898;
+            --deep-teal:  #3A6E6E;
+            --green:      #4E8860;
+            --green-pale: #EDF6E8;
+            --green-light:#8FD5A6;
+            --cream:      #FFF8F2;
+            --white:      #FFFFFF;
+            --ink:        #2E4E4E;
+            --ink-mid:    #4A6464;
+            --ink-light:  #7EAAAA;
+            --border:     #DDEEED;
+            --ff-serif:   'Outfit', sans-serif;
+            --ff-sans:    'Nunito', system-ui, sans-serif;
+            --ease:       cubic-bezier(0.16, 1, 0.3, 1);
+        }
 
-    @keyframes float {
-      0%, 100% { transform: translateY(0px) rotate(0deg); }
-      50% { transform: translateY(-20px) rotate(5deg); }
-    }
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: var(--ff-sans); background: var(--cream); color: var(--ink-mid); line-height: 1.7; overflow-x: hidden; }
+        h1, h2, h3, h4 { font-family: var(--ff-serif); line-height: 1.18; color: var(--ink); letter-spacing: -0.01em; }
+        a { text-decoration: none; }
+        .container { max-width: 1140px; margin: 0 auto; padding: 0 28px; }
 
-    @keyframes pulse-soft {
-      0% { transform: scale(1); filter: drop-shadow(0 0 0px var(--logo-coral)); }
-      50% { transform: scale(1.1); filter: drop-shadow(0 0 15px var(--logo-coral)); }
-      100% { transform: scale(1); filter: drop-shadow(0 0 0px var(--logo-coral)); }
-    }
+        /* REVEAL */
+        .reveal        { opacity: 0; transform: translateY(28px); transition: opacity 0.75s var(--ease), transform 0.75s var(--ease); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        .reveal-left   { opacity: 0; transform: translateX(-44px); transition: opacity 0.8s var(--ease), transform 0.8s var(--ease); }
+        .reveal-left.active  { opacity: 1; transform: translateX(0); }
+        .reveal-right  { opacity: 0; transform: translateX(44px); transition: opacity 0.8s var(--ease), transform 0.8s var(--ease); }
+        .reveal-right.active { opacity: 1; transform: translateX(0); }
 
-    @keyframes moveBG {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
+        .btn { display: inline-block; font-family: var(--ff-sans); font-size: 0.95rem; font-weight: 600; padding: 14px 32px; border-radius: 8px; border: 2px solid transparent; cursor: pointer; transition: all 0.3s var(--ease); }
+        .btn-coral  { background: var(--coral-text); color: #fff; border-color: var(--coral-text); }
+        .btn-coral:hover { background: #B06050; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(192,112,96,0.3); }
+        .btn-teal   { background: var(--teal-dark); color: #fff; border-color: var(--teal-dark); }
+        .btn-teal:hover { background: var(--deep-teal); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(78,152,152,0.3); }
+        .btn-white  { background: #fff; color: var(--deep-teal); border-color: #fff; font-weight: 700; }
+        .btn-white:hover { background: var(--cream); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+        .btn-outline-white { background: rgba(255,255,255,0.15); color: #fff; border: 2px solid rgba(255,255,255,0.45); }
+        .btn-outline-white:hover { background: rgba(255,255,255,0.28); transform: translateY(-1px); }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    
-    body {
-      font-family: 'Quicksand', sans-serif;
-      background: linear-gradient(-45deg, #FFFBF5, #FFF5F2, #F0F9FA, #FFFBF5);
-      background-size: 400% 400%;
-      animation: moveBG 15s ease infinite;
-      color: var(--text-main);
-      line-height: 1.7;
-      overflow-x: hidden;
-    }
+        /* =============================================
+           NAVIGATION
+        ============================================= */
+        .site-header { position: fixed; top: 0; left: 0; right: 0; z-index: 200; background: #fff; border-bottom: 1px solid var(--border); transition: box-shadow 0.3s ease; }
+        .site-header.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.08); }
+        .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 76px; }
+        .logo { display: flex; flex-direction: column; line-height: 1; }
+        .logo-sub  { font-family: var(--ff-sans); font-size: 0.6rem; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; color: var(--teal); margin-bottom: 2px; }
+        .logo-name { font-family: var(--ff-serif); font-size: 1.85rem; font-weight: 700; color: var(--ink); letter-spacing: -0.01em; }
+        .logo-name span { color: var(--coral-dark); }
+        .nav-links { display: flex; align-items: center; gap: 2px; list-style: none; height: 100%; }
+        .nav-links > li { position: relative; height: 100%; display: flex; align-items: center; }
+        .nav-links > li > a { display: flex; align-items: center; gap: 6px; font-size: 1.08rem; font-weight: 500; color: var(--ink); padding: 10px 20px; border-radius: 8px; transition: color 0.2s, background 0.2s; white-space: nowrap; }
+        .nav-links > li > a:not(.btn-donate):hover { color: var(--teal-dark); background: var(--teal-pale); }
+        .nav-links > li.has-dropdown > a::after { content: ''; display: inline-block; width: 6px; height: 6px; border-right: 2px solid currentColor; border-bottom: 2px solid currentColor; transform: rotate(45deg) translateY(-2px); transition: transform 0.2s; opacity: 0.6; }
+        .nav-links > li.has-dropdown:hover > a::after,
+        .nav-links > li.has-dropdown.open > a::after { transform: rotate(-135deg) translateY(-2px); }
+        .nav-dropdown { position: absolute; top: calc(100% + 8px); left: 0; background: #fff; border: 1px solid var(--border); border-radius: 14px; padding: 8px; min-width: 200px; box-shadow: 0 16px 48px rgba(0,0,0,0.1); list-style: none; opacity: 0; visibility: hidden; transform: translateY(10px); transition: opacity 0.22s var(--ease), transform 0.22s var(--ease), visibility 0.22s; z-index: 300; }
+        .nav-links > li.has-dropdown:hover .nav-dropdown,
+        .nav-links > li.has-dropdown.open .nav-dropdown { opacity: 1; visibility: visible; transform: translateY(0); }
+        .nav-dropdown li a { display: block; font-size: 1rem; font-weight: 500; color: var(--ink-mid); padding: 11px 18px; border-radius: 8px; transition: background 0.18s, color 0.18s; }
+        .nav-dropdown li a:hover { background: var(--teal-pale); color: var(--teal-dark); }
+        .btn-donate { background: transparent !important; color: var(--ink) !important; padding: 11px 28px !important; border-radius: 100px !important; border: 2px solid var(--ink) !important; font-weight: 600 !important; font-size: 1.08rem !important; transition: background 0.2s, color 0.2s !important; margin-left: 8px; }
+        .btn-donate:hover { background: var(--ink) !important; color: #fff !important; }
+        .nav-hamburger { display: none; background: none; border: none; font-size: 1.6rem; color: var(--ink); cursor: pointer; }
+        @media (max-width: 900px) {
+            .nav-hamburger { display: block; }
+            .nav-inner { height: 64px; }
+            .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; align-items: stretch; height: auto; background: #fff; border-top: 1px solid var(--border); padding: 12px 20px 20px; gap: 2px; box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
+            .nav-links.open { display: flex; }
+            .nav-links > li { height: auto; }
+            .nav-dropdown { position: static; opacity: 1; visibility: visible; transform: none; box-shadow: none; border: none; padding: 4px 0 4px 16px; display: none; }
+            .nav-links > li.has-dropdown.open .nav-dropdown { display: block; }
+            .nav-links > li > a { font-size: 1.08rem; padding: 10px 12px; }
+            .btn-donate { margin: 8px 0 0; text-align: center; }
+        }
 
-    h1, h2, h3, h4 { font-family: 'Fredoka', sans-serif; font-weight: 600; }
-    .script-font { font-family: 'Pacifico', cursive; }
+        /* =============================================
+           ANIMATIONS
+        ============================================= */
+        @keyframes fadeSlideUp { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes blobDrift1  { 0%,100%{transform:translate(0,0) scale(1);} 33%{transform:translate(40px,-30px) scale(1.05);} 66%{transform:translate(-20px,20px) scale(0.97);} }
+        @keyframes blobDrift2  { 0%,100%{transform:translate(0,0) scale(1);} 40%{transform:translate(-50px,30px) scale(1.08);} 70%{transform:translate(30px,-20px) scale(0.95);} }
 
-    /* Decorative Blobs */
-    .blob {
-      position: absolute;
-      width: 500px;
-      height: 500px;
-      background: var(--logo-teal-light);
-      filter: blur(80px);
-      opacity: 0.15;
-      z-index: -1;
-      border-radius: 50%;
-    }
+        /* =============================================
+           HERO
+        ============================================= */
+        .vol-hero {
+            background: linear-gradient(135deg, #6AACAC 0%, #4E9292 60%, #3D8080 100%);
+            padding: 160px 0 100px;
+            position: relative;
+            overflow: hidden;
+        }
+        /* Enhanced dot grid */
+        .vol-hero::before { content:''; position:absolute; inset:0; background-image:radial-gradient(circle,rgba(255,255,255,0.11) 1.5px,transparent 1.5px); background-size:30px 30px; pointer-events:none; z-index:0; }
+        /* Diagonal stripe texture */
+        .vol-hero::after  { content:''; position:absolute; inset:0; background-image:repeating-linear-gradient(-55deg,rgba(255,255,255,0.028) 0px,rgba(255,255,255,0.028) 1px,transparent 1px,transparent 28px); pointer-events:none; z-index:0; }
+        /* Decorative overlay layer */
+        .hero-deco { position:absolute; inset:0; pointer-events:none; overflow:hidden; z-index:0; }
+        .hd-sparkle { position:absolute; }
+        @keyframes hd-pulse  { 0%,100%{opacity:.55;transform:scale(1) rotate(0deg);}  50%{opacity:1;transform:scale(1.3) rotate(18deg);} }
+        @keyframes hd-pulse2 { 0%,100%{opacity:.25;transform:scale(1);}               50%{opacity:.55;transform:scale(1.18);} }
+        .blob-canvas { position:absolute; inset:0; overflow:hidden; pointer-events:none; z-index:0; }
+        .blob { position:absolute; border-radius:50%; filter:blur(80px); }
 
-    /* --- NAVIGATION --- */
-    .header {
-      height: var(--nav-height);
-      background: rgba(255, 255, 255, 0.85);
-      backdrop-filter: blur(25px);
-      position: fixed;
-      top: 0; width: 100%; z-index: 1000;
-      display: flex; align-items: center;
-      transition: var(--transition);
-      border-bottom: 2px solid rgba(255, 133, 102, 0.1);
-    }
+        .vol-hero-content { position: relative; z-index: 1; max-width: 760px; }
+        .vol-hero-eyebrow { display:inline-flex; align-items:center; gap:8px; background:rgba(255,255,255,0.14); border:1px solid rgba(255,255,255,0.28); border-radius:100px; padding:7px 18px; font-size:0.7rem; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; color:#fff; margin-bottom:28px; animation:fadeSlideUp 0.8s var(--ease) both; }
+        .vol-hero h1 { font-size:clamp(3rem,7vw,5.5rem); color:#fff; font-weight:700; line-height:1.06; margin-bottom:26px; animation:fadeSlideUp 0.8s 0.1s var(--ease) both; }
+        .vol-hero h1 em { font-style:italic; color:var(--coral); }
+        .vol-hero-sub { font-size:clamp(1.05rem,2vw,1.25rem); color:rgba(255,255,255,0.78); line-height:1.8; max-width:580px; margin-bottom:44px; animation:fadeSlideUp 0.8s 0.2s var(--ease) both; }
 
-    .nav-container {
-      width: 92%; max-width: 1300px; margin: 0 auto;
-      display: flex; justify-content: space-between; align-items: center;
-    }
+        /* Steps nav pills */
+        .steps-nav { display:flex; gap:12px; flex-wrap:wrap; animation:fadeSlideUp 0.8s 0.3s var(--ease) both; }
+        .step-pill { display:inline-flex; align-items:center; gap:8px; padding:10px 22px; border-radius:100px; font-size:0.88rem; font-weight:600; border:2px solid rgba(255,255,255,0.35); color:#fff; background:rgba(255,255,255,0.12); }
+        .step-pill-num { display:inline-flex; align-items:center; justify-content:center; width:20px; height:20px; border-radius:50%; background:rgba(255,255,255,0.28); font-size:0.72rem; font-weight:800; }
 
-    .logo-area { display: flex; align-items: center; gap: 12px; text-decoration: none; }
-    .logo-text { font-size: 1.6rem; color: var(--logo-coral); }
+        /* =============================================
+           STEPS WRAPPER
+        ============================================= */
+        .steps-wrap { padding: 100px 0; }
 
-    .nav-links { display: flex; gap: 35px; align-items: center; }
-    .nav-item { text-decoration: none; color: var(--deep-teal); font-weight: 600; transition: var(--transition); position: relative; }
-    .nav-item:hover { color: var(--logo-coral); }
+        /* Step header */
+        .step-label { display:inline-flex; align-items:center; gap:10px; background:var(--ink); color:#fff; font-size:0.68rem; font-weight:800; letter-spacing:0.2em; text-transform:uppercase; padding:8px 20px; border-radius:100px; margin-bottom:20px; }
+        .step-label i { font-size:0.75rem; color:var(--teal-light); }
 
-    .btn-action-nav {
-      background: linear-gradient(135deg, var(--logo-coral), #FF6B45);
-      color: white;
-      padding: 12px 28px;
-      border-radius: 100px;
-      text-decoration: none;
-      font-weight: 700;
-      transition: var(--transition);
-      box-shadow: 0 4px 15px rgba(255, 133, 102, 0.3);
-    }
+        /* =============================================
+           STEP 1 — CHOOSE YOUR TEAM
+        ============================================= */
+        .step1 { background: var(--white); padding: 100px 0; }
+        .step1-header { max-width: 620px; margin-bottom: 60px; }
+        .step1-header h2 { font-size: clamp(2rem, 4vw, 3.2rem); margin-bottom: 16px; }
+        .step1-header h2 em { font-style:italic; color:var(--teal-dark); }
+        .step1-header p { font-size: 1.05rem; color: var(--ink-mid); line-height: 1.78; }
 
-    /* --- HERO --- */
-    .hero {
-      padding: calc(var(--nav-height) + 80px) 20px 40px;
-      text-align: center;
-      position: relative;
-    }
+        .team-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
 
-    .hero-content { 
-        max-width: 950px; margin: 0 auto; 
-        animation: fadeInUp 1s ease-out;
-    }
-    .hero h4 { color: var(--logo-coral); text-transform: uppercase; letter-spacing: 4px; margin-bottom: 20px; font-size: 0.9rem; }
-    .hero h1 { font-size: clamp(2.8rem, 7vw, 4.5rem); color: var(--deep-teal); margin-bottom: 30px; }
-    .hero h1 span { color: var(--logo-coral); }
+        .team-card {
+            border-radius: 24px; padding: 44px 40px;
+            position: relative; overflow: hidden;
+            border: 1px solid var(--border);
+            transition: all 0.32s var(--ease);
+        }
+        .team-card:hover { transform: translateY(-7px); box-shadow: 0 28px 70px rgba(0,0,0,0.1); }
+        .team-card::before { content:''; position:absolute; top:0; left:0; right:0; height:5px; border-radius:24px 24px 0 0; }
 
-    /* --- ENHANCED INTRO BANNER --- */
-    .intro-cta-banner {
-      max-width: 1000px;
-      margin: 40px auto 40px;
-      background: linear-gradient(135deg, #ffffff 0%, #FFF5F2 100%);
-      padding: 45px;
-      border-radius: 40px;
-      display: flex;
-      align-items: center;
-      gap: 35px;
-      box-shadow: 0 30px 60px rgba(255, 133, 102, 0.1);
-      border: 2px solid rgba(255, 133, 102, 0.15);
-      position: relative;
-      overflow: hidden;
-    }
-    .intro-cta-banner::before {
-        content: ''; position: absolute; top: 0; left: 0; width: 6px; height: 100%;
-        background: var(--logo-coral);
-    }
-    .intro-cta-icon {
-      font-size: 3.5rem;
-      color: var(--logo-coral);
-      background: rgba(255, 133, 102, 0.1);
-      width: 100px; height: 100px;
-      display: flex; align-items: center; justify-content: center;
-      border-radius: 30px;
-      animation: pulse-soft 3s infinite ease-in-out;
-      flex-shrink: 0;
-    }
-    .intro-cta-text { text-align: left; }
-    .intro-cta-text h2 { color: var(--deep-teal); margin-bottom: 12px; font-size: 2rem; }
-    .intro-cta-text p { color: #576574; font-size: 1.2rem; line-height: 1.6; font-weight: 500; }
+        /* Arts — coral */
+        .tc-arts { background: linear-gradient(160deg, #fff 60%, rgba(255,189,171,0.08)); }
+        .tc-arts::before { background: var(--coral-text); }
+        .tc-arts .team-icon { background: rgba(192,112,96,0.11); color: var(--coral-text); }
+        .tc-arts h3 em { color: var(--coral-text); }
+        .tc-arts .team-tag { background: rgba(192,112,96,0.1); color: var(--coral-text); }
+        .tc-arts .team-btn { background: var(--coral-text); color: #fff; }
+        .tc-arts .team-btn:hover { background: #B06050; box-shadow: 0 8px 24px rgba(192,112,96,0.35); }
 
-    /* --- STEPS SECTION --- */
-    .steps-section { padding: 60px 20px 100px; position: relative; }
-    .container { max-width: 1200px; margin: 0 auto; position: relative; }
+        /* Outreach — teal */
+        .tc-out { background: linear-gradient(160deg, #fff 60%, rgba(150,212,212,0.08)); }
+        .tc-out::before { background: var(--teal-dark); }
+        .tc-out .team-icon { background: rgba(78,152,152,0.11); color: var(--teal-dark); }
+        .tc-out h3 em { color: var(--teal-dark); }
+        .tc-out .team-tag { background: rgba(78,152,152,0.1); color: var(--teal-dark); }
+        .tc-out .team-btn { background: var(--teal-dark); color: #fff; }
+        .tc-out .team-btn:hover { background: var(--deep-teal); box-shadow: 0 8px 24px rgba(78,152,152,0.35); }
 
-    .step-block { margin-bottom: 100px; opacity: 0; transform: translateY(30px); transition: 0.8s ease-out; }
-    .step-block.visible { opacity: 1; transform: translateY(0); }
+        .team-icon { width: 60px; height: 60px; border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; margin-bottom: 24px; }
+        .team-card h3 { font-size: 1.9rem; margin-bottom: 8px; }
+        .team-card h3 em { font-style: italic; }
+        .team-tag { display: inline-block; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; padding: 4px 12px; border-radius: 100px; margin-bottom: 20px; }
+        .team-card p { font-size: 0.98rem; color: var(--ink-mid); line-height: 1.78; margin-bottom: 16px; }
 
-    .step-number { 
-        font-size: 0.9rem; font-weight: 800;
-        background: var(--deep-teal); color: white;
-        padding: 8px 24px; border-radius: 50px;
-        display: inline-flex; align-items: center; gap: 8px; margin-bottom: 25px;
-    }
+        /* What you'll do list */
+        .team-list { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 36px; }
+        .team-list li { display: flex; align-items: flex-start; gap: 12px; font-size: 0.92rem; color: var(--ink-mid); }
+        .team-list li i { font-size: 0.75rem; margin-top: 5px; flex-shrink: 0; }
+        .tc-arts  .team-list li i { color: var(--coral-text); }
+        .tc-out   .team-list li i { color: var(--teal-dark); }
 
-    .step-header h2 { font-size: 3.2rem; color: var(--deep-teal); margin-bottom: 15px; }
+        .team-btn { display: inline-flex; align-items: center; gap: 8px; font-family: var(--ff-sans); font-size: 0.92rem; font-weight: 700; padding: 13px 26px; border-radius: 10px; border: none; cursor: pointer; transition: all 0.25s var(--ease); }
+        .team-btn i { font-size: 0.8rem; transition: transform 0.22s; }
+        .team-btn:hover i { transform: translateX(4px); }
 
-    /* --- COLORFUL TRACK CARDS --- */
-    .track-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 50px; }
-    
-    .track-card {
-        padding: 45px 35px;
-        border-radius: 50px;
-        background: white;
-        transition: var(--transition);
-        display: flex; flex-direction: column;
-        position: relative; overflow: hidden;
-        border: 2px solid transparent;
-        box-shadow: 0 20px 40px rgba(0,0,0,0.03);
-    }
+        @media (max-width: 760px) { .team-grid { grid-template-columns: 1fr; } }
 
-    .track-card.pub { border-bottom: 6px solid var(--track-pub); }
-    .track-card.art { border-bottom: 6px solid var(--track-art); }
-    .track-card.out { border-bottom: 6px solid var(--track-out); }
+        /* =============================================
+           STEP 2 — GET YOUR FIRST ASSIGNMENT
+        ============================================= */
+        .step2 { background: var(--cream); padding: 100px 0; }
+        .step2-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center; }
+        .step2-text h2 { font-size: clamp(2rem, 4vw, 3.2rem); margin-bottom: 16px; }
+        .step2-text h2 em { font-style: italic; color: var(--coral-text); }
+        .step2-text p { font-size: 1.05rem; color: var(--ink-mid); line-height: 1.8; margin-bottom: 32px; }
 
-    .track-card:hover { transform: translateY(-15px); box-shadow: 0 40px 80px rgba(0,0,0,0.08); }
+        .step2-card {
+            background: var(--ink);
+            border-radius: 24px; padding: 44px 40px;
+            position: relative; overflow: hidden;
+        }
+        .step2-card::before { content:''; position:absolute; inset:0; background-image:radial-gradient(circle,rgba(255,255,255,0.04) 1.5px,transparent 1.5px); background-size:28px 28px; pointer-events:none; }
+        .step2-card-icon { width: 64px; height: 64px; border-radius: 18px; background: rgba(150,212,212,0.14); color: var(--teal-light); display: flex; align-items: center; justify-content: center; font-size: 1.6rem; margin-bottom: 24px; position: relative; z-index: 1; }
+        .step2-card h3 { font-family: var(--ff-serif); font-size: 1.6rem; color: #fff; margin-bottom: 14px; position: relative; z-index: 1; }
+        .step2-card p  { font-size: 0.95rem; color: rgba(255,255,255,0.65); line-height: 1.75; margin-bottom: 28px; position: relative; z-index: 1; }
 
-    .track-icon {
-        width: 80px; height: 80px;
-        border-radius: 28px;
-        display: flex; align-items: center; justify-content: center;
-        margin-bottom: 30px; font-size: 2.2rem; transition: 0.4s;
-    }
-    
-    .pub .track-icon { background: rgba(108, 92, 231, 0.1); color: var(--track-pub); }
-    .art .track-icon { background: rgba(253, 121, 168, 0.1); color: var(--track-art); }
-    .out .track-icon { background: rgba(250, 177, 160, 0.1); color: var(--track-out); }
+        .assign-list { list-style: none; display: flex; flex-direction: column; gap: 12px; position: relative; z-index: 1; }
+        .assign-list li { display: flex; align-items: center; gap: 12px; font-size: 0.9rem; color: rgba(255,255,255,0.75); }
+        .assign-list li i { width: 28px; height: 28px; border-radius: 8px; background: rgba(150,212,212,0.12); color: var(--teal-light); display: flex; align-items: center; justify-content: center; font-size: 0.75rem; flex-shrink: 0; }
 
-    .track-card:hover .track-icon { transform: scale(1.1) rotate(-10deg); color: white; }
-    .track-card.pub:hover .track-icon { background: var(--track-pub); }
-    .track-card.art:hover .track-icon { background: var(--track-art); }
-    .track-card.out:hover .track-icon { background: var(--track-out); }
+        @media (max-width: 800px) { .step2-inner { grid-template-columns: 1fr; gap: 48px; } }
 
-    .track-card h3 { font-size: 1.9rem; color: var(--deep-teal); margin-bottom: 15px; }
-    .track-card p { font-size: 1.1rem; color: #576574; margin-bottom: 35px; flex-grow: 1; }
+        /* =============================================
+           STEP 3 — LOG YOUR HOURS
+        ============================================= */
+        .step3 { background: var(--white); padding: 100px 0; }
+        .step3-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center; }
+        .step3-text h2 { font-size: clamp(2rem, 4vw, 3.2rem); margin-bottom: 16px; }
+        .step3-text h2 em { font-style: italic; color: var(--green); }
+        .step3-text p { font-size: 1.05rem; color: var(--ink-mid); line-height: 1.8; }
 
-    .track-btn {
-        padding: 18px; border-radius: 22px; text-decoration: none;
-        font-weight: 800; transition: var(--transition);
-        text-align: center; display: flex; align-items: center; justify-content: center; gap: 10px;
-    }
-    .pub .track-btn { background: var(--track-pub); color: white; }
-    .art .track-btn { background: var(--track-art); color: white; }
-    .out .track-btn { background: var(--track-out); color: white; }
-    
-    .track-btn:hover { filter: brightness(1.1); gap: 15px; }
+        .hours-card { background: var(--green-pale); border: 1px solid rgba(78,136,96,0.18); border-radius: 24px; padding: 44px 40px; }
+        .hours-icon { width: 60px; height: 60px; border-radius: 16px; background: rgba(78,136,96,0.14); color: var(--green); display: flex; align-items: center; justify-content: center; font-size: 1.4rem; margin-bottom: 24px; }
+        .hours-card h3 { font-size: 1.4rem; color: var(--ink); margin-bottom: 12px; }
+        .hours-card p  { font-size: 0.95rem; color: var(--ink-mid); line-height: 1.75; margin-bottom: 24px; }
+        .hours-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+        .hours-list li { display: flex; align-items: center; gap: 10px; font-size: 0.91rem; color: var(--ink-mid); }
+        .hours-list li i { color: var(--green); font-size: 0.8rem; }
 
-    /* --- DISCORD SECTION --- */
-    .discord-box {
-        background: linear-gradient(135deg, #5865F2 0%, #404EED 100%);
-        color: white; padding: 60px; border-radius: 60px;
-        display: flex; align-items: center; gap: 50px; margin-top: 40px;
-        box-shadow: 0 30px 60px rgba(88, 101, 242, 0.25);
-        position: relative; overflow: hidden;
-    }
-    .discord-icon-main { font-size: 5rem; animation: float 5s ease-in-out infinite; }
+        @media (max-width: 800px) { .step3-inner { grid-template-columns: 1fr; gap: 48px; } }
 
-    .service-alert {
-        background: linear-gradient(to right, #ffffff, #FFFBF5);
-        padding: 40px; border-radius: 45px;
-        display: flex; align-items: center; gap: 30px;
-        border-left: 12px solid var(--logo-yellow);
-        box-shadow: 0 20px 50px rgba(0,0,0,0.05);
-    }
-    .service-alert i { font-size: 2.5rem; color: var(--logo-coral); }
+        /* =============================================
+           CTA BANNER
+        ============================================= */
+        .cta-banner { background: linear-gradient(135deg, var(--deep-teal) 0%, var(--teal-dark) 100%); padding: 100px 0; text-align: center; position: relative; overflow: hidden; }
+        .cta-banner::before { content:''; position:absolute; inset:0; background-image:radial-gradient(circle,rgba(255,255,255,0.05) 1.5px,transparent 1.5px); background-size:30px 30px; }
+        .cta-inner { position: relative; z-index: 1; max-width: 660px; margin: 0 auto; }
+        .cta-banner h2    { font-size: clamp(2rem,4vw,3.2rem); color: #fff; margin-bottom: 18px; }
+        .cta-banner h2 em { font-style: italic; color: var(--coral); }
+        .cta-banner p     { font-size: 1.12rem; color: rgba(255,255,255,0.72); line-height: 1.78; margin-bottom: 40px; }
+        .cta-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
 
-    /* --- FOOTER --- */
-    footer { 
-      background: white; padding: 100px 20px; 
-      border-radius: 80px 80px 0 0; 
-      box-shadow: 0 -20px 60px rgba(0,0,0,0.02);
-    }
-
-    @media (max-width: 1024px) { .track-grid { grid-template-columns: repeat(2, 1fr); } }
-    @media (max-width: 768px) {
-        .track-grid { grid-template-columns: 1fr; }
-        .intro-cta-banner { flex-direction: column; text-align: center; }
-        .intro-cta-text { text-align: center; }
-        .hero h1 { font-size: 3rem; }
-    }
-  </style>
+        /* =============================================
+           FOOTER
+        ============================================= */
+        .footer { background: var(--ink); padding: 60px 0 32px; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
+        .footer .logo-name      { color: #fff; }
+        .footer .logo-name span { color: var(--coral-dark); }
+        .footer .logo-sub       { color: var(--teal-light); }
+        .footer-tagline { font-size: 0.9rem; color: rgba(255,255,255,0.42); margin-top: 16px; line-height: 1.72; max-width: 260px; }
+        .footer-col h4  { font-family: var(--ff-sans); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.33); margin-bottom: 20px; }
+        .footer-col ul  { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+        .footer-col ul li a { font-size: 0.92rem; color: rgba(255,255,255,0.58); transition: color 0.2s; }
+        .footer-col ul li a:hover { color: #fff; }
+        .footer-bottom { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 28px; text-align: center; font-size: 0.8rem; color: rgba(255,255,255,0.28); }
+        @media (max-width: 820px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
+        @media (max-width: 480px) { .footer-grid { grid-template-columns: 1fr; } }
+    </style>
+    <link rel="stylesheet" href="transitions.css">
 </head>
 <body>
 
-  <!-- Background Decoration -->
-  <div class="blob" style="top: 10%; left: -10%; background: var(--logo-coral);"></div>
-  <div class="blob" style="bottom: 10%; right: -10%; background: var(--logo-yellow);"></div>
-  <div class="blob" style="top: 50%; left: 40%; background: var(--logo-teal-light);"></div>
-
-  <!-- NAVIGATION -->
-  <header class="header" id="navbar">
-    <div class="nav-container">
-      <a href="index.html" class="logo-area">
-        <svg width="40" height="40" viewBox="0 0 100 100">
-            <circle cx="50" cy="50" r="48" fill="#FF8566" fill-opacity="0.1" />
-            <path d="M20 50 Q 35 30, 50 50 T 80 50" stroke="#43A4AD" stroke-width="8" fill="none" stroke-linecap="round" />
-        </svg>
-        <span class="logo-text script-font">EquiFlow</span>
-      </a>
-      
-      <nav class="nav-links">
-        <a href="index.html" class="nav-item">Our Why</a>
-        <a href="chapters.html" class="nav-item">Chapters</a>
-        <a href="#" class="nav-item" style="color: var(--logo-coral)">Programs</a>
-        <a href="volunteer.html" class="nav-item">Volunteer</a>
-        <a href="#" class="btn-action-nav">Support Us</a>
-      </nav>
-    </div>
-  </header>
-
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero-content">
-      <h4>Join the Global Movement</h4>
-      <h1>Empowering the Next Generation of <span>Change</span>.</h1>
-      
-      <!-- COLORFUL INTRO BANNER -->
-      <div class="intro-cta-banner">
-        <div class="intro-cta-icon">
-            <i class="fa-solid fa-heart-pulse"></i>
+    <!-- NAVIGATION -->
+    <header class="site-header" id="site-header">
+        <div class="container nav-inner">
+            <a href="index.html" class="logo">
+                <span class="logo-sub">Project</span>
+                <span class="logo-name">Equi<span>Flow</span></span>
+            </a>
+            <ul class="nav-links" id="nav-links">
+                <li class="has-dropdown">
+                    <a href="index.html">About</a>
+                    <ul class="nav-dropdown">
+                        <li><a href="mission.html">Our Mission</a></li>
+                    </ul>
+                </li>
+                <li><a href="program.html">Programs</a></li>
+                <li class="has-dropdown">
+                    <a href="#">Get Involved</a>
+                    <ul class="nav-dropdown">
+                        <li><a href="volunteer.html">Volunteer</a></li>
+                        <li><a href="chapter.html">Chapter</a></li>
+                        <li><a href="partner.html">Partner With Us</a></li>
+                    </ul>
+                </li>
+                <li><a href="donate.html" class="btn-donate">Donate</a></li>
+            </ul>
+            <button class="nav-hamburger" id="hamburger" aria-label="Open menu">
+                <i class="fa-solid fa-bars"></i>
+            </button>
         </div>
-        <div class="intro-cta-text">
-            <h2>Ready to take action?</h2>
-            <p>Becoming an EquiFlow volunteer means joining a passionate global community driven by kindness, creativity, and purpose. You’ll not only make a difference in health equity, but also grow as a leader, creator, and changemaker.</p>
-        </div>
-      </div>
-    </div>
-  </section>
+    </header>
 
-  <!-- STEPS -->
-  <section class="steps-section">
-    <div class="container">
-      
-      <!-- STEP 1 -->
-      <div class="step-block reveal">
-        <div class="step-number"><i class="fa-solid fa-compass"></i> Step 1</div>
-        <div class="step-header">
-            <h2>Select Your Track</h2>
-            <p>Ready to take action? Choose a team that aligns with your passions. You’ll not only make a difference but also grow as a leader, creator, and researcher.</p>
+    <!-- HERO -->
+    <section class="vol-hero">
+
+        <!-- ✦ Decorative background pattern layer ✦ -->
+        <div class="hero-deco" aria-hidden="true">
+
+            <!-- Concentric rings: top-right -->
+            <svg style="position:absolute;top:-90px;right:-90px;width:440px;height:440px;opacity:0.15;" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="200" cy="200" r="194" fill="none" stroke="white" stroke-width="0.8"/>
+                <circle cx="200" cy="200" r="160" fill="none" stroke="white" stroke-width="1"/>
+                <circle cx="200" cy="200" r="126" fill="none" stroke="white" stroke-width="1.2"/>
+                <circle cx="200" cy="200" r="92"  fill="none" stroke="white" stroke-width="1"/>
+                <circle cx="200" cy="200" r="58"  fill="none" stroke="white" stroke-width="1.5"/>
+                <circle cx="200" cy="200" r="24"  fill="none" stroke="white" stroke-width="2"/>
+            </svg>
+
+            <!-- Wavy lines across lower hero -->
+            <svg style="position:absolute;bottom:18px;left:0;width:100%;height:80px;opacity:0.1;" viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0,40 C160,10 320,70 480,40 C640,10 800,70 960,40 C1120,10 1280,70 1440,40" fill="none" stroke="white" stroke-width="1.5"/>
+                <path d="M0,56 C160,26 320,86 480,56 C640,26 800,86 960,56 C1120,26 1280,86 1440,56" fill="none" stroke="white" stroke-width="0.8"/>
+            </svg>
+
+            <!-- Dashed ring: bottom-left -->
+            <svg style="position:absolute;bottom:-110px;left:-90px;width:320px;height:320px;opacity:0.13;" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="150" cy="150" r="140" fill="none" stroke="white" stroke-width="1.5" stroke-dasharray="8 6"/>
+                <circle cx="150" cy="150" r="108" fill="none" stroke="white" stroke-width="1" stroke-dasharray="4 8"/>
+            </svg>
+
+            <!-- Corner dot cluster: top-left -->
+            <svg style="position:absolute;top:52px;left:44px;opacity:0.13;" width="100" height="100" xmlns="http://www.w3.org/2000/svg">
+                <g fill="white">
+                    <circle cx="8"  cy="8"  r="2.8"/><circle cx="26" cy="8"  r="2.8"/><circle cx="44" cy="8"  r="2.8"/><circle cx="62" cy="8"  r="2.8"/>
+                    <circle cx="8"  cy="26" r="2.8"/><circle cx="26" cy="26" r="2.8"/><circle cx="44" cy="26" r="2.8"/><circle cx="62" cy="26" r="2.8"/>
+                    <circle cx="8"  cy="44" r="2.8"/><circle cx="26" cy="44" r="2.8"/><circle cx="44" cy="44" r="2.8"/>
+                    <circle cx="8"  cy="62" r="2.8"/><circle cx="26" cy="62" r="2.8"/>
+                    <circle cx="8"  cy="80" r="2.8"/>
+                </g>
+            </svg>
+
+            <!-- Horizontal line stack: right mid -->
+            <svg style="position:absolute;right:88px;top:36%;opacity:0.13;" width="72" height="52" xmlns="http://www.w3.org/2000/svg">
+                <line x1="0" y1="0"  x2="72" y2="0"  stroke="white" stroke-width="1.5"/>
+                <line x1="8" y1="13" x2="72" y2="13" stroke="white" stroke-width="1"/>
+                <line x1="0" y1="26" x2="72" y2="26" stroke="white" stroke-width="1.5"/>
+                <line x1="8" y1="39" x2="56" y2="39" stroke="white" stroke-width="1"/>
+                <line x1="0" y1="52" x2="72" y2="52" stroke="white" stroke-width="1.5"/>
+            </svg>
+
+            <!-- Sparkle stars — each a different shape -->
+
+            <!-- ✦ Classic 4-pointed sparkle -->
+            <svg class="hd-sparkle" style="top:17%;right:21%;width:22px;height:22px;animation:hd-pulse 3.5s ease-in-out infinite;" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2L13.2 10.8L22 12L13.2 13.2L12 22L10.8 13.2L2 12L10.8 10.8Z" fill="rgba(255,189,171,0.78)"/>
+            </svg>
+
+            <!-- ◎ Ring with centre dot -->
+            <svg class="hd-sparkle" style="top:58%;right:9%;width:16px;height:16px;animation:hd-pulse2 4.2s ease-in-out infinite 1s;" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="12" r="9"   fill="none" stroke="rgba(255,255,255,0.65)" stroke-width="1.8"/>
+                <circle cx="12" cy="12" r="3"   fill="rgba(255,255,255,0.65)"/>
+            </svg>
+
+            <!-- ✦ Needle / super-elongated 4-pointed star -->
+            <svg class="hd-sparkle" style="top:32%;left:6%;width:18px;height:18px;animation:hd-pulse 3.2s ease-in-out infinite 0.5s;" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 0L12.6 10.6L24 12L12.6 13.4L12 24L11.4 13.4L0 12L11.4 10.6Z" fill="rgba(255,255,255,0.48)"/>
+            </svg>
+
+            <!-- ✶ 6-pointed star -->
+            <svg class="hd-sparkle" style="bottom:28%;left:24%;width:14px;height:14px;animation:hd-pulse 5s ease-in-out infinite 2s;" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12,2 L14.5,7.7 L20.7,7 L17,12 L20.7,17 L14.5,16.3 L12,22 L9.5,16.3 L3.3,17 L7,12 L3.3,7 L9.5,7.7Z" fill="rgba(255,189,171,0.6)"/>
+            </svg>
+
+            <!-- ✚ Thin plus / cross -->
+            <svg class="hd-sparkle" style="top:70%;left:45%;width:12px;height:12px;animation:hd-pulse2 4s ease-in-out infinite 1.8s;" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M11 2H13V11H22V13H13V22H11V13H2V11H11Z" fill="rgba(255,255,255,0.4)"/>
+            </svg>
+
         </div>
 
-        <div class="track-grid">
-            <!-- Publications Team -->
-            <div class="track-card pub">
-                <div class="track-icon"><i class="fa-solid fa-pen-nib"></i></div>
-                <h3>Publications</h3>
-                <p>A platform for women and girls to share their voices through writing, art, and student-led research on STEM, education, and health equity.</p>
-                <a href="#" class="track-btn">Submit Work <i class="fa-solid fa-arrow-right-long"></i></a>
+        <div class="blob-canvas">
+            <div class="blob" style="width:600px;height:600px;top:-150px;left:-200px;background:rgba(150,212,212,0.15);animation:blobDrift1 14s ease-in-out infinite;"></div>
+            <div class="blob" style="width:500px;height:500px;bottom:-100px;right:-100px;background:rgba(255,189,171,0.12);animation:blobDrift2 18s ease-in-out infinite;"></div>
+        </div>
+        <div class="container">
+            <div class="vol-hero-content">
+                <div class="vol-hero-eyebrow">
+                    <i class="fa-solid fa-hands-holding-heart"></i>
+                    Join the Movement
+                </div>
+                <h1>Show up for<br>girls who need<br>you to <em>care.</em></h1>
+                <p class="vol-hero-sub">
+                    Whether you love art or love people — there's a place for you at Project EquiFlow. Our volunteers create real, tangible things that land in the hands of girls around the world.
+                </p>
+                <div class="steps-nav">
+                    <div class="step-pill"><span class="step-pill-num">1</span> Choose Your Team</div>
+                    <div class="step-pill"><span class="step-pill-num">2</span> Get Your First Assignment</div>
+                    <div class="step-pill"><span class="step-pill-num">3</span> Log Your Hours</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- STEP 1: CHOOSE YOUR TEAM -->
+    <section class="step1">
+        <div class="container">
+            <div class="step1-header reveal">
+                <div class="step-label"><i class="fa-solid fa-compass"></i> Step 1</div>
+                <h2>Choose your<br><em>team</em></h2>
+                <p>We have two volunteer tracks, each making a direct difference for girls in our programs. Pick the one that fits you — or apply for both.</p>
             </div>
 
-            <!-- Arts Team -->
-            <div class="track-card art">
-                <div class="track-icon"><i class="fa-solid fa-palette"></i></div>
-                <h3>Arts Team</h3>
-                <p>Design handmade cards, digital illustrations, and creative crafts distributed to clinics and patients in underserved communities worldwide.</p>
-                <a href="#" class="track-btn">Apply for Arts <i class="fa-solid fa-arrow-right-long"></i></a>
+            <div class="team-grid">
+
+                <!-- Arts Team -->
+                <div class="team-card tc-arts reveal" data-delay="0">
+                    <div class="team-icon"><i class="fa-solid fa-palette"></i></div>
+                    <div class="team-tag">Creative Track</div>
+                    <h3>Arts <em>Team</em></h3>
+                    <p>Our Arts Team creates handmade and digital motivational cards that get sent directly to girls in our programs — reminding them they are seen, valued, and capable of anything.</p>
+                    <ul class="team-list">
+                        <li><i class="fa-solid fa-circle-check"></i> Design motivational cards for girls in our programs</li>
+                        <li><i class="fa-solid fa-circle-check"></i> Work in any medium — illustration, painting, digital art</li>
+                        <li><i class="fa-solid fa-circle-check"></i> Collaborate with teammates on themed card collections</li>
+                        <li><i class="fa-solid fa-circle-check"></i> Your art ships to real girls around the world</li>
+                    </ul>
+                    <button class="team-btn">Apply for Arts <i class="fa-solid fa-arrow-right"></i></button>
+                </div>
+
+                <!-- Outreach Team -->
+                <div class="team-card tc-out reveal" data-delay="120">
+                    <div class="team-icon"><i class="fa-solid fa-bullhorn"></i></div>
+                    <div class="team-tag">Outreach Track</div>
+                    <h3>Outreach <em>Team</em></h3>
+                    <p>Our Outreach Team is the connective tissue of EquiFlow — spreading our mission, building community relationships, and helping make sure no girl gets left behind.</p>
+                    <ul class="team-list">
+                        <li><i class="fa-solid fa-circle-check"></i> Raise awareness for our programs in your community</li>
+                        <li><i class="fa-solid fa-circle-check"></i> Coordinate local supply and product donation drives</li>
+                        <li><i class="fa-solid fa-circle-check"></i> Represent EquiFlow at school and community events</li>
+                        <li><i class="fa-solid fa-circle-check"></i> Help grow our network of supporters and partners</li>
+                    </ul>
+                    <button class="team-btn">Apply for Outreach <i class="fa-solid fa-arrow-right"></i></button>
+                </div>
+
             </div>
+        </div>
+    </section>
 
-            <!-- Outreach Team -->
-            <div class="track-card out">
-                <div class="track-icon"><i class="fa-solid fa-bullhorn"></i></div>
-                <h3>Outreach Team</h3>
-                <p>Lead fundraising events, coordinate local health drives, and help secure the vital resources that sustain our global programs.</p>
-                <a href="#" class="track-btn">Start Outreach <i class="fa-solid fa-arrow-right-long"></i></a>
+    <!-- STEP 2: GET YOUR FIRST ASSIGNMENT -->
+    <section class="step2">
+        <div class="container">
+            <div class="step2-inner">
+                <div class="step2-text reveal-left">
+                    <div class="step-label"><i class="fa-solid fa-rocket"></i> Step 2</div>
+                    <h2>Get your first<br><em>assignment</em></h2>
+                    <p>Once your application is reviewed, you'll be welcomed into our team hub where your team lead will walk you through your first project and connect you with fellow volunteers.</p>
+                    <p style="margin-top:16px;">Assignments are matched to your availability and skill level — so whether you have two hours a week or twenty, there's always something meaningful waiting for you.</p>
+                </div>
+                <div class="step2-card reveal-right">
+                    <div class="step2-card-icon"><i class="fa-solid fa-inbox"></i></div>
+                    <h3>Your Assignment Inbox</h3>
+                    <p>After you're onboarded, you'll have access to open projects from both teams. Claim what excites you, submit your work, and watch it turn into something real.</p>
+                    <ul class="assign-list">
+                        <li><i class="fa-solid fa-paintbrush"></i> Arts: monthly card collection themes posted by your team lead</li>
+                        <li><i class="fa-solid fa-calendar-days"></i> Outreach: upcoming drives, events, and campaigns to join</li>
+                        <li><i class="fa-solid fa-comments"></i> Real-time communication with your team and leads</li>
+                        <li><i class="fa-solid fa-star"></i> Recognition for standout work each month</li>
+                    </ul>
+                </div>
             </div>
         </div>
-      </div>
+    </section>
 
-      <!-- STEP 2 -->
-      <div class="step-block reveal">
-        <div class="step-number"><i class="fa-solid fa-rocket"></i> Step 2</div>
-        <div class="step-header">
-            <h2>Get Your First Assignment</h2>
-            <p>Once your application is reviewed, you'll join our communication hub where you can claim projects and connect with your team lead.</p>
-        </div>
-
-        <div class="discord-box">
-            <div class="discord-icon-main">
-                <i class="fa-brands fa-discord"></i>
+    <!-- STEP 3: LOG YOUR HOURS -->
+    <section class="step3">
+        <div class="container">
+            <div class="step3-inner">
+                <div class="step3-text reveal-left">
+                    <div class="step-label"><i class="fa-solid fa-award"></i> Step 3</div>
+                    <h2>Log your service<br><em>hours</em></h2>
+                    <p>Every assignment you complete counts. We track your hours and provide official documentation so your volunteer work is recognized — at school, on applications, and beyond.</p>
+                </div>
+                <div class="hours-card reveal-right">
+                    <div class="hours-icon"><i class="fa-solid fa-certificate"></i></div>
+                    <h3>Official Recognition</h3>
+                    <p>Volunteer assignments are eligible for service hours and can be submitted for formal recognition, including:</p>
+                    <ul class="hours-list">
+                        <li><i class="fa-solid fa-check"></i> Presidential Volunteer Service Award (PVSA) tracking</li>
+                        <li><i class="fa-solid fa-check"></i> High school and university volunteer credit</li>
+                        <li><i class="fa-solid fa-check"></i> NHS and community service program hours</li>
+                        <li><i class="fa-solid fa-check"></i> Official EquiFlow verification letter on request</li>
+                    </ul>
+                </div>
             </div>
-            <div class="discord-content">
-                <h3>Join the Community Hub</h3>
-                <p>Keep an eye out for activity instructions. This is where contributors share their research, designs, and event plans in real-time. Direct access to global mentors and fellow changemakers.</p>
+        </div>
+    </section>
+
+    <!-- CTA BANNER -->
+    <section class="cta-banner">
+        <div class="cta-inner">
+            <h2>Ready to make<br>something <em>real?</em></h2>
+            <p>Your time and creativity can change how a girl sees herself. Apply today and join a team that's already making a difference.</p>
+            <div class="cta-btns">
+                <a href="#" class="btn btn-white">Apply to Volunteer</a>
+                <a href="donate.html" class="btn btn-outline-white">Donate Instead</a>
             </div>
         </div>
-      </div>
+    </section>
 
-      <!-- STEP 3 -->
-      <div class="step-block reveal">
-        <div class="step-number"><i class="fa-solid fa-award"></i> Step 3</div>
-        <div class="step-header">
-            <h2>Log Your Service Hours</h2>
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <a href="index.html" class="logo">
+                        <span class="logo-sub">Project</span>
+                        <span class="logo-name">Equi<span>Flow</span></span>
+                    </a>
+                    <p class="footer-tagline">Empowering girls through education, health, and leadership — one community at a time.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>About</h4>
+                    <ul>
+                        <li><a href="mission.html">Our Mission</a></li>
+                        <li><a href="index.html#beliefs">Our Beliefs</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Programs</h4>
+                    <ul>
+                        <li><a href="program.html#education">Education</a></li>
+                        <li><a href="program.html#leadership">Leadership</a></li>
+                        <li><a href="program.html#health">Menstrual Health</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Get Involved</h4>
+                    <ul>
+                        <li><a href="donate.html">Donate</a></li>
+                        <li><a href="volunteer.html">Volunteer</a></li>
+                        <li><a href="chapter.html">Chapter</a></li>
+                        <li><a href="partner.html">Partner</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© Project EquiFlow 2025, All Rights Reserved. &nbsp;·&nbsp; A registered 501(c)(3) nonprofit organization.</p>
+            </div>
         </div>
+    </footer>
 
-        <div class="service-alert">
-            <i class="fa-solid fa-certificate"></i>
-            <p><strong>Official Recognition:</strong> Volunteer assignments are eligible for service hours and can be submitted for official approval, including PVSA tracking and university volunteer credits.</p>
-        </div>
-      </div>
+    <script>
+        /* Sticky nav */
+        const header = document.getElementById('site-header');
+        window.addEventListener('scroll', () => {
+            header.classList.toggle('scrolled', window.scrollY > 20);
+        }, { passive: true });
 
-    </div>
-  </section>
+        /* Mobile nav */
+        const hamburger = document.getElementById('hamburger');
+        const navLinks  = document.getElementById('nav-links');
+        hamburger.addEventListener('click', () => {
+            const open = navLinks.classList.toggle('open');
+            hamburger.innerHTML = open
+                ? '<i class="fa-solid fa-xmark"></i>'
+                : '<i class="fa-solid fa-bars"></i>';
+        });
+        document.querySelectorAll('.nav-links .has-dropdown > a').forEach(a => {
+            a.addEventListener('click', e => {
+                if (window.innerWidth <= 900) {
+                    e.preventDefault();
+                    a.parentElement.classList.toggle('open');
+                }
+            });
+        });
 
-  <!-- FOOTER -->
-  <footer>
-    <div class="container" style="text-align: center;">
-      <div class="logo-area" style="justify-content: center; margin-bottom: 30px;">
-          <span class="logo-text script-font" style="font-size: 3rem;">EquiFlow</span>
-      </div>
-      <p style="color: #6b7280; margin-bottom: 40px; font-size: 1.2rem; max-width: 600px; margin: 0 auto 40px;">
-          A platform for voice, creativity, and global health equity. Join us in making the world more equitable.
-      </p>
-      <div style="display: flex; justify-content: center; gap: 30px; margin-bottom: 50px; font-size: 2rem;">
-          <a href="#" style="color: var(--track-art); transition: 0.3s;"><i class="fa-brands fa-instagram"></i></a>
-          <a href="#" style="color: var(--track-pub); transition: 0.3s;"><i class="fa-brands fa-linkedin"></i></a>
-          <a href="#" style="color: var(--logo-teal-deep); transition: 0.3s;"><i class="fa-brands fa-tiktok"></i></a>
-      </div>
-      <div style="text-align: center; color: #AAA; font-size: 1rem; border-top: 1px solid #eee; padding-top: 40px;">
-        Project EquiFlow &copy; 2026 | Driven by Curiosity & Dignity
-      </div>
-    </div>
-  </footer>
+        /* Scroll reveal */
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    const delay = e.target.dataset.delay || 0;
+                    setTimeout(() => e.target.classList.add('active'), +delay);
+                    observer.unobserve(e.target);
+                }
+            });
+        }, { threshold: 0.1 });
 
-  <script>
-    // Navbar Scroll Effect
-    window.addEventListener('scroll', () => {
-      const header = document.getElementById('navbar');
-      if (window.scrollY > 50) {
-        header.style.background = 'rgba(255, 255, 255, 0.95)';
-        header.style.height = '80px';
-      } else {
-        header.style.background = 'rgba(255, 255, 255, 0.85)';
-        header.style.height = '90px';
-      }
-    });
-
-    // Scroll Reveal Animation
-    const observerOptions = { threshold: 0.15 };
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) entry.target.classList.add('visible');
-      });
-    }, observerOptions);
-
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-  </script>
+        document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+    <script src="transitions.js"></script>
 </body>
 </html>
