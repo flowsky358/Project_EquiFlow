@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://causeconnecthub.com/</loc>
+    <lastmod>2025-12-28</lastmod>
+    <priority>1.00</priority>
+  </url>
+  
+  <url>
+    <loc>https://causeconnecthub.com/explore.html</loc>
+    <lastmod>2025-12-28</lastmod>
+    <priority>0.90</priority>
+  </url>
+  
+  <url>
+    <loc>https://causeconnecthub.com/award.html</loc>
+    <lastmod>2025-12-28</lastmod>
+    <priority>0.80</priority>
+  </url>
+
+  <url>
+    <loc>https://causeconnecthub.com/resource.html</loc>
+    <lastmod>2025-12-28</lastmod>
+    <priority>0.80</priority>
+  </url>
+
+  <url>
+    <loc>https://causeconnecthub.com/project.html</loc>
+    <lastmod>2025-12-28</lastmod>
+    <priority>0.70</priority>
+  </url>
+</urlset>

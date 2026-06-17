@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(perl add-logo-icon.pl index.html mission.html volunteer.html partner.html chapter.html program.html privacy.html donate.html)",
+      "mcp__Claude_Preview__preview_start",
+      "Bash(perl -pi -e 's/girl —<br>/girl,<br>/' /Users/shriya/Code/pef/mission.html)",
+      "Bash(perl -pi -e \"s|url\\\\\\('IMG_|url\\('image/IMG_|g; s|src=\\\\\"IMG_|src=\\\\\"image/IMG_|g\" /Users/shriya/Code/pef/index.html /Users/shriya/Code/pef/program.html)",
+      "Bash(perl -0777 -pi -e ' *)"
+    ]
+  }
+}

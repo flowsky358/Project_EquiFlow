@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 62" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+  <!-- Hair flowing from crown -->
+  <path d="M20 6C18 3 12 2 8 4"/>
+  <!-- Back of head -->
+  <path d="M20 6C10 4 4 14 4 28C4 42 8 54 16 58"/>
+  <!-- Face profile: forehead → nose → lips → chin → neck -->
+  <path d="M20 6C24 4 30 7 32 12C34 17 30 20 30 23C30 25 36 26 40 30C36 32 34 34 34 36C36 38 36 42 34 44C32 48 26 54 20 58L16 58"/>
+</svg>
