@@ -810,72 +810,118 @@
             margin: 0 auto 36px;
         }
 
+        
         /* =============================================
-           FOOTER
+           FOOTER (photo background)
            ============================================= */
         .footer {
-            background: #1B4D4D;
-            padding: 80px 0 0;
+            position: relative;
+            background: url('image/IMG_9459.png') center/cover no-repeat;
+            padding: 0;
+            overflow: hidden;
         }
-        .footer-grid {
+        .footer::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(20, 45, 45, 0.82);
+            z-index: 0;
+        }
+        .footer > * { position: relative; z-index: 1; }
+        .footer-inner {
             display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: 48px;
-            padding-bottom: 64px;
-            border-bottom: 1px solid rgba(255,255,255,0.07);
+            grid-template-columns: 1.4fr 1fr 1fr;
+            gap: 56px;
+            padding: 72px 0 48px;
+            border-bottom: 1px solid rgba(255,255,255,0.12);
         }
-        .footer-brand .logo-name { color: var(--white); }
-        .footer-brand .logo-name span { color: var(--coral); }
+        .footer-brand-col {}
+        .footer-logo-img {
+            height: 54px;
+            width: auto;
+            margin-bottom: 18px;
+            display: block;
+        }
         .footer-tagline {
-            color: rgba(255,255,255,0.45);
-            font-size: 0.88rem;
-            margin: 16px 0 28px;
-            line-height: 1.7;
+            color: rgba(255,255,255,0.65);
+            font-size: 0.95rem;
+            line-height: 1.75;
+            margin-bottom: 22px;
         }
+        .footer-contact-block {
+            margin-bottom: 22px;
+        }
+        .footer-contact-block p {
+            font-size: 0.82rem !important;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--coral);
+            margin-bottom: 6px;
+        }
+        .footer-contact-block a {
+            font-size: 1rem;
+            color: #fff;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        .footer-contact-block a:hover { color: var(--coral); }
         .footer-socials { display: flex; gap: 10px; }
         .footer-socials a {
-            width: 38px; height: 38px;
-            border-radius: 8px;
-            background: rgba(255,255,255,0.07);
-            color: rgba(255,255,255,0.6);
+            width: 40px; height: 40px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.7);
             display: flex; align-items: center; justify-content: center;
-            font-size: 0.9rem;
+            font-size: 1rem;
             transition: background 0.3s, color 0.3s;
+            border: 1px solid rgba(255,255,255,0.15);
         }
-        .footer-socials a:hover {
-            background: var(--teal-light);
-            color: var(--white);
-        }
+        .footer-socials a:hover { background: var(--coral-text); color: #fff; border-color: var(--coral-text); }
         .footer-col h4 {
             font-family: var(--ff-sans);
-            font-size: 0.65rem;
+            font-size: 0.72rem;
             font-weight: 700;
             letter-spacing: 0.18em;
             text-transform: uppercase;
-            color: rgba(255,255,255,0.5);
-            margin-bottom: 22px;
+            color: var(--coral);
+            margin-bottom: 20px;
         }
         .footer-col ul { list-style: none; }
-        .footer-col li { margin-bottom: 12px; }
+        .footer-col li { margin-bottom: 13px; }
         .footer-col a {
-            font-size: 0.88rem;
-            color: rgba(255,255,255,0.5);
+            font-size: 0.95rem;
+            color: rgba(255,255,255,0.6);
             transition: color 0.2s;
         }
-        .footer-col a:hover { color: var(--white); }
+        .footer-col a:hover { color: #fff; }
         .footer-bottom {
             padding: 24px 0;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
         }
         .footer-bottom p {
-            font-size: 0.75rem;
-            color: rgba(255,255,255,0.25);
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.35);
         }
-        .footer-501c3 {
-            font-size: 0.7rem;
-            color: rgba(255,255,255,0.2);
+        .footer-ein {
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.55);
+            font-weight: 600;
+            background: rgba(255,255,255,0.07);
+            border: 1px solid rgba(255,255,255,0.14);
+            border-radius: 6px;
+            padding: 5px 14px;
+        }
+        @media (max-width: 860px) {
+            .footer-inner { grid-template-columns: 1fr 1fr; gap: 36px; }
+        }
+        @media (max-width: 540px) {
+            .footer-inner { grid-template-columns: 1fr; }
+            .footer-bottom { flex-direction: column; text-align: center; }
         }
 
         /* =============================================
@@ -1185,13 +1231,14 @@
     <!-- FOOTER -->
     <footer class="footer">
         <div class="container">
-            <div class="footer-grid">
-                <div class="footer-brand">
-                    <a href="index.html" class="logo">
-                        <span class="logo-sub" style="color:rgba(255,255,255,0.4)">Project</span>
-                        <span class="logo-name">Equi<span>Flow</span></span>
-                    </a>
-                    <p class="footer-tagline">Forging pathways for women and girls in extreme poverty to learn, connect, and lead worldwide.</p>
+            <div class="footer-inner">
+                <div class="footer-brand-col">
+                    <img src="image/download-2.jpg" alt="Project EquiFlow" class="footer-logo-img" />
+                    <p class="footer-tagline">Opening doors for girls living in poverty to learn, lead, and thrive.</p>
+                    <div class="footer-contact-block">
+                        <p>Contact Us</p>
+                        <a href="mailto:equiflow.connect@gmail.com">equiflow.connect@gmail.com</a>
+                    </div>
                     <div class="footer-socials">
                         <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
                     </div>
@@ -1201,31 +1248,23 @@
                     <ul>
                         <li><a href="program.html#education">Education Access</a></li>
                         <li><a href="program.html#leadership">Leadership Development</a></li>
-                        <li><a href="program.html#health">Health & Dignity</a></li>
-                        <li><a href="donate.html">Community Grants</a></li>
+                        <li><a href="program.html#health">Health &amp; Dignity</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
-                    <h4>About</h4>
+                    <h4>Get Involved</h4>
                     <ul>
-                        <li><a href="mission.html#about-us">Who We Are</a></li>
-                        <li><a href="mission.html">Mission &amp; Vision</a></li>
-                        <li><a href="mission.html#beliefs">Core Beliefs</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>Contact</h4>
-                    <ul>
-                        <li><a href="mailto:equiflow.connect@gmail.com">equiflow.connect@gmail.com</a></li>
+                        <li><a href="donate.html">Donate</a></li>
                         <li><a href="volunteer.html">Volunteer</a></li>
-                        <li><a href="mailto:equiflow.connect@gmail.com">Press Inquiries</a></li>
-                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="chapter.html">Start a Chapter</a></li>
+                        <li><a href="partner.html">Partner With Us</a></li>
+                        <li><a href="mission.html">Our Mission</a></li>
                     </ul>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>© Project EquiFlow 2025, All Rights Reserved.</p>
-                <p class="footer-501c3">A 501(c)(3) nonprofit organization &nbsp;·&nbsp; EIN: 39-4977771</p>
+                <p>© 2025 Project EquiFlow. All Rights Reserved. &nbsp;·&nbsp; A 501(c)(3) nonprofit organization.</p>
+                <span class="footer-ein">EIN: 39-4977771</span>
             </div>
         </div>
     </footer>
