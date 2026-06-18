@@ -428,7 +428,9 @@
            STATS BAND
            ============================================= */
         .stats-band {
-            background: linear-gradient(135deg, #A85040 0%, #C06858 50%, #D07868 100%);
+            background: var(--cream);
+            border-top: 3px solid var(--coral-text);
+            border-bottom: 3px solid var(--coral-text);
             padding: 60px 0;
         }
         .stats-grid {
@@ -443,13 +445,13 @@
             font-family: var(--ff-serif);
             font-size: clamp(2.6rem, 4vw, 4rem);
             font-weight: 700;
-            color: #FFD4C0;
+            color: var(--coral-text);
             margin-bottom: 10px;
             line-height: 1;
         }
         .stat-label {
             font-size: 0.88rem;
-            color: rgba(255,255,255,0.72);
+            color: var(--ink-mid);
             line-height: 1.5;
         }
 
