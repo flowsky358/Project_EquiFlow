@@ -81,7 +81,7 @@
             border-radius: 6px;
             border: 2px solid transparent;
             cursor: pointer;
-            transition: all 0.3s var(--ease);
+            transition: background 0.15s, color 0.15s, border-color 0.15s;
         }
         .btn-primary {
             background: var(--coral-text);
@@ -124,33 +124,17 @@
         .btn:active { }
 
         /* ---- REVEAL ---- */
-        .reveal {
-            opacity: 0;
-            transform: translateY(32px);
-            transition: opacity 0.75s var(--ease), transform 0.75s var(--ease);
-        }
-        .reveal.active { opacity: 1; transform: translateY(0); }
+        .reveal {}
+        .reveal.active {}
 
-        .reveal-left {
-            opacity: 0;
-            transform: translateX(-52px);
-            transition: opacity 0.8s var(--ease), transform 0.8s var(--ease);
-        }
-        .reveal-left.active { opacity: 1; transform: translateX(0); }
+        .reveal-left {}
+        .reveal-left.active {}
 
-        .reveal-right {
-            opacity: 0;
-            transform: translateX(52px);
-            transition: opacity 0.8s var(--ease), transform 0.8s var(--ease);
-        }
-        .reveal-right.active { opacity: 1; transform: translateX(0); }
+        .reveal-right {}
+        .reveal-right.active {}
 
-        .reveal-scale {
-            opacity: 0;
-            transform: scale(0.88);
-            transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
-        }
-        .reveal-scale.active { opacity: 1; transform: scale(1); }
+        .reveal-scale {}
+        .reveal-scale.active {}
 
         @keyframes fadeSlideDown {
             from { opacity: 0; transform: translateY(-16px); }
@@ -390,7 +374,7 @@
             text-transform: uppercase;
             color: rgba(196, 236, 236, 0.88);
             margin-bottom: 24px;
-            animation: fadeSlideDown 0.8s var(--ease) both;
+            
         }
         .hero h1 {
             color: var(--white);
@@ -400,7 +384,7 @@
             line-height: 1.0;
             letter-spacing: -0.025em;
             text-shadow: 0 2px 32px rgba(0,0,0,0.22);
-            animation: fadeSlideUp 0.9s 0.15s var(--ease) both;
+            
         }
         .hero h1 em {
             font-style: normal;
@@ -413,13 +397,13 @@
             max-width: 580px;
             margin-bottom: 44px;
             line-height: 1.8;
-            animation: fadeSlideUp 0.9s 0.3s var(--ease) both;
+            
         }
         .hero-actions {
             display: flex;
             gap: 14px;
             flex-wrap: wrap;
-            animation: fadeSlideUp 0.9s 0.45s var(--ease) both;
+            
         }
 
         /* =============================================
@@ -683,7 +667,7 @@
             grid-template-columns: 1fr 1fr;
             gap: 72px;
             align-items: center;
-            animation: fadeSlideUp 0.45s var(--ease) both;
+            
         }
         .pillar-panel.active { display: grid; }
         .pillar-panel-photo {
@@ -1197,7 +1181,7 @@
                     <p>Every dollar keeps a girl in school.</p>
                     <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
                         <a href="https://docs.google.com/forms/d/1ufZauH4xaZ37Nz5kRHjh_QIL51TuNn06vASEfGitVos/viewform" target="_blank" rel="noopener" class="btn btn-primary">Donate</a>
-                        <a href="donate.html#fundraise" class="btn btn-outline-teal">Fundraise</a>
+                        <a href="mailto:equiflow.connect@gmail.com?subject=Fundraising Inquiry" class="btn btn-outline-teal">Fundraise</a>
                     </div>
                 </div>
                 <div class="involved-card reveal" style="transition-delay:.1s">

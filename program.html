@@ -42,16 +42,16 @@
         .container { max-width: 1140px; margin: 0 auto; padding: 0 28px; }
 
         /* ── REVEAL ── */
-        .reveal       { opacity: 0; transform: translateY(28px); transition: opacity 0.75s var(--ease), transform 0.75s var(--ease); }
-        .reveal.active { opacity: 1; transform: translateY(0); }
-        .reveal-left  { opacity: 0; transform: translateX(-44px); transition: opacity 0.8s var(--ease), transform 0.8s var(--ease); }
-        .reveal-left.active { opacity: 1; transform: translateX(0); }
-        .reveal-right { opacity: 0; transform: translateX(44px); transition: opacity 0.8s var(--ease), transform 0.8s var(--ease); }
-        .reveal-right.active { opacity: 1; transform: translateX(0); }
+        .reveal {}
+        .reveal.active {}
+        .reveal-left {}
+        .reveal-left.active {}
+        .reveal-right {}
+        .reveal-right.active {}
 
         .eyebrow { display: inline-block; font-family: var(--ff-sans); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 16px; }
 
-        .btn { display: inline-block; font-family: var(--ff-sans); font-size: 1.1rem; font-weight: 600; padding: 16px 36px; border-radius: 8px; border: 2px solid transparent; cursor: pointer; transition: all 0.3s var(--ease); }
+        .btn { display: inline-block; font-family: var(--ff-sans); font-size: 1.1rem; font-weight: 600; padding: 16px 36px; border-radius: 8px; border: 2px solid transparent; cursor: pointer; transition: background 0.15s, color 0.15s, border-color 0.15s; }
         .btn-coral  { background: var(--coral-text); color: #fff; border-color: var(--coral-text); }
         .btn-coral:hover { background: #B06050; }
         .btn-teal   { background: var(--teal-dark); color: #fff; border-color: var(--teal-dark); }
@@ -102,8 +102,8 @@
            HERO
            ============================================= */
         @keyframes fadeSlideUp { from { opacity:0; transform:translateY(28px); } to { opacity:1; transform:translateY(0); } }
-        @keyframes blobDrift1  { 0%,100%{transform:translate(0,0) scale(1);} 33%{transform:translate(40px,-30px) scale(1.05);} 66%{transform:translate(-20px,20px) scale(0.97);} }
-        @keyframes blobDrift2  { 0%,100%{transform:translate(0,0) scale(1);} 40%{transform:translate(-50px,30px) scale(1.08);} 70%{transform:translate(30px,-20px) scale(0.95);} }
+         33%{transform:translate(40px,-30px) scale(1.05);} 66%{transform:translate(-20px,20px) scale(0.97);} }
+         40%{transform:translate(-50px,30px) scale(1.08);} 70%{transform:translate(30px,-20px) scale(0.95);} }
 
         .prog-hero {
             background: url('image/PHOTO-2026-05-13-19-59-54.jpg') center 35%/cover no-repeat;
@@ -304,13 +304,13 @@
     <section class="prog-hero">
         <div class="container prog-hero-content">
             <span class="prog-hero-eyebrow">Our Programs</span>
-            <h1 style="animation:fadeSlideUp 0.9s 0.1s var(--ease) both;">
+            <h1 style="">
                 Three pillars.<br>One <em>mission.</em>
             </h1>
-            <p class="prog-hero-sub" style="animation:fadeSlideUp 0.9s 0.3s var(--ease) both;">
+            <p class="prog-hero-sub" style="">
                 Three ways we keep girls in school and in leadership.
             </p>
-            <div class="pillar-nav" style="animation:fadeSlideUp 0.9s 0.5s var(--ease) both;">
+            <div class="pillar-nav" style="">
                 <a href="#education" class="pillar-pill"><i class="fa-solid fa-book-open"></i> Education Access</a>
                 <a href="#leadership" class="pillar-pill"><i class="fa-solid fa-people-group"></i> Leadership</a>
                 <a href="#health" class="pillar-pill"><i class="fa-solid fa-hand-holding-heart"></i> Health & Dignity</a>

@@ -40,12 +40,12 @@
         .container { max-width: 1140px; margin: 0 auto; padding: 0 28px; }
 
         /* ── REVEAL ── */
-        .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.75s var(--ease), transform 0.75s var(--ease); }
-        .reveal.active { opacity: 1; transform: translateY(0); }
-        .reveal-left  { opacity: 0; transform: translateX(-44px); transition: opacity 0.8s var(--ease), transform 0.8s var(--ease); }
-        .reveal-left.active { opacity: 1; transform: translateX(0); }
-        .reveal-right { opacity: 0; transform: translateX(44px); transition: opacity 0.8s var(--ease), transform 0.8s var(--ease); }
-        .reveal-right.active { opacity: 1; transform: translateX(0); }
+        .reveal {}
+        .reveal.active {}
+        .reveal-left {}
+        .reveal-left.active {}
+        .reveal-right {}
+        .reveal-right.active {}
 
         /* ── EYEBROW ── */
         .eyebrow {
@@ -69,7 +69,7 @@
             border-radius: 8px;
             border: 2px solid transparent;
             cursor: pointer;
-            transition: all 0.3s var(--ease);
+            transition: background 0.15s, color 0.15s, border-color 0.15s;
         }
         .btn-coral  { background: var(--coral-text); color: #fff; border-color: var(--coral-text); }
         .btn-coral:hover { background: #B06050; border-color: #B06050; }
@@ -183,13 +183,11 @@
         .mission-hero .blob { position: absolute; border-radius: 50%; filter: blur(80px); }
         .mission-hero-content { position: relative; z-index: 1; }
 
-        @keyframes blobDrift1 {
-            0%,100% { transform: translate(0,0) scale(1); }
+        
             33%      { transform: translate(40px,-30px) scale(1.05); }
             66%      { transform: translate(-20px,20px) scale(0.97); }
         }
-        @keyframes blobDrift2 {
-            0%,100% { transform: translate(0,0) scale(1); }
+        
             40%      { transform: translate(-50px,30px) scale(1.08); }
             70%      { transform: translate(30px,-20px) scale(0.95); }
         }
@@ -553,19 +551,16 @@
 
     <!-- HERO BANNER -->
     <section class="mission-hero">
-        <div class="blob-canvas">
-            <div class="blob" style="width:500px;height:500px;top:-120px;right:-80px;background:#B0E0E0;opacity:0.25;animation:blobDrift2 18s ease-in-out infinite;"></div>
-            <div class="blob" style="width:320px;height:320px;bottom:-60px;left:-40px;background:#FFBDAB;opacity:0.22;animation:blobDrift1 13s ease-in-out infinite;"></div>
-        </div>
+        
         <div class="container mission-hero-content">
             <span class="mission-hero-eyebrow">Our Mission</span>
-            <h1 style="animation:fadeSlideUp 0.9s 0.1s var(--ease) both;">
+            <h1 style="">
                 We believe every girl<br>deserves the chance to <em>lead.</em>
             </h1>
-            <p class="mission-hero-sub" style="animation:fadeSlideUp 0.9s 0.3s var(--ease) both;">
+            <p class="mission-hero-sub" style="">
                 Project EquiFlow exists to dismantle the systemic inequalities that keep girls and women from accessing education and to build the pathways for them to rise.
             </p>
-            <div style="display:flex;gap:16px;flex-wrap:wrap;animation:fadeSlideUp 0.9s 0.5s var(--ease) both;">
+            <div style="display:flex;gap:16px;flex-wrap:wrap;">
                 <a href="#mvg" class="btn" style="background:rgba(255,255,255,0.22);color:#fff;border-color:rgba(255,255,255,0.4);backdrop-filter:blur(6px);">Explore Our Work</a>
                 <a href="https://docs.google.com/forms/d/1ufZauH4xaZ37Nz5kRHjh_QIL51TuNn06vASEfGitVos/viewform" target="_blank" rel="noopener" class="btn btn-outline" style="color:#fff;border-color:rgba(255,255,255,0.5);">Support a Girl</a>
             </div>

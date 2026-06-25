@@ -42,14 +42,14 @@
         .container { max-width: 1140px; margin: 0 auto; padding: 0 28px; }
 
         /* REVEAL */
-        .reveal        { opacity: 0; transform: translateY(28px); transition: opacity 0.75s var(--ease), transform 0.75s var(--ease); }
-        .reveal.active { opacity: 1; transform: translateY(0); }
-        .reveal-left   { opacity: 0; transform: translateX(-44px); transition: opacity 0.8s var(--ease), transform 0.8s var(--ease); }
-        .reveal-left.active  { opacity: 1; transform: translateX(0); }
-        .reveal-right  { opacity: 0; transform: translateX(44px); transition: opacity 0.8s var(--ease), transform 0.8s var(--ease); }
-        .reveal-right.active { opacity: 1; transform: translateX(0); }
+        .reveal {}
+        .reveal.active {}
+        .reveal-left {}
+        .reveal-left.active {}
+        .reveal-right {}
+        .reveal-right.active {}
 
-        .btn { display: inline-block; font-family: var(--ff-sans); font-size: 0.95rem; font-weight: 600; padding: 14px 32px; border-radius: 8px; border: 2px solid transparent; cursor: pointer; transition: all 0.3s var(--ease); }
+        .btn { display: inline-block; font-family: var(--ff-sans); font-size: 0.95rem; font-weight: 600; padding: 14px 32px; border-radius: 8px; border: 2px solid transparent; cursor: pointer; transition: background 0.15s, color 0.15s, border-color 0.15s; }
         .btn-coral  { background: var(--coral-text); color: #fff; border-color: var(--coral-text); }
         .btn-coral:hover { background: #B06050; }
         .btn-teal   { background: var(--teal-dark); color: #fff; border-color: var(--teal-dark); }
@@ -100,8 +100,8 @@
            ANIMATIONS
         ============================================= */
         @keyframes fadeSlideUp { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes blobDrift1  { 0%,100%{transform:translate(0,0) scale(1);} 33%{transform:translate(40px,-30px) scale(1.05);} 66%{transform:translate(-20px,20px) scale(0.97);} }
-        @keyframes blobDrift2  { 0%,100%{transform:translate(0,0) scale(1);} 40%{transform:translate(-50px,30px) scale(1.08);} 70%{transform:translate(30px,-20px) scale(0.95);} }
+         33%{transform:translate(40px,-30px) scale(1.05);} 66%{transform:translate(-20px,20px) scale(0.97);} }
+         40%{transform:translate(-50px,30px) scale(1.08);} 70%{transform:translate(30px,-20px) scale(0.95);} }
 
         /* =============================================
            HERO
@@ -116,20 +116,20 @@
         .chap-hero::after  { display:none; }
         .hero-deco { position:absolute; inset:0; pointer-events:none; overflow:hidden; z-index:0; }
         .hd-sparkle { position:absolute; }
-        @keyframes hd-pulse  { 0%,100%{opacity:.55;transform:scale(1) rotate(0deg);}  50%{opacity:1;transform:scale(1.3) rotate(18deg);} }
-        @keyframes hd-pulse2 { 0%,100%{opacity:.25;transform:scale(1);}               50%{opacity:.55;transform:scale(1.18);} }
+          50%{opacity:1;transform:scale(1.3) rotate(18deg);} }
+                       50%{opacity:.55;transform:scale(1.18);} }
         @keyframes netFloat  { 0%,100%{opacity:.22;transform:translateY(0);}           50%{opacity:.42;transform:translateY(-8px);} }
-        .chap-net-float { animation: netFloat 7s ease-in-out infinite 1s; }
+        .chap-net-float {  }
         .blob-canvas { position:absolute; inset:0; overflow:hidden; pointer-events:none; z-index:0; }
         .blob { position:absolute; border-radius:50%; filter:blur(80px); }
 
         .chap-hero-content { position:relative; z-index:1; max-width:760px; }
-        .hero-eyebrow { display:inline-flex; align-items:center; gap:8px; background:rgba(255,255,255,0.14); border:1px solid rgba(255,255,255,0.28); border-radius:100px; padding:7px 18px; font-size:0.7rem; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; color:#fff; margin-bottom:28px; animation:fadeSlideUp 0.8s var(--ease) both; }
+        .hero-eyebrow { display:inline-flex; align-items:center; gap:8px; background:rgba(255,255,255,0.14); border:1px solid rgba(255,255,255,0.28); border-radius:100px; padding:7px 18px; font-size:0.7rem; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; color:#fff; margin-bottom:28px;  }
         .hero-eyebrow i { color: var(--coral); font-size: 0.75rem; }
-        .chap-hero h1 { font-size:clamp(3rem,7vw,5.5rem); color:#fff; font-weight:700; line-height:1.06; margin-bottom:26px; animation:fadeSlideUp 0.8s 0.1s var(--ease) both; }
+        .chap-hero h1 { font-size:clamp(3rem,7vw,5.5rem); color:#fff; font-weight:700; line-height:1.06; margin-bottom:26px;  }
         .chap-hero h1 em { font-style:italic; color:var(--coral); }
-        .chap-hero-sub { font-size:clamp(1.05rem,2vw,1.25rem); color:rgba(255,255,255,0.78); line-height:1.8; max-width:580px; margin-bottom:44px; animation:fadeSlideUp 0.8s 0.2s var(--ease) both; }
-        .hero-btns { display:flex; gap:14px; flex-wrap:wrap; animation:fadeSlideUp 0.8s 0.3s var(--ease) both; }
+        .chap-hero-sub { font-size:clamp(1.05rem,2vw,1.25rem); color:rgba(255,255,255,0.78); line-height:1.8; max-width:580px; margin-bottom:44px;  }
+        .hero-btns { display:flex; gap:14px; flex-wrap:wrap;  }
 
         /* =============================================
            WHAT IS A CHAPTER
@@ -183,7 +183,7 @@
         /* connecting line */
         .steps-grid::before { content:''; position:absolute; top: 36px; left: calc(12.5% + 12px); right: calc(12.5% + 12px); height: 2px; background: linear-gradient(90deg,rgba(150,212,212,0.2),rgba(150,212,212,0.5),rgba(150,212,212,0.2)); z-index: 0; }
 
-        .step-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); border-radius: 20px; padding: 32px 26px; text-align: center; transition: all 0.3s var(--ease); position: relative; z-index: 1; }
+        .step-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); border-radius: 20px; padding: 32px 26px; text-align: center; transition: background 0.15s, color 0.15s, border-color 0.15s; position: relative; z-index: 1; }
         .step-card:hover { background: rgba(255,255,255,0.09); box-shadow: 0 20px 48px rgba(0,0,0,0.2); }
 
         .step-bubble { width: 56px; height: 56px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 22px; font-size: 1.2rem; border: 2px solid rgba(255,255,255,0.12); position: relative; z-index: 1; }
@@ -298,161 +298,7 @@
     <!-- HERO -->
     <section class="chap-hero">
 
-        <!-- ✦ Decorative background pattern layer ✦ -->
-        <div class="hero-deco" aria-hidden="true">
-
-            <!-- Concentric rings: top-right -->
-            <svg style="position:absolute;top:-80px;right:-80px;width:420px;height:420px;opacity:0.15;" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="200" cy="200" r="194" fill="none" stroke="white" stroke-width="0.8"/>
-                <circle cx="200" cy="200" r="160" fill="none" stroke="white" stroke-width="1"/>
-                <circle cx="200" cy="200" r="126" fill="none" stroke="white" stroke-width="1.2"/>
-                <circle cx="200" cy="200" r="92"  fill="none" stroke="white" stroke-width="1"/>
-                <circle cx="200" cy="200" r="58"  fill="none" stroke="white" stroke-width="1.5"/>
-                <circle cx="200" cy="200" r="24"  fill="none" stroke="white" stroke-width="2"/>
-            </svg>
-
-            <!-- Half-ring arc: left side -->
-            <svg style="position:absolute;left:-120px;top:50%;transform:translateY(-50%);width:280px;height:280px;opacity:0.1;" viewBox="0 0 280 280" xmlns="http://www.w3.org/2000/svg">
-                <path d="M 140 20 A 120 120 0 0 1 140 260" fill="none" stroke="white" stroke-width="1.5" stroke-dasharray="10 6"/>
-                <path d="M 140 50 A 90 90 0 0 1 140 230"  fill="none" stroke="white" stroke-width="1" stroke-dasharray="6 8"/>
-            </svg>
-
-            <!-- Wavy lines across lower hero -->
-            <svg style="position:absolute;bottom:18px;left:0;width:100%;height:80px;opacity:0.1;" viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M0,40 C160,10 320,70 480,40 C640,10 800,70 960,40 C1120,10 1280,70 1440,40" fill="none" stroke="white" stroke-width="1.5"/>
-                <path d="M0,56 C160,26 320,86 480,56 C640,26 800,86 960,56 C1120,26 1280,86 1440,56" fill="none" stroke="white" stroke-width="0.8"/>
-            </svg>
-
-            <!-- Corner dot cluster: top-left -->
-            <svg style="position:absolute;top:52px;left:44px;opacity:0.13;" width="100" height="100" xmlns="http://www.w3.org/2000/svg">
-                <g fill="white">
-                    <circle cx="8"  cy="8"  r="2.8"/><circle cx="26" cy="8"  r="2.8"/><circle cx="44" cy="8"  r="2.8"/><circle cx="62" cy="8"  r="2.8"/>
-                    <circle cx="8"  cy="26" r="2.8"/><circle cx="26" cy="26" r="2.8"/><circle cx="44" cy="26" r="2.8"/><circle cx="62" cy="26" r="2.8"/>
-                    <circle cx="8"  cy="44" r="2.8"/><circle cx="26" cy="44" r="2.8"/><circle cx="44" cy="44" r="2.8"/>
-                    <circle cx="8"  cy="62" r="2.8"/><circle cx="26" cy="62" r="2.8"/>
-                    <circle cx="8"  cy="80" r="2.8"/>
-                </g>
-            </svg>
-
-            <!-- Dot cluster: bottom-right -->
-            <svg style="position:absolute;bottom:40px;right:40px;opacity:0.1;" width="80" height="80" xmlns="http://www.w3.org/2000/svg">
-                <g fill="white">
-                    <circle cx="8"  cy="8"  r="2.5"/><circle cx="24" cy="8"  r="2.5"/><circle cx="40" cy="8"  r="2.5"/><circle cx="56" cy="8" r="2.5"/>
-                    <circle cx="8"  cy="24" r="2.5"/><circle cx="24" cy="24" r="2.5"/><circle cx="40" cy="24" r="2.5"/>
-                    <circle cx="8"  cy="40" r="2.5"/><circle cx="24" cy="40" r="2.5"/>
-                    <circle cx="8"  cy="56" r="2.5"/>
-                </g>
-            </svg>
-
-            <!-- Sparkle stars each a different shape -->
-
-            <!-- ✦ Classic 4-pointed sparkle -->
-            <svg class="hd-sparkle" style="top:16%;right:19%;width:24px;height:24px;animation:hd-pulse 3.8s ease-in-out infinite;" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 2L13.2 10.8L22 12L13.2 13.2L12 22L10.8 13.2L2 12L10.8 10.8Z" fill="rgba(255,189,171,0.78)"/>
-            </svg>
-
-            <!-- ✴ 8-pointed star -->
-            <svg class="hd-sparkle" style="top:52%;right:8%;width:17px;height:17px;animation:hd-pulse 4s ease-in-out infinite 0.8s;" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12,1 L13.7,7.9 L19.8,4.2 L16.1,10.3 L23,12 L16.1,13.7 L19.8,19.8 L13.7,16.1 L12,23 L10.3,16.1 L4.2,19.8 L7.9,13.7 L1,12 L7.9,10.3 L4.2,4.2 L10.3,7.9Z" fill="rgba(255,255,255,0.58)"/>
-            </svg>
-
-            <!-- ◎ Ring with centre dot -->
-            <svg class="hd-sparkle" style="top:38%;left:10%;width:19px;height:19px;animation:hd-pulse2 3.5s ease-in-out infinite 0.4s;" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="12" cy="12" r="9"   fill="none" stroke="rgba(255,255,255,0.45)" stroke-width="1.8"/>
-                <circle cx="12" cy="12" r="3"   fill="rgba(255,255,255,0.45)"/>
-            </svg>
-
-            <!-- ✦ Needle / super-elongated 4-pointed star -->
-            <svg class="hd-sparkle" style="bottom:22%;left:30%;width:13px;height:13px;animation:hd-pulse 4.8s ease-in-out infinite 2.2s;" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 0L12.6 10.6L24 12L12.6 13.4L12 24L11.4 13.4L0 12L11.4 10.6Z" fill="rgba(255,189,171,0.58)"/>
-            </svg>
-
-            <!-- ★ CHAPTER-UNIQUE: Global chapter constellation network ★
-                 Nodes = school chapters, lines = connections between them -->
-            <svg style="position:absolute;bottom:-10px;left:50%;transform:translateX(-50%);width:min(900px,100%);height:220px;opacity:0.28;pointer-events:none;" viewBox="0 0 900 220" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
-                <!-- Connection lines -->
-                <g stroke="white" stroke-width="0.9" fill="none" opacity="0.7">
-                    <line x1="80"  y1="160" x2="200" y2="90"/>
-                    <line x1="80"  y1="160" x2="180" y2="185"/>
-                    <line x1="200" y1="90"  x2="340" y2="120"/>
-                    <line x1="200" y1="90"  x2="290" y2="52"/>
-                    <line x1="180" y1="185" x2="340" y2="120"/>
-                    <line x1="340" y1="120" x2="290" y2="52"/>
-                    <line x1="340" y1="120" x2="480" y2="80"/>
-                    <line x1="340" y1="120" x2="460" y2="170"/>
-                    <line x1="290" y1="52"  x2="480" y2="80"/>
-                    <line x1="460" y1="170" x2="480" y2="80"/>
-                    <line x1="460" y1="170" x2="600" y2="150"/>
-                    <line x1="480" y1="80"  x2="600" y2="150"/>
-                    <line x1="480" y1="80"  x2="610" y2="48"/>
-                    <line x1="600" y1="150" x2="610" y2="48"/>
-                    <line x1="600" y1="150" x2="740" y2="130"/>
-                    <line x1="610" y1="48"  x2="740" y2="130"/>
-                    <line x1="610" y1="48"  x2="720" y2="30"/>
-                    <line x1="740" y1="130" x2="720" y2="30"/>
-                    <line x1="740" y1="130" x2="830" y2="165"/>
-                    <line x1="720" y1="30"  x2="830" y2="165"/>
-                    <!-- Cross-links for density -->
-                    <line x1="200" y1="90"  x2="290" y2="52"  stroke-dasharray="4 6" opacity="0.4"/>
-                    <line x1="460" y1="170" x2="600" y2="150" stroke-dasharray="4 6" opacity="0.4"/>
-                    <line x1="340" y1="120" x2="480" y2="80"  stroke-dasharray="4 6" opacity="0.4"/>
-                </g>
-                <!-- Node dots larger = "bigger chapter hub" -->
-                <g fill="white">
-                    <circle cx="80"  cy="160" r="3.5"/>   <!-- node -->
-                    <circle cx="200" cy="90"  r="5.5"/>   <!-- hub -->
-                    <circle cx="180" cy="185" r="2.8"/>
-                    <circle cx="290" cy="52"  r="3.2"/>
-                    <circle cx="340" cy="120" r="6"/>     <!-- hub -->
-                    <circle cx="460" cy="170" r="2.8"/>
-                    <circle cx="480" cy="80"  r="5"/>     <!-- hub -->
-                    <circle cx="600" cy="150" r="3.8"/>
-                    <circle cx="610" cy="48"  r="3.2"/>
-                    <circle cx="720" cy="30"  r="2.8"/>
-                    <circle cx="740" cy="130" r="5"/>     <!-- hub -->
-                    <circle cx="830" cy="165" r="3.5"/>
-                </g>
-                <!-- Pulse rings on major hubs to make them pop -->
-                <g fill="none" stroke="white" stroke-width="0.8" opacity="0.35">
-                    <circle cx="200" cy="90"  r="11"/>
-                    <circle cx="340" cy="120" r="13"/>
-                    <circle cx="480" cy="80"  r="10"/>
-                    <circle cx="740" cy="130" r="10"/>
-                </g>
-                <!-- Tiny location-pin chevrons above each hub -->
-                <g fill="rgba(255,189,171,0.7)" stroke="none">
-                    <path d="M200,72 C197,65 194,60 200,57 C206,60 203,65 200,72Z"/>
-                    <path d="M340,100 C337,93 334,88 340,85 C346,88 343,93 340,100Z"/>
-                    <path d="M480,62 C477,55 474,50 480,47 C486,50 483,55 480,62Z"/>
-                    <path d="M740,112 C737,105 734,100 740,97 C746,100 743,105 740,112Z"/>
-                </g>
-            </svg>
-
-            <!-- Animated constellation pulse overlay (right-center, smaller network) -->
-            <svg class="chap-net-float" style="position:absolute;top:30%;right:5%;width:200px;height:110px;opacity:0;" viewBox="0 0 180 100" xmlns="http://www.w3.org/2000/svg">
-                <g stroke="rgba(255,255,255,0.55)" stroke-width="0.8" fill="none">
-                    <line x1="20" y1="70" x2="70" y2="30"/>
-                    <line x1="70" y1="30" x2="120" y2="60"/>
-                    <line x1="120" y1="60" x2="160" y2="20"/>
-                    <line x1="70" y1="30" x2="100" y2="80"/>
-                    <line x1="120" y1="60" x2="100" y2="80"/>
-                </g>
-                <g fill="rgba(255,255,255,0.65)">
-                    <circle cx="20"  cy="70" r="2.5"/>
-                    <circle cx="70"  cy="30" r="4"/>
-                    <circle cx="100" cy="80" r="2"/>
-                    <circle cx="120" cy="60" r="3"/>
-                    <circle cx="160" cy="20" r="2.5"/>
-                </g>
-            </svg>
-
-        </div>
-
-        <div class="blob-canvas">
-            <div class="blob" style="width:600px;height:600px;top:-150px;left:-200px;background:rgba(150,212,212,0.15);animation:blobDrift1 14s ease-in-out infinite;"></div>
-            <div class="blob" style="width:500px;height:500px;bottom:-100px;right:-100px;background:rgba(255,189,171,0.12);animation:blobDrift2 18s ease-in-out infinite;"></div>
-        </div>
-        <div class="container">
+                <div class="container">
             <div class="chap-hero-content">
                 <div class="hero-eyebrow">
                     <i class="fa-solid fa-location-dot"></i>
