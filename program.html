@@ -83,20 +83,8 @@
         .nav-links > li.has-dropdown.open .nav-dropdown { opacity: 1; visibility: visible; transform: translateY(0); }
         .nav-dropdown li a { display: block; font-size: 1rem; font-weight: 500; color: var(--ink-mid); padding: 11px 18px; border-radius: 8px; transition: background 0.18s, color 0.18s; }
         .nav-dropdown li a:hover { background: var(--teal-pale); color: var(--teal-dark); }
-                .btn-donate {
-            background: var(--coral-text) !important;
-            color: #fff !important;
-            padding: 12px 28px !important;
-            border-radius: 8px !important;
-            border: none !important;
-            font-weight: 700 !important;
-            font-size: 1.08rem !important;
-            transition: background 0.15s !important;
-            margin-left: 8px;
-        }
-        .btn-donate:hover {
-            background: #A85040 !important;
-        }
+        .btn-donate { background: transparent !important; color: var(--ink) !important; padding: 11px 28px !important; border-radius: 100px !important; border: 2px solid var(--ink) !important; font-weight: 600 !important; font-size: 1.08rem !important; transition: background 0.2s, color 0.2s !important; margin-left: 8px; }
+        .btn-donate:hover { background: var(--ink) !important; color: #fff !important; }
         .nav-hamburger { display: none; background: none; border: none; font-size: 1.6rem; color: var(--ink); cursor: pointer; }
         @media (max-width: 900px) {
             .nav-hamburger { display: block; }
@@ -303,7 +291,7 @@
                     </ul>
                 </li>
                 <li><a href="program.html">Programs</a></li>
-                <li><a href="volunteer.html" class="nav-gi" style="background:var(--teal-dark);color:#fff;padding:11px 22px;border-radius:8px;font-weight:700;">Get Involved</a></li>
+                <li><a href="volunteer.html">Get Involved</a></li>
                 <li><a href="https://docs.google.com/forms/d/1ufZauH4xaZ37Nz5kRHjh_QIL51TuNn06vASEfGitVos/viewform" target="_blank" rel="noopener" class="btn-donate">Donate</a></li>
             </ul>
             <button class="nav-hamburger" id="hamburger" aria-label="Open menu">
