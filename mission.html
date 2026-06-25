@@ -103,11 +103,11 @@
         .nav-links > li { position: relative; height: 100%; display: flex; align-items: center; }
         .nav-links > li > a { display: flex; align-items: center; gap: 6px; font-size: 1.08rem; font-weight: 500; color: var(--ink); padding: 10px 20px; border-radius: 8px; transition: color 0.2s, background 0.2s; white-space: nowrap; }
         .nav-links > li > a:not(.btn-donate):hover { color: var(--teal-dark); background: var(--teal-pale); }
-        .nav-links > li.has-dropdown > a::after { content: ''; display: inline-block; width: 6px; height: 6px; border-right: 2px solid currentColor; border-bottom: 2px solid currentColor; transform: rotate(45deg) translateY(-2px); transition: transform 0.2s; opacity: 0.6; }
+        .nav-links > li.has-dropdown > a::after { content: ''; display: inline-block; width: 6px; height: 6px; border-right: 2px solid currentColor; border-bottom: 2px solid currentColor; transform: rotate(45deg) translateY(-2px); transition: background 0.15s, color 0.15s; opacity: 0.6; }
         .nav-links > li.has-dropdown:hover > a::after,
         .nav-links > li.has-dropdown.open > a::after { transform: rotate(-135deg) translateY(-2px); }
 
-        .nav-dropdown { position: absolute; top: calc(100% + 8px); left: 0; background: #fff; border: 1px solid var(--border); border-radius: 14px; padding: 8px; min-width: 200px; box-shadow: 0 16px 48px rgba(0,0,0,0.1); list-style: none; opacity: 0; visibility: hidden; transform: translateY(10px); transition: opacity 0.22s var(--ease), transform 0.22s var(--ease), visibility 0.22s; z-index: 300; }
+        .nav-dropdown { position: absolute; top: calc(100% + 8px); left: 0; background: #fff; border: 1px solid var(--border); border-radius: 14px; padding: 8px; min-width: 200px; box-shadow: 0 16px 48px rgba(0,0,0,0.1); list-style: none; opacity: 0; visibility: hidden; transform: translateY(10px); transition: opacity 0.22s var(--ease), ), visibility 0.22s; z-index: 300; }
         .nav-links > li.has-dropdown:hover .nav-dropdown,
         .nav-links > li.has-dropdown.open .nav-dropdown { opacity: 1; visibility: visible; transform: translateY(0); }
         .nav-dropdown li a { display: block; font-size: 1rem; font-weight: 500; color: var(--ink-mid); padding: 11px 18px; border-radius: 8px; transition: background 0.18s, color 0.18s; }
@@ -234,11 +234,11 @@
             padding: 32px 36px;
             border-left: 5px solid var(--coral);
             box-shadow: 0 8px 32px rgba(27,77,77,0.07);
-            transition: transform 0.3s var(--ease);
+            transition: background 0.15s, color 0.15s;
         }
         .belief-stat-card:nth-child(2) { border-left-color: var(--teal-dark); }
         .belief-stat-card:nth-child(3) { border-left-color: #4E8860; }
-        .belief-stat-card:hover { transform: translateX(6px); }
+        .belief-stat-card:hover {  }
         .belief-stat-card .num {
             font-family: var(--ff-serif);
             font-size: clamp(2rem, 3vw, 2.8rem);
@@ -414,7 +414,7 @@
             font-weight: 800;
             font-size: 1rem;
             position: relative; z-index: 1;
-            transition: transform 0.3s var(--ease);
+            transition: background 0.15s, color 0.15s;
         }
         .change-row:hover .change-dot { transform: scale(1.1); }
         .change-row:nth-child(1) .change-dot { background: #FFE0D8; color: var(--coral-text); }
@@ -455,7 +455,7 @@
             display: flex;
             flex-direction: column;
             gap: 16px;
-            transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease);
+            transition: background 0.15s, color 0.15s;
         }
         .belief-card:hover { box-shadow: 0 24px 56px rgba(27,77,77,0.12); }
         .belief-card:nth-child(1) { background: #FFF0EC; }
