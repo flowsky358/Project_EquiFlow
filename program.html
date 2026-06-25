@@ -106,17 +106,20 @@
          40%{transform:translate(-50px,30px) scale(1.08);} 70%{transform:translate(30px,-20px) scale(0.95);} }
 
         .prog-hero {
-            background: url('image/PHOTO-2026-05-13-19-59-54.jpg') center 35%/cover no-repeat;
-            padding: 160px 0 100px;
+            background: url('image/PHOTO-2026-05-13-19-59-54.jpg') center 40%/cover no-repeat;
+            min-height: 520px;
+            padding: 140px 0 100px;
             position: relative;
             overflow: hidden;
+            display: flex;
+            align-items: center;
         }
-        .prog-hero::before { content:''; position:absolute; inset:0; background:linear-gradient(to bottom, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.65) 100%); pointer-events:none; z-index:0; }
-        .prog-hero-content { position:relative; z-index:1; }
-        .prog-hero-eyebrow { display:inline-block; font-size:0.85rem; font-weight:700; letter-spacing:0.22em; text-transform:uppercase; color:#fff; margin-bottom:28px; background:rgba(255,255,255,0.18); padding:8px 20px; border-radius:100px; border:1px solid rgba(255,255,255,0.3); }
-        .prog-hero h1 { color:#fff; font-size:clamp(3.8rem,8vw,6.5rem); font-weight:800; line-height:1.0; max-width:900px; margin-bottom:32px; text-shadow:0 2px 32px rgba(0,0,0,0.3); }
+        .prog-hero::before { content:''; position:absolute; inset:0; background:linear-gradient(to bottom, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0.45) 100%); pointer-events:none; z-index:0; }
+        .prog-hero-content { position:relative; z-index:1; text-align:center; width:100%; }
+        .prog-hero-eyebrow { display:inline-block; font-size:0.85rem; font-weight:700; letter-spacing:0.22em; text-transform:uppercase; color:#fff; margin-bottom:20px; background:rgba(255,255,255,0.18); padding:8px 20px; border-radius:100px; border:1px solid rgba(255,255,255,0.3); }
+        .prog-hero h1 { color:#fff; font-size:clamp(2.8rem,6vw,4.5rem); font-weight:800; line-height:1.1; max-width:800px; margin:0 auto 20px; text-shadow:0 2px 20px rgba(0,0,0,0.25); }
         .prog-hero h1 em { font-style:italic; color:var(--coral); }
-        .prog-hero-sub { font-size:clamp(1.4rem,2.5vw,1.9rem); color:rgba(255,255,255,0.9); max-width:620px; line-height:1.6; margin-bottom:48px; font-weight:500; }
+        .prog-hero-sub { font-size:clamp(1.1rem,2vw,1.4rem); color:rgba(255,255,255,0.92); max-width:560px; line-height:1.65; margin:0 auto 0; font-weight:400; }
 
         /* pillar nav pills */
         .pillar-nav { display:flex; gap:14px; flex-wrap:wrap; margin-top:8px; }
