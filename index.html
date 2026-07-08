@@ -168,7 +168,7 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            height: 76px;
+            height: 68px;
         }
         .logo {
             display: flex;
@@ -205,34 +205,23 @@
         .nav-links > li > a {
             display: flex;
             align-items: center;
-            gap: 6px;
-            font-size: 1.08rem;
-            font-weight: 500;
+            gap: 4px;
+            font-size: 0.82rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
             color: var(--ink);
-            padding: 10px 20px;
-            border-radius: 8px;
-            transition: color 0.2s, background 0.2s;
+            padding: 8px 16px;
+            border-radius: 0;
+            transition: color 0.2s;
             white-space: nowrap;
         }
         .nav-links > li > a:not(.btn-donate):hover {
             color: var(--teal-dark);
-            background: var(--teal-pale);
+            background: none;
         }
 
-        .nav-links > li.has-dropdown > a::after {
-            content: '';
-            display: inline-block;
-            width: 6px; height: 6px;
-            border-right: 2px solid currentColor;
-            border-bottom: 2px solid currentColor;
-            transform: rotate(45deg) translateY(-2px);
-            transition: background 0.15s, color 0.15s;
-            opacity: 0.6;
-        }
-        .nav-links > li.has-dropdown:hover > a::after,
-        .nav-links > li.has-dropdown.open > a::after {
-            transform: rotate(-135deg) translateY(-2px);
-        }
+        .nav-links > li.has-dropdown > a::after { display: none; }
 
         .nav-dropdown {
             position: absolute;
@@ -272,29 +261,37 @@
         }
 
         .btn-donate {
-            background: transparent !important;
-            color: var(--ink) !important;
-            padding: 11px 28px !important;
-            border-radius: 100px !important;
-            border: 2px solid var(--ink) !important;
-            font-weight: 600 !important;
-            font-size: 1.08rem !important;
-            transition: background 0.2s, color 0.2s, border-color 0.2s, ;
-            margin-left: 8px;
+            background: var(--coral-text) !important;
+            color: #fff !important;
+            padding: 13px 32px !important;
+            border-radius: 0 !important;
+            border: none !important;
+            font-weight: 700 !important;
+            font-size: 0.82rem !important;
+            letter-spacing: 0.1em !important;
+            text-transform: uppercase !important;
+            transition: background 0.2s !important;
+            margin-left: 16px;
         }
         .btn-donate:hover {
-            background: var(--ink) !important;
-            color: #fff !important;
-            
+            background: var(--deep-teal) !important;
         }
 
         .nav-hamburger {
             display: none;
             background: none;
             border: none;
-            font-size: 1.6rem;
-            color: var(--ink);
             cursor: pointer;
+            padding: 4px;
+            flex-direction: column;
+            gap: 5px;
+        }
+        .nav-hamburger span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: var(--ink);
+            border-radius: 2px;
         }
         .nav-active {
             color: var(--teal-dark) !important;
@@ -302,7 +299,7 @@
         }
 
         @media (max-width: 900px) {
-            .nav-hamburger { display: block; }
+            .nav-hamburger { display: flex; }
             .nav-inner { height: 64px; }
             .nav-links {
                 display: none;
@@ -343,8 +340,8 @@
         }
         .hero-photo {
             width: 100%;
-            height: 85vh;
-            min-height: 480px;
+            height: 72vh;
+            min-height: 400px;
             overflow: hidden;
         }
         .hero-bg {
@@ -900,7 +897,7 @@
                 gap: 4px;
                 z-index: 999;
             }
-            .nav-hamburger    { display: block; }
+            .nav-hamburger    { display: flex; }
             .stats-grid       { grid-template-columns: repeat(2, 1fr); }
             .pillar-tabs-nav  { flex-direction: column; }
             .footer-grid      { grid-template-columns: 1fr; }
@@ -941,7 +938,7 @@
             </ul>
 
             <button class="nav-hamburger" id="hamburger" aria-label="Open menu">
-                <i class="fa-solid fa-bars"></i>
+                <span></span><span></span><span></span>
             </button>
         </div>
     </header>
@@ -1237,15 +1234,16 @@
         /* ── Mobile nav ── */
         const hamburger = document.getElementById('hamburger');
         const navLinks  = document.getElementById('nav-links');
+        const burgerSpans = '<span></span><span></span><span></span>';
         hamburger.addEventListener('click', () => {
             const open = navLinks.classList.toggle('open');
-            hamburger.innerHTML = open
-                ? '<i class="fa-solid fa-xmark"></i>'
-                : '<i class="fa-solid fa-bars"></i>';
+            hamburger.innerHTML = open ? '&#10005;' : burgerSpans;
+            hamburger.style.fontSize = open ? '1.4rem' : '';
         });
         navLinks.querySelectorAll('a:not(.has-dropdown > a)').forEach(a => a.addEventListener('click', () => {
             navLinks.classList.remove('open');
-            hamburger.innerHTML = '<i class="fa-solid fa-bars"></i>';
+            hamburger.innerHTML = burgerSpans;
+            hamburger.style.fontSize = '';
         }));
 
         /* ── Mobile dropdown toggles ── */
