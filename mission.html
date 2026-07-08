@@ -5,10 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Our Mission | Project EquiFlow</title>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Nunito:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <style>
         :root {
@@ -135,7 +131,8 @@
            ============================================= */
         .mission-hero {
             background: url('image/IMG_7275.png') center/cover no-repeat;
-            padding: 160px 0 100px;
+            padding: 120px 0 80px;
+            margin-top: 68px;
             position: relative;
             overflow: hidden;
         }
@@ -183,14 +180,6 @@
         .mission-hero .blob { position: absolute; border-radius: 50%; filter: blur(80px); }
         .mission-hero-content { position: relative; z-index: 1; }
 
-        
-            33%      { transform: translate(40px,-30px) scale(1.05); }
-            66%      { transform: translate(-20px,20px) scale(0.97); }
-        }
-        
-            40%      { transform: translate(-50px,30px) scale(1.08); }
-            70%      { transform: translate(30px,-20px) scale(0.95); }
-        }
         @keyframes fadeSlideUp {
             from { opacity: 0; transform: translateY(28px); }
             to   { opacity: 1; transform: translateY(0); }
@@ -521,6 +510,7 @@
         @media (max-width: 480px) { .footer-grid { grid-template-columns: 1fr; } }
 
     </style>
+    <link rel="stylesheet" href="shared.css">
     <link rel="stylesheet" href="transitions.css">
     <link rel="icon" type="image/png" href="image/logo-icon.png">
 </head>
@@ -544,7 +534,7 @@
                 <li><a href="https://docs.google.com/forms/d/1ufZauH4xaZ37Nz5kRHjh_QIL51TuNn06vASEfGitVos/viewform" target="_blank" rel="noopener" class="btn-donate">Donate</a></li>
             </ul>
             <button class="nav-hamburger" id="hamburger" aria-label="Open menu">
-                <i class="fa-solid fa-bars"></i>
+                <span></span><span></span><span></span>
             </button>
         </div>
     </header>
@@ -759,7 +749,7 @@
                         <a href="mailto:equiflow.connect@gmail.com">equiflow.connect@gmail.com</a>
                     </div>
                     <div class="footer-socials">
-                        <a href="https://www.instagram.com/projectequiflow/?__d=11%252F" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="https://www.instagram.com/projectequiflow/?__d=11%252F" target="_blank" rel="noopener" aria-label="Instagram">Instagram</a>
                     </div>
                 </div>
                 <div class="footer-col">
@@ -801,8 +791,8 @@
         hamburger.addEventListener('click', () => {
             const open = navLinks.classList.toggle('open');
             hamburger.innerHTML = open
-                ? '<i class="fa-solid fa-xmark"></i>'
-                : '<i class="fa-solid fa-bars"></i>';
+                ? '<span style="transform:rotate(45deg) translate(5px,5px)"></span><span style="opacity:0"></span><span style="transform:rotate(-45deg) translate(5px,-5px)"></span>'
+                : '<span></span><span></span><span></span>';
         });
 
         /* ── Mobile dropdown toggles ── */

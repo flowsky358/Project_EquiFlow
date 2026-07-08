@@ -5,10 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Get Involved | Project EquiFlow</title>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Nunito:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <style>
         :root {
@@ -80,14 +76,10 @@
 
         .page-hero {
             background: url('image/PHOTO-2026-05-13-20-00-21.jpg') center 40%/cover no-repeat;
-            padding: 150px 0 90px;
-            position: relative;
         }
-        .page-hero::before { content:''; position:absolute; inset:0; background:linear-gradient(to bottom,rgba(0,0,0,0.2),rgba(0,0,0,0.55)); }
-        .hero-content { position:relative; z-index:1; text-align:center; }
-        .hero-content h1 { font-size:clamp(2.8rem,7vw,5rem); color:#fff; font-weight:800;  }
-        .hero-content h1 em { font-style:italic; color:var(--coral); }
-        .hero-content p { font-size:1.15rem; color:rgba(255,255,255,0.8); margin-top:14px;  }
+        .hero-content { position:relative; z-index:1; text-align:center; padding-bottom: 52px; }
+        .hero-content h1 { color:#fff; }
+        .hero-content p { font-size:1.15rem; color:rgba(255,255,255,0.8); margin-top:14px; }
 
         /* =============================================
            GET INVOLVED GRID  (matches screenshot)
@@ -257,6 +249,7 @@
         @media (max-width:860px) { .footer-inner { grid-template-columns:1fr 1fr; gap:36px; } }
         @media (max-width:540px) { .footer-inner { grid-template-columns:1fr; } .footer-bottom { flex-direction:column; text-align:center; } }
     </style>
+    <link rel="stylesheet" href="shared.css">
     <link rel="stylesheet" href="transitions.css">
     <link rel="icon" type="image/png" href="image/logo-icon.png">
 </head>
@@ -280,7 +273,7 @@
                 <li><a href="https://docs.google.com/forms/d/1ufZauH4xaZ37Nz5kRHjh_QIL51TuNn06vASEfGitVos/viewform" target="_blank" rel="noopener" class="btn-donate">Donate</a></li>
             </ul>
             <button class="nav-hamburger" id="hamburger" aria-label="Open menu">
-                <i class="fa-solid fa-bars"></i>
+                <span></span><span></span><span></span>
             </button>
         </div>
     </header>
@@ -356,7 +349,7 @@
             <div class="insta-block">
                 <p>Follow along on Instagram</p>
                 <a href="https://www.instagram.com/projectequiflow/?__d=11%252F" target="_blank" rel="noopener" class="insta-btn">
-                    <i class="fa-brands fa-instagram"></i> @projectequiflow
+                    @projectequiflow
                 </a>
             </div>
         </div>
@@ -381,7 +374,7 @@
                         <a href="mailto:equiflow.connect@gmail.com">equiflow.connect@gmail.com</a>
                     </div>
                     <div class="footer-socials">
-                        <a href="https://www.instagram.com/projectequiflow/?__d=11%252F" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="https://www.instagram.com/projectequiflow/?__d=11%252F" target="_blank" rel="noopener" aria-label="Instagram">Instagram</a>
                     </div>
                 </div>
                 <div class="footer-col">
@@ -420,7 +413,9 @@
         const navLinks  = document.getElementById('nav-links');
         hamburger.addEventListener('click', () => {
             const open = navLinks.classList.toggle('open');
-            hamburger.innerHTML = open ? '<i class="fa-solid fa-xmark"></i>' : '<i class="fa-solid fa-bars"></i>';
+            hamburger.innerHTML = open
+                ? '<span style="transform:rotate(45deg) translate(5px,5px)"></span><span style="opacity:0"></span><span style="transform:rotate(-45deg) translate(5px,-5px)"></span>'
+                : '<span></span><span></span><span></span>';
         });
         document.querySelectorAll('.nav-links .has-dropdown > a').forEach(a => {
             a.addEventListener('click', e => {
