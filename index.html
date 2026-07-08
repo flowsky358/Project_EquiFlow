@@ -8,8 +8,7 @@
     <!-- Fonts & Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Nunito:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <style>
         :root {
@@ -29,8 +28,8 @@
             --ink-mid:    #4A6464;
             --ink-light:  #7EAAAA;
             --border:     #DDEEED;
-            --ff-serif:   'Outfit', sans-serif;
-            --ff-sans:    'Nunito', system-ui, sans-serif;
+            --ff-serif:   'Playfair Display', Georgia, serif;
+            --ff-sans:    'Source Sans 3', system-ui, sans-serif;
             --ease:       cubic-bezier(0.16, 1, 0.3, 1);
         }
 
@@ -461,16 +460,10 @@
             border-color: var(--border);
             box-shadow: 0 8px 32px rgba(27,77,77,0.08);
         }
-        .about-feat-icon {
-            width: 48px; height: 48px;
-            border-radius: 14px;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 1.3rem;
-            flex-shrink: 0;
-        }
-        .about-feat:nth-child(1) .about-feat-icon { background: #FDEAE4; color: var(--coral-text); }
-        .about-feat:nth-child(2) .about-feat-icon { background: #E3F4F4; color: var(--teal-dark); }
-        .about-feat:nth-child(3) .about-feat-icon { background: #EDF6E8; color: #5A9E72; }
+        .about-feat { border-left: 3px solid transparent; }
+        .about-feat:nth-child(1) { border-left-color: var(--coral-text); }
+        .about-feat:nth-child(2) { border-left-color: var(--teal-dark); }
+        .about-feat:nth-child(3) { border-left-color: #5A9E72; }
         .about-feat-text strong {
             display: block;
             font-family: var(--ff-sans);
@@ -991,21 +984,18 @@
                     <p class="about-lead">We remove the barriers that keep girls out of classrooms and build the pathways for them to lead.</p>
                     <div class="about-features">
                         <div class="about-feat active">
-                            <div class="about-feat-icon"><i class="fa-solid fa-earth-asia"></i></div>
                             <div class="about-feat-text">
                                 <strong>Global Reach</strong>
                                 <span>Operating in underserved communities worldwide.</span>
                             </div>
                         </div>
                         <div class="about-feat">
-                            <div class="about-feat-icon"><i class="fa-solid fa-hands-holding-child"></i></div>
                             <div class="about-feat-text">
                                 <strong>Whole-Girl Support</strong>
                                 <span>Education, mentorship, and community all in one.</span>
                             </div>
                         </div>
                         <div class="about-feat">
-                            <div class="about-feat-icon"><i class="fa-solid fa-seedling"></i></div>
                             <div class="about-feat-text">
                                 <strong>Generational Impact</strong>
                                 <span>One educated girl changes her family and community forever.</span>
@@ -1080,15 +1070,9 @@
             </div>
             <div class="pillars-tabs-wrap reveal">
                 <div class="pillar-tabs-nav" role="tablist">
-                    <button class="pillar-tab-btn active" data-tab="edu" role="tab">
-                        <i class="fa-solid fa-book-open"></i> Education Access
-                    </button>
-                    <button class="pillar-tab-btn" data-tab="lead" role="tab">
-                        <i class="fa-solid fa-people-group"></i> Leadership &amp; Community
-                    </button>
-                    <button class="pillar-tab-btn" data-tab="health" role="tab">
-                        <i class="fa-solid fa-hand-holding-heart"></i> Health & Dignity
-                    </button>
+                    <button class="pillar-tab-btn active" data-tab="edu" role="tab">Education Access</button>
+                    <button class="pillar-tab-btn" data-tab="lead" role="tab">Leadership &amp; Community</button>
+                    <button class="pillar-tab-btn" data-tab="health" role="tab">Health &amp; Dignity</button>
                 </div>
 
                 <div class="pillar-panel active" id="tab-edu">
@@ -1096,10 +1080,9 @@
                         <img src="image/IMG_2250.png" alt="Outdoor education workshop with girls" />
                     </div>
                     <div class="pillar-panel-body">
-                        <div class="pillar-panel-icon"><i class="fa-solid fa-book-open"></i></div>
                         <h3>Education Access</h3>
                         <p>We remove every barrier financial, cultural, and logistical so girls can walk into a classroom and stay.</p>
-                        <span class="pillar-pill"><i class="fa-solid fa-circle-dot"></i> Pillar One</span>
+                        <span class="pillar-pill">Pillar One</span>
                     </div>
                 </div>
 
@@ -1108,10 +1091,9 @@
                         <img src="image/IMG_9459.png" alt="Girls gathered together around a fire" />
                     </div>
                     <div class="pillar-panel-body">
-                        <div class="pillar-panel-icon"><i class="fa-solid fa-people-group"></i></div>
                         <h3>Leadership &amp; Community</h3>
                         <p>Girls connect, mentor each other, and step into leadership roles in their communities.</p>
-                        <span class="pillar-pill"><i class="fa-solid fa-circle-dot"></i> Pillar Two</span>
+                        <span class="pillar-pill">Pillar Two</span>
                     </div>
                 </div>
 
@@ -1120,10 +1102,9 @@
                         <img src="image/IMG_0309.png" alt="Girls holding menstrual health kits in classroom" />
                     </div>
                     <div class="pillar-panel-body">
-                        <div class="pillar-panel-icon"><i class="fa-solid fa-hand-holding-heart"></i></div>
                         <h3>Health &amp; Dignity</h3>
                         <p>No girl should miss school because of her period. We provide products, education, and dignity.</p>
-                        <span class="pillar-pill"><i class="fa-solid fa-circle-dot"></i> Pillar Three</span>
+                        <span class="pillar-pill">Pillar Three</span>
                     </div>
                 </div>
             </div>
@@ -1150,9 +1131,6 @@
             </div>
             <div class="involved-grid">
                 <div class="involved-card reveal">
-                    <div class="involved-icon involved-icon-coral">
-                        <i class="fa-solid fa-hand-holding-heart"></i>
-                    </div>
                     <h3>Give</h3>
                     <p>Every dollar keeps a girl in school.</p>
                     <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
@@ -1161,9 +1139,6 @@
                     </div>
                 </div>
                 <div class="involved-card reveal" style="transition-delay:.1s">
-                    <div class="involved-icon involved-icon-teal">
-                        <i class="fa-solid fa-people-group"></i>
-                    </div>
                     <h3>Join Us</h3>
                     <p>Show up for girls who need you most.</p>
                     <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
@@ -1172,9 +1147,6 @@
                     </div>
                 </div>
                 <div class="involved-card reveal" style="transition-delay:.2s">
-                    <div class="involved-icon involved-icon-gold">
-                        <i class="fa-solid fa-handshake"></i>
-                    </div>
                     <h3>Partner</h3>
                     <p>Grow this movement alongside us.</p>
                     <a href="volunteer.html" class="btn btn-outline-teal">Collaborate</a>
@@ -1195,7 +1167,7 @@
                         <a href="mailto:equiflow.connect@gmail.com">equiflow.connect@gmail.com</a>
                     </div>
                     <div class="footer-socials">
-                        <a href="https://www.instagram.com/projectequiflow/?__d=11%252F" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="https://www.instagram.com/projectequiflow/?__d=11%252F" target="_blank" rel="noopener">Instagram</a>
                     </div>
                 </div>
                 <div class="footer-col">
