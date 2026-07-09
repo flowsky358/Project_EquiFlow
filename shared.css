@@ -1,10 +1,9 @@
 /* ============================================================
    PROJECT EQUIFLOW — Shared Styles (Malala-inspired)
-   All pages link this file for consistent look & feel
    ============================================================ */
 
 /* ── FONTS ──────────────────────────────────────────────── */
-@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Inter:wght@300;400;500;600;700&display=swap');
 
 /* ── TOKENS ─────────────────────────────────────────────── */
 :root {
@@ -24,7 +23,7 @@
     --ink-mid:    #4A6464;
     --ink-light:  #7EAAAA;
     --border:     #E8E8E8;
-    --ff-serif:   'DM Serif Display', Georgia, serif;
+    --ff-serif:   'Playfair Display', Georgia, serif;
     --ff-sans:    'Inter', system-ui, sans-serif;
     --ease:       cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -41,18 +40,25 @@ body {
     overflow-x: hidden;
 }
 
-h1, h2, h3, h4 {
-    font-family: var(--ff-sans);
-    font-weight: 300;
-    line-height: 1.2;
+/* Malala uses bold serif for big headings, sans for smaller ones */
+h1, h2 {
+    font-family: var(--ff-serif);
+    font-weight: 700;
+    line-height: 1.15;
     color: var(--ink);
     letter-spacing: -0.01em;
+}
+h3, h4 {
+    font-family: var(--ff-sans);
+    font-weight: 600;
+    line-height: 1.25;
+    color: var(--ink);
 }
 h1 { font-size: clamp(2.4rem, 5vw, 4rem); }
 h2 { font-size: clamp(2rem, 3.5vw, 3rem); }
 h3 { font-size: 1.4rem; }
 
-p  { font-size: 1.05rem; line-height: 1.8; font-weight: 500; color: var(--ink-mid); }
+p  { font-size: 1.05rem; line-height: 1.8; font-weight: 400; color: var(--ink-mid); }
 a  { text-decoration: none; }
 
 .container {
@@ -98,7 +104,7 @@ a  { text-decoration: none; }
 }
 
 /* ============================================================
-   NAV — Malala style
+   NAV — Malala style: bottom-border hover, no animation
    ============================================================ */
 .site-header {
     position: fixed;
@@ -108,9 +114,8 @@ a  { text-decoration: none; }
     border-bottom: 1px solid #e8e8e8;
     transition: box-shadow 0.3s ease;
 }
-.site-header.scrolled {
-    box-shadow: 0 2px 16px rgba(0,0,0,0.07);
-}
+.site-header.scrolled { box-shadow: 0 2px 16px rgba(0,0,0,0.07); }
+
 .nav-inner {
     display: flex;
     align-items: center;
@@ -136,23 +141,24 @@ a  { text-decoration: none; }
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: var(--ink);
-    padding: 8px 24px;
+    padding: 8px 22px;
     white-space: nowrap;
     position: relative;
-    transition: color 0.2s;
+    height: 100%;
+    transition: color 0.15s;
 }
-/* coral underline on hover */
+
+/* Malala nav hover: solid bottom border, instant appearance */
 .nav-links > li > a:not(.btn-donate)::after {
     content: '';
     position: absolute;
-    bottom: 4px; left: 24px; right: 24px;
-    height: 2px;
+    bottom: 0; left: 0; right: 0;
+    height: 3px;
     background: var(--coral-text);
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.2s ease;
+    opacity: 0;
+    transition: opacity 0.15s;
 }
-.nav-links > li > a:not(.btn-donate):hover::after { transform: scaleX(1); }
+.nav-links > li > a:not(.btn-donate):hover::after { opacity: 1; }
 .nav-links > li > a:not(.btn-donate):hover { color: var(--ink); background: none; }
 .nav-links > li.has-dropdown > a::after { display: none; }
 
@@ -186,10 +192,12 @@ a  { text-decoration: none; }
     color: var(--ink-mid);
     padding: 10px 20px;
     transition: background 0.15s, color 0.15s;
+    height: auto;
 }
+.nav-dropdown li a::after { display: none !important; }
 .nav-dropdown li a:hover { background: #f5f5f5; color: var(--ink); }
 
-/* donate block */
+/* donate */
 .btn-donate {
     background: var(--coral-text) !important;
     color: #fff !important;
@@ -241,7 +249,7 @@ a  { text-decoration: none; }
     }
     .nav-links.open { display: flex; }
     .nav-links > li { height: auto; }
-    .nav-links > li > a { font-size: 1rem; padding: 12px 0; border-bottom: 1px solid #f0f0f0; }
+    .nav-links > li > a { font-size: 1rem; padding: 12px 0; border-bottom: 1px solid #f0f0f0; height: auto; }
     .nav-links > li > a::after { display: none !important; }
     .nav-dropdown { position: static; opacity: 1; visibility: visible; transform: none; box-shadow: none; border: none; padding: 4px 0 4px 16px; display: none; }
     .nav-links > li.has-dropdown.open .nav-dropdown { display: block; }
@@ -250,7 +258,7 @@ a  { text-decoration: none; }
 }
 
 /* ============================================================
-   PAGE HERO (photo pages with text overlay)
+   PAGE HERO
    ============================================================ */
 .page-hero {
     position: relative;
@@ -280,7 +288,7 @@ a  { text-decoration: none; }
     justify-content: flex-end;
     padding-bottom: 52px;
 }
-.page-hero-content h1 { color: #fff; font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 300; }
+.page-hero-content h1 { color: #fff; font-size: clamp(2rem, 4vw, 3.2rem); }
 .page-hero-content .eyebrow { color: rgba(255,255,255,0.8); margin-bottom: 12px; }
 
 /* ============================================================
@@ -303,11 +311,11 @@ a  { text-decoration: none; }
 }
 .stats-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1px; background: #e8e8e8; }
 .stat-item { background: #fff; padding: 32px 24px; text-align: center; }
-.stat-num { display: block; font-family: var(--ff-sans); font-size: clamp(2rem,3.5vw,2.8rem); font-weight: 300; color: var(--coral-text); line-height: 1; margin-bottom: 8px; }
+.stat-num { display: block; font-family: var(--ff-serif); font-size: clamp(2rem,3.5vw,2.8rem); font-weight: 700; color: var(--coral-text); line-height: 1; margin-bottom: 8px; }
 .stat-label { font-size: 0.88rem; font-weight: 500; color: var(--ink-mid); line-height: 1.4; }
 
 /* ============================================================
-   FOOTER — clean Malala-style
+   FOOTER — Malala 4-column layout
    ============================================================ */
 .footer {
     background: var(--ink);
@@ -316,7 +324,7 @@ a  { text-decoration: none; }
 }
 .footer-inner {
     display: grid;
-    grid-template-columns: 1.8fr 1fr 1fr;
+    grid-template-columns: 1.6fr 1fr 1fr 1fr;
     gap: 48px;
     padding-bottom: 56px;
     border-bottom: 1px solid rgba(255,255,255,0.12);
@@ -343,14 +351,10 @@ a  { text-decoration: none; }
     color: rgba(255,255,255,0.4);
     font-weight: 400;
 }
-.footer-ein {
-    font-size: 0.78rem;
-    color: rgba(255,255,255,0.4);
-    border: 1px solid rgba(255,255,255,0.12);
-    padding: 4px 12px;
-    border-radius: 2px;
-}
+.footer-bottom a { color: rgba(255,255,255,0.5); transition: color 0.15s; }
+.footer-bottom a:hover { color: #fff; }
+.footer-ein { font-size: 0.78rem; color: rgba(255,255,255,0.4); border: 1px solid rgba(255,255,255,0.12); padding: 4px 12px; }
 
-@media (max-width: 860px) { .footer-inner { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 900px) { .footer-inner { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 540px) { .footer-inner { grid-template-columns: 1fr; } .footer-bottom { flex-direction: column; gap: 8px; text-align: center; } }
 @media (max-width: 640px) { .stats-grid { grid-template-columns: repeat(2,1fr); } }
