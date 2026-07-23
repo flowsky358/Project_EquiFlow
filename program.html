@@ -87,6 +87,165 @@
         }
         .blob-divider svg { overflow: visible; }
 
+        /* ── THREE ROUTES INFOGRAPHIC ── */
+        .three-routes {
+            background: #fff;
+            padding: 72px 0 80px;
+        }
+        .routes-citation {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            background: var(--ink);
+            border-radius: 12px;
+            padding: 28px 40px;
+            max-width: 860px;
+            margin: 0 auto 64px;
+        }
+        .routes-citation-bar {
+            width: 4px;
+            min-height: 48px;
+            background: var(--coral-text);
+            border-radius: 2px;
+            flex-shrink: 0;
+        }
+        .routes-citation-text {
+            font-family: 'Anton', sans-serif;
+            font-size: clamp(1.1rem, 2vw, 1.5rem);
+            font-weight: 400;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+            line-height: 1.25;
+        }
+        .routes-citation-source {
+            font-family: var(--ff-sans);
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.5);
+            margin-top: 6px;
+        }
+        .routes-header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+        .routes-eyebrow {
+            font-family: var(--ff-sans);
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--teal-dark);
+            display: block;
+            margin-bottom: 14px;
+        }
+        .routes-heading {
+            font-size: clamp(1.8rem, 3vw, 2.6rem);
+            font-weight: 400;
+            color: var(--ink);
+            margin: 0;
+        }
+        .routes-connector {
+            display: flex;
+            align-items: flex-start;
+            gap: 0;
+            max-width: 1100px;
+            margin: 0 auto;
+            position: relative;
+        }
+        .routes-connector::before {
+            content: '';
+            position: absolute;
+            top: 36px;
+            left: calc(16.67% + 4px);
+            right: calc(16.67% + 4px);
+            height: 2px;
+            background: linear-gradient(90deg, var(--coral-text), var(--teal-dark), #5A9E72);
+        }
+        .route-card {
+            flex: 1;
+            background: #fff;
+            border-radius: 20px;
+            padding: 0 20px 36px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            position: relative;
+        }
+        .route-dot {
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Anton', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 400;
+            color: #fff;
+            margin-bottom: 24px;
+            flex-shrink: 0;
+            position: relative;
+            z-index: 1;
+        }
+        .route-card:nth-child(1) .route-dot { background: var(--coral-text); }
+        .route-card:nth-child(2) .route-dot { background: var(--teal-dark); }
+        .route-card:nth-child(3) .route-dot { background: #5A9E72; }
+        .route-label {
+            font-family: var(--ff-sans);
+            font-size: 0.62rem;
+            font-weight: 800;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+        .route-card:nth-child(1) .route-label { color: var(--coral-text); }
+        .route-card:nth-child(2) .route-label { color: var(--teal-dark); }
+        .route-card:nth-child(3) .route-label { color: #5A9E72; }
+        .route-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: var(--ink);
+            margin-bottom: 18px;
+            line-height: 1.3;
+        }
+        .route-list {
+            list-style: none;
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            width: 100%;
+        }
+        .route-list li {
+            font-size: 0.9rem;
+            color: var(--ink-mid);
+            line-height: 1.5;
+            padding-left: 16px;
+            position: relative;
+        }
+        .route-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 8px;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+        }
+        .route-card:nth-child(1) .route-list li::before { background: var(--coral-text); }
+        .route-card:nth-child(2) .route-list li::before { background: var(--teal-dark); }
+        .route-card:nth-child(3) .route-list li::before { background: #5A9E72; }
+        @media (max-width: 860px) {
+            .routes-connector { flex-direction: column; gap: 24px; }
+            .routes-connector::before { display: none; }
+            .route-card { padding: 0 0 28px; }
+        }
+
         /* ── REACH SECTION (local vs national) ── */
         .prog-reach {
             background: #e8f4f4;
@@ -419,7 +578,7 @@
     <header class="site-header" id="site-header">
         <div class="container nav-inner">
             <a href="index.html" class="logo">
-                <img src="image/download-2.jpg" alt="Project EquiFlow" style="height:44px;width:auto;display:block;" />
+                <img src="image/download-2.jpg" alt="Project EquiFlow" style="height:52px;width:auto;display:block;" />
             </a>
             <ul class="nav-links" id="nav-links">
                 <li class="has-mega">
@@ -506,6 +665,70 @@
             <rect x="88" y="42" width="44" height="58" rx="22" fill="#d4eaea"/>
         </svg>
     </div>
+
+    <!-- THREE ROUTES TO EDUCATION EQUALITY -->
+    <section class="three-routes">
+        <div class="container">
+
+            <!-- Citation -->
+            <div class="routes-citation">
+                <div class="routes-citation-bar"></div>
+                <div>
+                    <div class="routes-citation-text">Girls with 12 years of education earn up to 10× more and are far less likely to marry young or experience poverty.</div>
+                    <div class="routes-citation-source">World Bank &amp; UNESCO, 2023</div>
+                </div>
+            </div>
+
+            <!-- Header -->
+            <div class="routes-header">
+                <span class="routes-eyebrow">Our Approach</span>
+                <h2 class="routes-heading">Three Routes to Education Equality</h2>
+            </div>
+
+            <!-- Route Cards -->
+            <div class="routes-connector">
+
+                <div class="route-card">
+                    <div class="route-dot">1</div>
+                    <p class="route-label">Pillar One</p>
+                    <h3 class="route-title">Health &amp; Dignity</h3>
+                    <ul class="route-list">
+                        <li>Menstrual product donations — pads, reusable kits, and hygiene supplies</li>
+                        <li>Health education workshops on menstrual health and well-being</li>
+                        <li>School partnerships to install free period product dispensers</li>
+                        <li>Community conversations that break stigma and normalize menstruation</li>
+                    </ul>
+                </div>
+
+                <div class="route-card">
+                    <div class="route-dot">2</div>
+                    <p class="route-label">Pillar Two</p>
+                    <h3 class="route-title">Leadership &amp; Community</h3>
+                    <ul class="route-list">
+                        <li>Leadership workshops on public speaking, problem-solving, and teamwork</li>
+                        <li>Mentorship connecting girls with peers and role models</li>
+                        <li>Community projects where girls identify and solve local challenges</li>
+                        <li>School supplies and resources to help girls come prepared</li>
+                        <li>A supportive network where girls build confidence together</li>
+                    </ul>
+                </div>
+
+                <div class="route-card">
+                    <div class="route-dot">3</div>
+                    <p class="route-label">Pillar Three</p>
+                    <h3 class="route-title">Advocacy</h3>
+                    <ul class="route-list">
+                        <li>Partnering with schools to expand access to menstrual health resources</li>
+                        <li>Community campaigns that reduce stigma around girls' education</li>
+                        <li>Working with local leaders to improve educational opportunities</li>
+                        <li>Sharing program data to advocate for evidence-based solutions</li>
+                        <li>Empowering girls to use their voices to create change</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </section>
 
     <!-- REACH: LOCAL vs NATIONAL/INTERNATIONAL -->
     <section class="prog-reach">
