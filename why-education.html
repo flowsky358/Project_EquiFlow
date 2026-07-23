@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Why Education? | Project EquiFlow</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Outfit:wght@300;400;500;600;700;800&family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --coral:      #FFBDAB;
+            --coral-dark: #F5A488;
+            --coral-text: #E8907A;
+            --teal-dark:  #4E9898;
+            --ink:        #2E4E4E;
+            --ink-mid:    #4A6464;
+            --border:     #E8E8E8;
+            --ff-serif:   'Outfit', system-ui, sans-serif;
+            --ff-sans:    'Nunito', system-ui, sans-serif;
+        }
+
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: var(--ff-sans); background: #fff; color: var(--ink-mid); line-height: 1.7; overflow-x: hidden; }
+        h1, h2 { font-family: 'Anton', sans-serif; font-weight: 400; text-transform: uppercase; letter-spacing: 0.01em; font-weight: 400; line-height: 1.15; color: var(--ink); }
+        h3 { font-family: 'Anton', sans-serif; font-weight: 400; text-transform: uppercase; color: var(--ink); }
+        a { text-decoration: none; }
+
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 32px; }
+        .container-narrow { max-width: 740px; margin: 0 auto; padding: 0 32px; }
+
+        .btn { display: inline-block; font-family: var(--ff-sans); font-size: 0.8rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; padding: 14px 32px; border: 2px solid transparent; cursor: pointer; transition: background 0.15s, color 0.15s; }
+        .btn-primary { background: var(--coral-text); color: #fff; border-color: var(--coral-text); }
+        .btn-primary:hover { background: #a05848; }
+
+        /* ── NAV ── */
+        .site-header { position: fixed; top: 0; left: 0; right: 0; z-index: 200; background: #fff; border-bottom: 1px solid #e8e8e8; transition: box-shadow 0.3s; }
+        .site-header.scrolled { box-shadow: 0 2px 16px rgba(0,0,0,0.07); }
+        .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 70px; }
+        .logo img { height: 44px; width: auto; display: block; }
+        .nav-links { display: flex; align-items: center; list-style: none; height: 100%; }
+        .nav-links > li { position: static; height: 100%; display: flex align-items: center }
+        .nav-links > li > a { display: flex; align-items: center; gap: 4px; font-size: 0.85rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink); padding: 8px 20px; white-space: nowrap; height: 100%; transition: color 0.15s; }
+        .nav-links > li > a:not(.btn-donate):hover { color: var(--coral-text) }
+        .nav-links > li > a.active-page { color: var(--coral-text); border-bottom: 2px solid var(--coral-text); }
+        .nav-chevron { font-size: 0.65rem; opacity: 0.5; }
+
+        .mega-drop { position: absolute; top: 70px; left: 0; right: 0; background: #fff; border-top: 2px solid var(--coral-text); border-bottom: 1px solid #e8e8e8; box-shadow: 0 16px 48px rgba(0,0,0,0.09); opacity: 0; visibility: hidden; transition: opacity 0.18s, visibility 0.18s; z-index: 300; }
+        .has-mega:hover .mega-drop, .has-mega.open .mega-drop { opacity: 1; visibility: visible; }
+        .mega-drop-inner { display: grid; grid-template-columns: 1.6fr 1fr 1fr; gap: 0; padding: 36px 0; }
+        .mega-col { padding: 0 32px; border-right: 1px solid #f0f0f0; }
+        .mega-col:first-child { padding-left: 0; }
+        .mega-col:last-child { border-right: none; }
+        .mega-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--coral-text); margin-bottom: 10px; }
+        .mega-desc { font-size: 0.9rem; color: var(--ink-mid); line-height: 1.6; margin-bottom: 16px; }
+        .mega-see-all { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink); transition: color 0.15s; }
+        .mega-see-all:hover { color: var(--coral-text); }
+        .mega-col-heading { font-size: 0.62rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: #aaa; margin-bottom: 14px; }
+        .mega-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+        .mega-col ul li a { font-size: 0.95rem; font-weight: 400; color: var(--ink); transition: color 0.15s; }
+        .mega-col ul li a:hover { color: var(--coral-text); }
+
+        .btn-donate { background: var(--coral-text) !important; color: #fff !important; padding: 20px 36px !important; height: auto !important; display: flex !important; align-items: center !important; font-weight: 700 !important; font-size: 0.9rem !important; letter-spacing: 0.12em !important; text-transform: uppercase !important; border-radius: 0 !important; border: none !important; margin-left: 12px; transition: background 0.2s !important; white-space: nowrap; }
+        .btn-donate:hover { background: #a05848 !important; }
+        .nav-hamburger { display: none; background: none; border: none; cursor: pointer; padding: 4px; flex-direction: column; gap: 5px; }
+        .nav-hamburger span { display: block; width: 22px; height: 2px; background: var(--ink); border-radius: 2px; }
+
+        @media (max-width: 900px) {
+            .nav-hamburger { display: flex; }
+            .nav-inner { height: 56px; }
+            .nav-links { display: none; position: fixed; top: 56px; left: 0; right: 0; flex-direction: column; align-items: stretch; height: auto; background: #fff; border-top: 1px solid #e8e8e8; padding: 16px 24px 24px; gap: 4px; box-shadow: 0 8px 24px rgba(0,0,0,0.1); z-index: 999; }
+            .nav-links.open { display: flex; }
+            .nav-links > li { height: auto }
+            .nav-links > li > a { font-size: 0.9rem; padding: 11px 0; border-bottom: 1px solid #f0f0f0 height: auto }
+            .mega-drop { position: static; opacity: 1; visibility: visible; border: none; box-shadow: none; display: none; }
+            .has-mega.open .mega-drop { display: block; }
+            .mega-drop-inner { grid-template-columns: 1fr; padding: 8px 0 4px 16px; gap: 12px; }
+            .mega-col { border-right: none; padding: 0; }
+            .mega-col-intro { display: none; }
+            .btn-donate { height: auto !important; padding: 12px 20px !important; margin: 8px 0 0; justify-content: center; }
+            .logo img { height: 38px; }
+        }
+
+        /* ── HERO PHOTO ── */
+        .why-hero {
+            margin-top: 70px;
+            width: 100%;
+            height: 60vh;
+            min-height: 360px;
+            overflow: hidden;
+            position: relative;
+        }
+        .why-hero img { width: 100%; height: 100%; object-fit: cover; object-position: top center; display: block; }
+
+        /* ── INTRO (centered, like Malala) ── */
+        .why-eyebrow-bar {
+            text-align: center;
+            padding: 52px 32px 0;
+        }
+        .why-eyebrow-bar .eyebrow-tag {
+            display: inline-block;
+            font-size: 0.68rem; font-weight: 700; letter-spacing: 0.26em; text-transform: uppercase; color: var(--coral-text);
+            margin-bottom: 0;
+            padding-bottom: 14px;
+            border-bottom: 2px solid var(--coral-text);
+        }
+
+        .why-headline-section {
+            text-align: center;
+            padding: 36px 32px 56px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .why-h1 {
+            font-family: 'Anton', sans-serif;
+            font-size: clamp(2.8rem, 5.5vw, 5rem);
+            font-weight: 400;
+            line-height: 1.05;
+            color: var(--coral-text);
+            max-width: 900px;
+            margin: 0 auto 32px;
+            text-transform: uppercase;
+            letter-spacing: 0.01em;
+        }
+        mark {
+            background: rgba(255, 240, 140, 0.55);
+            color: inherit;
+            padding: 2px 7px 2px 5px;
+            border-radius: 2px 8px 6px 4px / 8px 3px 7px 4px;
+            -webkit-box-decoration-break: clone;
+            box-decoration-break: clone;
+            display: inline;
+        }
+
+        .why-body {
+            font-size: 1.1rem;
+            color: var(--ink-mid);
+            line-height: 1.85;
+            max-width: 680px;
+            margin: 0 auto;
+            font-weight: 500;
+        }
+
+        /* ── BOLD CALLOUT (like Malala's bold section) ── */
+        .why-callout {
+            padding: 48px 32px;
+            text-align: center;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .why-callout-text {
+            font-family: 'Anton', sans-serif;
+            font-size: clamp(1.6rem, 2.8vw, 2.4rem);
+            font-weight: 400;
+            color: var(--ink);
+            line-height: 1.2;
+            max-width: 860px;
+            margin: 0 auto;
+            text-transform: uppercase;
+        }
+
+        /* ── BAR CHART (like Malala) ── */
+        .why-chart-section {
+            padding: 48px 0 56px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .why-chart-section .chart-label-top {
+            font-size: 0.7rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-mid); margin-bottom: 6px; text-align: center;
+        }
+        .chart-wrap {
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            gap: 0;
+            height: 320px;
+            position: relative;
+            margin-top: 40px;
+        }
+        .chart-bar-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex: 1;
+            max-width: 240px;
+            height: 100%;
+            position: relative;
+            border-left: 1px solid #e0e0e0;
+            padding-top: 0;
+            justify-content: flex-end;
+        }
+        .chart-bar-group:last-child { border-right: 1px solid #e0e0e0; }
+        .chart-bar {
+            width: 100%;
+            border-radius: 0 8px 0 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            transition: opacity 0.2s;
+        }
+        .chart-bar-group:nth-child(1) .chart-bar { background: #F5C4B0; height: 38%; }
+        .chart-bar-group:nth-child(2) .chart-bar { background: #E8956A; height: 64%; }
+        .chart-bar-group:nth-child(3) .chart-bar { background: #C07060; height: 88%; }
+        .chart-pct {
+            font-family: 'Anton', sans-serif;
+            font-size: clamp(2rem, 3.5vw, 3rem);
+            font-weight: 700;
+            color: var(--ink);
+        }
+        .chart-footer {
+            display: flex;
+            border-top: 1px solid #e0e0e0;
+            margin-top: 0;
+        }
+        .chart-footer-item {
+            flex: 1;
+            padding: 16px 12px;
+            border-left: 1px solid #e0e0e0;
+            font-size: 0.82rem;
+            color: var(--ink-mid);
+            line-height: 1.4;
+        }
+        .chart-footer-item:last-child { border-right: 1px solid #e0e0e0; }
+        .chart-footer-item strong { display: block; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink); margin-bottom: 2px; }
+        .chart-grade-label {
+            font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #aaa; padding: 12px 0 4px; border-top: 2px solid #e0e0e0; text-align: left;
+        }
+
+        /* ── SINGLE PHOTO ── */
+        .why-single-photo {
+            width: 100%;
+            height: 480px;
+            overflow: hidden;
+        }
+        .why-single-photo img { width: 100%; height: 100%; object-fit: cover; object-position: top center; display: block; }
+
+        /* ── WHAT KEEPS GIRLS OUT ── */
+        .wk-section {
+            background: #e8f4f4;
+            padding: 44px 0;
+        }
+        .wk-grid {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: grid;
+            grid-template-columns: 1fr 340px 1fr;
+            gap: 0;
+            align-items: center;
+        }
+        .wk-full-row {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 16px 80px;
+        }
+        .wk-full-row:first-child { grid-row: 1; }
+        .wk-full-row:last-child { grid-row: 5; }
+        .wk-topic {
+            padding: 14px 18px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+        .wk-topic h3 {
+            display: inline-block;
+            background: rgba(78, 152, 152, 0.18);
+            padding: 6px 18px;
+            border-radius: 6px;
+            color: var(--ink);
+            font-size: 1rem;
+            font-weight: 400;
+            margin-bottom: 10px;
+        }
+        .wk-topic p {
+            color: var(--ink-mid);
+            font-size: 0.95rem;
+            line-height: 1.55;
+        }
+        .wk-blob {
+            grid-row: 2 / 5;
+            grid-column: 2;
+            align-self: stretch;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .wk-blob-svg {
+            position: absolute;
+            inset: 0 -24px;
+            width: calc(100% + 48px);
+            height: 100%;
+            pointer-events: none;
+        }
+        /* top/bottom center bubble */
+        .wk-center-bubble {
+            grid-column: 2;
+            text-align: center;
+            padding: 14px 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .wk-center-bubble h3 {
+            display: inline-block;
+            background: rgba(78, 152, 152, 0.18);
+            padding: 6px 18px;
+            border-radius: 6px;
+            color: var(--ink);
+            font-size: 1rem;
+            font-weight: 400;
+            margin-bottom: 10px;
+        }
+        .wk-center-bubble p {
+            color: var(--ink-mid);
+            font-size: 0.95rem;
+            line-height: 1.55;
+            max-width: 240px;
+        }
+        .wk-blob-text {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            font-family: 'Anton', sans-serif;
+            font-size: 1.15rem;
+            font-weight: 400;
+            color: var(--ink);
+            line-height: 1.3;
+            max-width: 190px;
+            text-transform: uppercase;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+        @media (max-width: 768px) {
+            .wk-grid { grid-template-columns: 1fr; }
+            .wk-full-row { padding: 20px 0; }
+            .wk-blob { display: none; }
+            .wk-topic { grid-column: 1 !important; grid-row: auto !important; }
+        }
+
+        /* ── ACCORDION ── */
+        .why-accordion-section {
+            padding: 56px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .why-accordion-inner {
+            display: grid;
+            grid-template-columns: 1fr 1.1fr;
+            gap: 80px;
+            align-items: start;
+        }
+        .why-accordion-heading {
+            font-family: 'Anton', sans-serif;
+            font-size: clamp(2rem, 3.2vw, 3rem);
+            font-weight: 400;
+            color: var(--ink);
+            line-height: 1.2;
+            position: sticky;
+            top: 90px;
+        }
+        .accordion-list { list-style: none; }
+        .accordion-item { border-top: 1px solid #d8e8e8; }
+        .accordion-item:last-child { border-bottom: 1px solid #d8e8e8; }
+        .accordion-btn {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            padding: 22px 0;
+            background: none;
+            border: none;
+            cursor: pointer;
+            text-align: left;
+            font-family: var(--ff-sans);
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--ink);
+            gap: 16px;
+        }
+        .accordion-btn:hover { color: var(--teal-dark); }
+        .accordion-icon {
+            width: 30px; height: 30px;
+            border-radius: 50%;
+            background: var(--teal-dark);
+            color: #fff;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.3rem;
+            font-weight: 300;
+            flex-shrink: 0;
+            line-height: 1;
+            transition: background 0.2s;
+        }
+        .accordion-item.open .accordion-icon { background: var(--ink); }
+        .accordion-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.35s ease;
+        }
+        .accordion-body p {
+            padding: 0 40px 24px 0;
+            font-size: 0.97rem;
+            color: var(--ink-mid);
+            line-height: 1.8;
+            font-weight: 400;
+        }
+        .accordion-item.open .accordion-body { max-height: 400px; }
+
+        /* ── QUOTE + PHOTO SECTION ── */
+        .why-quote-section { position: relative; }
+        .why-quote-header {
+            background: var(--teal-dark);
+            padding: 22px 0;
+            text-align: center;
+        }
+        .why-quote-header h2 {
+            color: #fff;
+            font-family: 'Anton', sans-serif;
+            font-size: clamp(1.4rem, 2.5vw, 2rem);
+            font-weight: 400;
+        }
+        .why-quote-photo-wrap {
+            position: relative;
+            height: 520px;
+            overflow: hidden;
+        }
+        .why-quote-photo-wrap img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            object-position: center 35%;
+            display: block;
+        }
+        .why-quote-card {
+            position: absolute;
+            right: 7%;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #fff;
+            padding: 36px 40px;
+            max-width: 400px;
+            box-shadow: 0 16px 56px rgba(0,0,0,0.15);
+        }
+        .why-quote-card blockquote {
+            font-family: 'Anton', sans-serif;
+            font-size: 1.15rem;
+            font-weight: 400;
+            color: var(--ink);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        .why-quote-card cite {
+            font-family: var(--ff-sans);
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: var(--teal-dark);
+            font-style: normal;
+            display: block;
+            letter-spacing: 0.03em;
+        }
+
+        /* ── PHOTO + TEXT SPLIT ── */
+        .why-split {
+            padding: 48px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .why-split-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center; }
+        .why-split-photo { overflow: hidden; aspect-ratio: 5/6; }
+        .why-split-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .why-split-text h2 { font-size: clamp(1.7rem, 2.8vw, 2.2rem); font-weight: 400; margin-bottom: 20px; }
+        .why-split-text p { font-size: 1rem; color: var(--ink-mid); line-height: 1.85; margin-bottom: 14px; }
+        .why-split-text .btn { margin-top: 12px; }
+
+        /* ── CTA ── */
+        .why-cta { padding: 120px 32px; text-align: center; background: linear-gradient(rgba(46,78,78,0.72), rgba(46,78,78,0.72)), url('image/IMG_audience.jpg') center/cover no-repeat; }
+        .why-cta h2 { font-family: 'Anton', sans-serif; font-weight: 400; color: #fff; font-size: clamp(1.8rem, 3.5vw, 2.8rem); max-width: 680px; margin: 0 auto 14px; }
+        .why-cta p { color: rgba(255,255,255,0.65); font-size: 1rem; max-width: 480px; margin: 0 auto 32px; }
+
+        /* ── FOOTER ── */
+        .footer { background: var(--ink); padding: 72px 0 0; color: rgba(255,255,255,0.75); }
+        .footer-inner { display: grid; grid-template-columns: 1.6fr 1fr 1fr 1fr; gap: 48px; padding-bottom: 56px; border-bottom: 1px solid rgba(255,255,255,0.12); }
+        .footer-logo-img { height: 44px; width: auto; margin-bottom: 20px; display: block; }
+        .footer-tagline { font-size: 0.95rem; line-height: 1.7; color: rgba(255,255,255,0.65); margin-bottom: 20px; }
+        .footer-contact-block p { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.45); margin-bottom: 4px; }
+        .footer-contact-block a { font-size: 0.9rem; color: rgba(255,255,255,0.8); transition: color 0.15s; }
+        .footer-contact-block a:hover { color: #fff; }
+        .footer-col h4 { font-family: var(--ff-sans); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.45); margin-bottom: 20px; }
+        .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+        .footer-col ul li a { font-size: 0.92rem; color: rgba(255,255,255,0.7); transition: color 0.15s; }
+        .footer-col ul li a:hover { color: #fff; }
+        .footer-bottom { display: flex; justify-content: space-between; align-items: center; padding: 20px 0; font-size: 0.8rem; color: rgba(255,255,255,0.4); }
+        .footer-ein { font-size: 0.78rem; color: rgba(255,255,255,0.4); border: 1px solid rgba(255,255,255,0.12); padding: 4px 12px; }
+
+        @media (max-width: 860px) {
+            .photo-grid-3 { grid-template-columns: 1fr 1fr; }
+            .reason-row { grid-template-columns: 48px 1fr; }
+            .reason-row p { grid-column: 2; }
+            .why-split-inner { grid-template-columns: 1fr; }
+            .why-split-photo { aspect-ratio: 16/9; }
+            .footer-inner { grid-template-columns: 1fr 1fr; }
+        }
+        @media (max-width: 540px) {
+            .photo-grid-3 { grid-template-columns: 1fr; }
+            .footer-inner { grid-template-columns: 1fr; }
+            .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+        }
+    </style>
+
+    <link rel="icon" type="image/png" href="image/favicon.png">
+</head>
+<body>
+
+    <!-- NAVIGATION -->
+    <header class="site-header" id="site-header">
+        <div class="container nav-inner">
+            <a href="index.html" class="logo">
+                <img src="image/download-2.jpg" alt="Project EquiFlow" />
+            </a>
+            <ul class="nav-links" id="nav-links">
+                <li class="has-mega">
+                    <a href="index.html">About <span class="nav-chevron">▾</span></a>
+                    <div class="mega-drop">
+                        <div class="container mega-drop-inner">
+                            <div class="mega-col mega-col-intro">
+                                <p class="mega-label">About Us</p>
+                                <p class="mega-desc">Learn who we are, what we believe, and why we fight for girls' education.</p>
+                                <a href="mission.html" class="mega-see-all">Learn More →</a>
+                            </div>
+                            <div class="mega-col">
+                                <p class="mega-col-heading">Our Story</p>
+                                <ul>
+                                    <li><a href="mission.html">Our Mission</a></li>
+                                    <li><a href="mission.html#beliefs">Core Beliefs</a></li>
+                                </ul>
+                            </div>
+                            <div class="mega-col">
+                                <p class="mega-col-heading">Our Work</p>
+                                <ul>
+                                    <li><a href="program.html">Our Programs</a></li>
+                                    <li><a href="why-education.html">Why Education?</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li><a href="why-education.html" class="active-page">Why Education?</a></li>
+                <li><a href="program.html">Programs</a></li>
+                <li class="has-mega">
+                    <a href="volunteer.html">Get Involved <span class="nav-chevron">▾</span></a>
+                    <div class="mega-drop">
+                        <div class="container mega-drop-inner">
+                            <div class="mega-col mega-col-intro">
+                                <p class="mega-label">Take Action</p>
+                                <p class="mega-desc">Every action — big or small — keeps a girl in school and in leadership.</p>
+                                <a href="volunteer.html" class="mega-see-all">See All Ways to Help →</a>
+                            </div>
+                            <div class="mega-col">
+                                <p class="mega-col-heading">Volunteer</p>
+                                <ul>
+                                    <li><a href="volunteer.html">Volunteer</a></li>
+                                    <li><a href="https://docs.google.com/forms/d/e/1FAIpQLScfsn3H9LZ4NnRd0ORk6OgTbW1NsHnHxJmTMsAm6yLCFaHRUA/viewform?usp=publish-editor" target="_blank" rel="noopener">Start a Chapter</a></li>
+                                </ul>
+                            </div>
+                            <div class="mega-col">
+                                <p class="mega-col-heading">Support</p>
+                                <ul>
+                                    <li><a href="https://docs.google.com/forms/d/1ufZauH4xaZ37Nz5kRHjh_QIL51TuNn06vASEfGitVos/viewform" target="_blank" rel="noopener">Donate</a></li>
+                                    <li><a href="partner.html">Partner With Us</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li><a href="https://docs.google.com/forms/d/1ufZauH4xaZ37Nz5kRHjh_QIL51TuNn06vASEfGitVos/viewform" target="_blank" rel="noopener" class="btn-donate">Donate</a></li>
+            </ul>
+            <button class="nav-hamburger" id="hamburger" aria-label="Open menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- HERO PHOTO -->
+    <div class="why-hero">
+        <img src="image/IMG_7275.png" alt="Girls engaged in a classroom discussion" />
+    </div>
+
+    <!-- EYEBROW + HEADLINE (centered, Malala style) -->
+    <div class="why-eyebrow-bar">
+        <p class="eyebrow-tag">WHY GIRLS' EDUCATION</p>
+    </div>
+
+    <div class="why-headline-section">
+        <h1 class="why-h1">More than 130 million girls are out of school today.</h1>
+        <p class="why-body">Project EquiFlow works to ensure every girl can access <mark>quality education</mark> and stay in school. We focus on secondary school — when gender discrimination, <mark>period poverty</mark>, and financial pressure most often force girls out — and we remove those barriers one by one.</p>
+    </div>
+
+    <!-- BOLD CALLOUT -->
+    <div class="why-callout">
+        <p class="why-callout-text">As they get older, more girls drop out of school. Girls in low-income communities drop out at particularly high rates — and the consequences last a lifetime.</p>
+    </div>
+
+    <!-- BAR CHART (Malala-style) -->
+    <section class="why-chart-section">
+        <div class="container-narrow">
+            <p class="chart-label-top">Girls who never complete school, by level</p>
+            <div class="chart-wrap">
+                <div class="chart-bar-group">
+                    <div class="chart-bar">
+                        <span class="chart-pct">39%</span>
+                    </div>
+                </div>
+                <div class="chart-bar-group">
+                    <div class="chart-bar">
+                        <span class="chart-pct">64%</span>
+                    </div>
+                </div>
+                <div class="chart-bar-group">
+                    <div class="chart-bar">
+                        <span class="chart-pct" style="color:#fff;">81%</span>
+                    </div>
+                </div>
+            </div>
+            <div class="chart-footer">
+                <div class="chart-footer-item"><strong>Grade</strong>Primary<br>(ages 6–11)</div>
+                <div class="chart-footer-item"><strong>&nbsp</strong>Lower secondary<br>(ages 12–14)</div>
+                <div class="chart-footer-item"><strong>&nbsp</strong>Upper secondary<br>(ages 15–17)</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WHAT KEEPS GIRLS OUT OF SCHOOL -->
+    <section class="wk-section">
+        <div class="wk-grid">
+            <!-- top center bubble -->
+            <div class="wk-center-bubble" style="grid-row:1">
+                <h3>Gender bias</h3>
+                <p>At home, in the classroom and in wider society, deep-rooted beliefs about gender shape practices and policies that limit girls' opportunities to learn.</p>
+            </div>
+            <!-- blob spans rows 2-4 col 2 -->
+            <div class="wk-blob">
+                <svg class="wk-blob-svg" viewBox="0 0 300 300" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="150" cy="72"  r="72" fill="white"/>
+                    <circle cx="150" cy="228" r="72" fill="white"/>
+                    <circle cx="72"  cy="150" r="72" fill="white"/>
+                    <circle cx="228" cy="150" r="72" fill="white"/>
+                </svg>
+                <div class="wk-blob-text">What keeps girls out of school?</div>
+            </div>
+            <!-- left col -->
+            <div class="wk-topic wk-left" style="grid-column:1;grid-row:2">
+                <h3>Poverty</h3>
+                <p>Families who can't afford school fees are more likely to send boys than girls to school.</p>
+            </div>
+            <div class="wk-topic wk-left" style="grid-column:1;grid-row:3;padding-right:80px">
+                <h3>Gender-based violence</h3>
+                <p>In lower-income countries, 20% of girls who suffer sexual violence experience it in school, greatly impacting their learning and attendance.</p>
+            </div>
+            <div class="wk-topic wk-left" style="grid-column:1;grid-row:4">
+                <h3>Inadequate facilities</h3>
+                <p>Governments in lower-income countries lack the funds to provide good secondary schools, teachers and sanitation facilities where girls can properly manage their periods.</p>
+            </div>
+            <!-- right col -->
+            <div class="wk-topic wk-right" style="grid-column:3;grid-row:2">
+                <h3>Conflict</h3>
+                <p>Girls living in areas with conflict are 90% more likely to be out of secondary school than girls in areas without conflict.</p>
+            </div>
+            <div class="wk-topic wk-right" style="grid-column:3;grid-row:3;padding-left:80px">
+                <h3>Education quality</h3>
+                <p>Poor education quality prevents students from learning what they need to thrive in today's world and reinforces gender discrimination in school and society.</p>
+            </div>
+            <div class="wk-topic wk-right" style="grid-column:3;grid-row:4">
+                <h3>Early marriage &amp pregnancy</h3>
+                <p>Nearly 19% of young women are married and 13% give birth before turning 18. Most married and pregnant girls drop out of school.</p>
+            </div>
+            <!-- bottom center bubble -->
+            <div class="wk-center-bubble" style="grid-row:5">
+                <h3>Climate change</h3>
+                <p>By 2025 climate change will be a contributing factor in preventing at least 12.5 million girls from completing their education each year.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ACCORDION: WHY INVEST -->
+    <section class="why-accordion-section">
+        <div class="container">
+            <div class="why-accordion-inner">
+                <h2 class="why-accordion-heading">Why invest in girls' education?</h2>
+                <ul class="accordion-list">
+                    <li class="accordion-item">
+                        <button class="accordion-btn">
+                            It's a right.
+                            <span class="accordion-icon">+</span>
+                        </button>
+                        <div class="accordion-body">
+                            <p>Every child has a right to education. All girls — regardless of income level, social status, race, or cultural background — have a right to learn on equal terms with boys including access to quality teachers, learning materials and school facilities.</p>
+                        </div>
+                    </li>
+                    <li class="accordion-item">
+                        <button class="accordion-btn">
+                            It promotes gender equality.
+                            <span class="accordion-icon">+</span>
+                        </button>
+                        <div class="accordion-body">
+                            <p>Quality education challenges gender beliefs and discrimination and improves girls' ability to choose their own futures. When they can fully participate in society, politics and the economy, educated girls and women reshape gender roles and advocate for their own rights.</p>
+                        </div>
+                    </li>
+                    <li class="accordion-item">
+                        <button class="accordion-btn">
+                            It strengthens economies.
+                            <span class="accordion-icon">+</span>
+                        </button>
+                        <div class="accordion-body">
+                            <p>Educated women provide vital skills and knowledge to the workforce, driving economic growth and innovation. Women with secondary education earn almost twice as much as women with no education. When women earn more, they uplift their families and contribute to national economies.</p>
+                        </div>
+                    </li>
+                    <li class="accordion-item">
+                        <button class="accordion-btn">
+                            It supports climate action.
+                            <span class="accordion-icon">+</span>
+                        </button>
+                        <div class="accordion-body">
+                            <p>Education equips girls with the know-how to help communities adapt to and mitigate the effects of climate change. In countries that invest in girls' education, significantly fewer people die from droughts and floods than in countries with lower levels of girls' education.</p>
+                        </div>
+                    </li>
+                    <li class="accordion-item">
+                        <button class="accordion-btn">
+                            It builds healthier communities.
+                            <span class="accordion-icon">+</span>
+                        </button>
+                        <div class="accordion-body">
+                            <p>When girls are educated, communities experience fewer maternal and child deaths and less malnutrition. Girls are better equipped to make health care decisions for themselves and their families and are more likely to identify needed improvements to public services in their communities.</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- QUOTE + PHOTO -->
+    <section class="why-quote-section">
+        <div class="why-quote-header">
+            <h2>How does education change lives?</h2>
+        </div>
+        <div class="why-quote-photo-wrap">
+            <img src="image/PHOTO-2026-05-13-19-59-54.jpg" alt="Girl speaking at a community event" />
+            <div class="why-quote-card">
+                <blockquote>"Having access to education builds agency. It enables girls to understand the forces shaping their communities — and to lead the change themselves."</blockquote>
+                <cite>— Project EquiFlow, on the girls we serve</cite>
+            </div>
+        </div>
+    </section>
+
+    <!-- SPLIT: PHOTO + TEXT -->
+    <section class="why-split">
+        <div class="container">
+            <div class="why-split-inner">
+                <div class="why-split-photo">
+                    <img src="image/IMG_9459.png" alt="Girls gathered around a fire" />
+                </div>
+                <div class="why-split-text">
+                    <h2>What we're doing about it</h2>
+                    <p>Project EquiFlow runs on-the-ground programs that remove the specific barriers girls face: the cost of school supplies, period poverty, lack of mentors, and missing community support.</p>
+                    <p>We don't just talk about the crisis — we show up where girls are, and we stay until the barrier is gone. Our chapters are led by students who understand what it takes, because they've lived it.</p>
+                    <a href="program.html" class="btn btn-primary">See Our Programs</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="why-cta">
+        <h2>Every girl deserves to learn, lead, and be heard.</h2>
+        <p>Your support keeps girls in school and changes what's possible for entire communities.</p>
+        <a href="https://docs.google.com/forms/d/1ufZauH4xaZ37Nz5kRHjh_QIL51TuNn06vASEfGitVos/viewform" target="_blank" rel="noopener" class="btn btn-primary">Support a Girl Today</a>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-inner">
+                <div class="footer-brand-col">
+                    <img src="image/download-2.jpg" alt="Project EquiFlow" class="footer-logo-img" />
+                    <p class="footer-tagline">Project EquiFlow is working for a world where every girl can learn and choose her own future.</p>
+                    <div class="footer-contact-block">
+                        <p>Contact Us</p>
+                        <a href="mailto:equiflow.connect@gmail.com">equiflow.connect@gmail.com</a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Take Action</h4>
+                    <ul>
+                        <li><a href="https://docs.google.com/forms/d/1ufZauH4xaZ37Nz5kRHjh_QIL51TuNn06vASEfGitVos/viewform" target="_blank" rel="noopener">Donate</a></li>
+                        <li><a href="volunteer.html">Volunteer</a></li>
+                        <li><a href="https://docs.google.com/forms/d/e/1FAIpQLScfsn3H9LZ4NnRd0ORk6OgTbW1NsHnHxJmTMsAm6yLCFaHRUA/viewform?usp=publish-editor" target="_blank" rel="noopener">Start a Chapter</a></li>
+                        <li><a href="partner.html">Partner With Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>About Us</h4>
+                    <ul>
+                        <li><a href="mission.html">Our Mission</a></li>
+                        <li><a href="program.html">Our Programs</a></li>
+                        <li><a href="mission.html#beliefs">Core Beliefs</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Follow Us</h4>
+                    <ul>
+                        <li><a href="https://www.instagram.com/projectequiflow/?__d=11%252F" target="_blank" rel="noopener">Instagram</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Project EquiFlow. All Rights Reserved. &nbsp;&middot&nbsp A 501(c)(3) nonprofit organization.</p>
+                <span class="footer-ein">EIN: 39-4977771</span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const header = document.getElementById('site-header');
+        window.addEventListener('scroll', () => { header.classList.toggle('scrolled', window.scrollY > 30) }, { passive: true })
+
+        const hamburger = document.getElementById('hamburger');
+        const navLinks  = document.getElementById('nav-links');
+        const burgerSpans = '<span></span><span></span><span></span>'
+        hamburger.addEventListener('click', () => {
+            const open = navLinks.classList.toggle('open');
+            hamburger.innerHTML = open ? '&#10005;' : burgerSpans;
+            hamburger.style.fontSize = open ? '1.4rem' : '';
+        });
+
+        document.querySelectorAll('.nav-links .has-mega > a').forEach(a => {
+            a.addEventListener('click', e => {
+                if (window.innerWidth <= 900) { e.preventDefault(); a.parentElement.classList.toggle('open'); }
+            });
+        });
+
+        /* ── Accordion ── */
+        document.querySelectorAll('.accordion-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const item = btn.parentElement;
+                const isOpen = item.classList.contains('open');
+                document.querySelectorAll('.accordion-item.open').forEach(el => {
+                    el.classList.remove('open');
+                    el.querySelector('.accordion-icon').textContent = '+';
+                });
+                if (!isOpen) {
+                    item.classList.add('open');
+                    btn.querySelector('.accordion-icon').textContent = '−';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

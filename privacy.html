@@ -15,7 +15,7 @@
         :root {
             --coral:      #FFBDAB;
             --coral-dark: #F5A488;
-            --coral-text: #C07060;
+            --coral-text: #E8907A;
             --teal:       #96D4D4;
             --teal-light: #B0E0E0;
             --teal-pale:  #EEF9F9;
@@ -35,7 +35,7 @@
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
         body { font-family: var(--ff-sans); background: var(--cream); color: var(--ink-mid); line-height: 1.75; overflow-x: hidden; }
-        h1, h2, h3, h4 { font-family: var(--ff-serif); color: var(--ink); letter-spacing: -0.01em; }
+        h1, h2, h3, h4 { font-family: 'Anton', sans-serif; font-weight: 400; text-transform: uppercase; letter-spacing: 0.01em; color: var(--ink); letter-spacing: -0.01em; }
         a { text-decoration: none; color: var(--teal-dark); }
         a:hover { text-decoration: underline; }
         .container { max-width: 860px; margin: 0 auto; padding: 0 28px; }
@@ -48,7 +48,7 @@
         .logo-sub  { font-family: var(--ff-sans); font-size: 0.6rem; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; color: var(--teal); margin-bottom: 2px; }
         .logo-name { font-family: var(--ff-serif); font-size: 1.85rem; font-weight: 700; color: var(--ink); letter-spacing: -0.01em; }
         .logo-name span { color: var(--coral-dark); }
-        .nav-back { font-family: var(--ff-sans); font-size: 0.9rem; font-weight: 600; color: var(--ink-mid); display: flex; align-items: center; gap: 6px; padding: 10px 20px; border-radius: 8px; transition: background 0.2s, color 0.2s; }
+        .nav-back { font-family: var(--ff-sans); font-size: 0.9rem; font-weight: 600; color: var(--ink-mid); display: flex; align-items: center; gap: 6px; padding: 10px 20px; border-radius: 0; transition: background 0.2s, color 0.2s; }
         .nav-back:hover { background: var(--teal-pale); color: var(--teal-dark); text-decoration: none; }
 
         /* HERO BANNER */
@@ -119,7 +119,7 @@
         .privacy-toc {
             background: var(--teal-pale);
             border: 1px solid var(--border);
-            border-radius: 14px;
+            border-radius: 0;
             padding: 28px 32px;
             margin-bottom: 52px;
         }

@@ -10,7 +10,7 @@
         :root {
             --coral:      #FFBDAB;
             --coral-dark: #F5A488;
-            --coral-text: #C07060;
+            --coral-text: #E8907A;
             --teal:       #96D4D4;
             --teal-light: #B0E0E0;
             --teal-pale:  #EEF9F9;
@@ -30,7 +30,7 @@
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
         body { font-family: var(--ff-sans); background: var(--cream); color: var(--ink-mid); line-height: 1.7; overflow-x: hidden; }
-        h1, h2, h3, h4 { font-family: var(--ff-serif); line-height: 1.18; color: var(--ink); letter-spacing: -0.01em; }
+        h1, h2, h3, h4 { font-family: 'Anton', sans-serif; font-weight: 400; text-transform: uppercase; letter-spacing: 0.01em; line-height: 1.18; color: var(--ink); letter-spacing: -0.01em; }
         a { text-decoration: none; }
 
         .container { max-width: 1140px; margin: 0 auto; padding: 0 28px; }
@@ -62,7 +62,7 @@
             font-size: 0.95rem;
             font-weight: 600;
             padding: 14px 32px;
-            border-radius: 8px;
+            border-radius: 0;
             border: 2px solid transparent;
             cursor: pointer;
             transition: background 0.15s, color 0.15s, border-color 0.15s;
@@ -73,64 +73,10 @@
         .btn-outline:hover { background: var(--ink); color: #fff; }
 
         /* =============================================
-           NAVIGATION (shared with index.html)
-           ============================================= */
-        .site-header {
-            position: fixed;
-            top: 0; left: 0; right: 0;
-            z-index: 200;
-            background: #fff;
-            border-bottom: 1px solid var(--border);
-            transition: box-shadow 0.3s ease;
-        }
-        .site-header.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.08); }
-        .nav-inner {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            height: 76px;
-        }
-        .logo { display: flex; flex-direction: column; line-height: 1; }
-        .logo-sub { font-family: var(--ff-sans); font-size: 0.6rem; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; color: var(--teal); margin-bottom: 2px; }
-        .logo-name { font-family: var(--ff-serif); font-size: 1.85rem; font-weight: 700; color: var(--ink); letter-spacing: -0.01em; }
-        .logo-name span { color: var(--coral); }
-
-        .nav-links { display: flex; align-items: center; gap: 2px; list-style: none; height: 100%; }
-        .nav-links > li { position: relative; height: 100%; display: flex; align-items: center; }
-        .nav-links > li > a { display: flex; align-items: center; gap: 6px; font-size: 1.08rem; font-weight: 500; color: var(--ink); padding: 10px 20px; border-radius: 8px; transition: color 0.2s, background 0.2s; white-space: nowrap; }
-        .nav-links > li > a:not(.btn-donate):hover { color: var(--teal-dark); background: var(--teal-pale); }
-        .nav-links > li.has-dropdown > a::after { content: ''; display: inline-block; width: 6px; height: 6px; border-right: 2px solid currentColor; border-bottom: 2px solid currentColor; transform: rotate(45deg) translateY(-2px); transition: background 0.15s, color 0.15s; opacity: 0.6; }
-        .nav-links > li.has-dropdown:hover > a::after,
-        .nav-links > li.has-dropdown.open > a::after { transform: rotate(-135deg) translateY(-2px); }
-
-        .nav-dropdown { position: absolute; top: calc(100% + 8px); left: 0; background: #fff; border: 1px solid var(--border); border-radius: 14px; padding: 8px; min-width: 200px; box-shadow: 0 16px 48px rgba(0,0,0,0.1); list-style: none; opacity: 0; visibility: hidden; transform: translateY(10px); transition: opacity 0.22s var(--ease), ), visibility 0.22s; z-index: 300; }
-        .nav-links > li.has-dropdown:hover .nav-dropdown,
-        .nav-links > li.has-dropdown.open .nav-dropdown { opacity: 1; visibility: visible; transform: translateY(0); }
-        .nav-dropdown li a { display: block; font-size: 1rem; font-weight: 500; color: var(--ink-mid); padding: 11px 18px; border-radius: 8px; transition: background 0.18s, color 0.18s; }
-        .nav-dropdown li a:hover { background: var(--teal-pale); color: var(--teal-dark); }
-
-        .btn-donate { background: transparent !important; color: var(--ink) !important; padding: 11px 28px !important; border-radius: 100px !important; border: 2px solid var(--ink) !important; font-weight: 600 !important; font-size: 1.08rem !important; transition: background 0.2s, color 0.2s !important; margin-left: 8px; }
-        .btn-donate:hover { background: var(--ink) !important; color: #fff !important; }
-
-        .nav-hamburger { display: none; background: none; border: none; font-size: 1.6rem; color: var(--ink); cursor: pointer; }
-
-        @media (max-width: 900px) {
-            .nav-hamburger { display: block; }
-            .nav-inner { height: 64px; }
-            .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; align-items: stretch; height: auto; background: #fff; border-top: 1px solid var(--border); padding: 12px 20px 20px; gap: 2px; box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
-            .nav-links.open { display: flex; }
-            .nav-links > li { height: auto; }
-            .nav-dropdown { position: static; opacity: 1; visibility: visible; transform: none; box-shadow: none; border: none; padding: 4px 0 4px 16px; display: none; }
-            .nav-links > li.has-dropdown.open .nav-dropdown { display: block; }
-            .nav-links > li > a { font-size: 1.08rem; padding: 10px 12px; }
-            .btn-donate { margin: 8px 0 0; text-align: center; }
-        }
-
-        /* =============================================
            HERO BANNER
            ============================================= */
         .mission-hero {
-            background: url('image/IMG_7275.png') center/cover no-repeat;
+            background: url('image/PHOTO-2026-05-13-20-01-16.jpg') center 30%/cover no-repeat;
             padding: 120px 0 80px;
             margin-top: 68px;
             position: relative;
@@ -153,7 +99,7 @@
             margin-bottom: 24px;
             background: rgba(255,189,171,0.12);
             padding: 6px 16px;
-            border-radius: 100px;
+            border-radius: 0;
             border: 1px solid rgba(255,189,171,0.25);
         }
         .mission-hero h1 {
@@ -219,7 +165,7 @@
         }
         .belief-stat-card {
             background: #fff;
-            border-radius: 20px;
+            border-radius: 0;
             padding: 32px 36px;
             border-left: 5px solid var(--coral);
             box-shadow: 0 8px 32px rgba(27,77,77,0.07);
@@ -273,7 +219,7 @@
         .mvg-row:nth-child(3) .mvg-row-tag { color: #4E8860; }
         .mvg-row-icon {
             width: 52px; height: 52px;
-            border-radius: 14px;
+            border-radius: 0;
             display: flex; align-items: center; justify-content: center;
             font-size: 1.3rem;
         }
@@ -439,7 +385,7 @@
             margin-top: 56px;
         }
         .belief-card {
-            border-radius: 24px;
+            border-radius: 0;
             padding: 44px 36px 40px;
             display: flex;
             flex-direction: column;
@@ -450,7 +396,7 @@
         .belief-card:nth-child(1) { background: #FFF0EC; }
         .belief-card:nth-child(2) { background: #EAF7F7; }
         .belief-card:nth-child(3) { background: #EDF6E8; }
-        .belief-card-icon { width: 60px; height: 60px; border-radius: 18px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; }
+        .belief-card-icon { width: 60px; height: 60px; border-radius: 0; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; }
         .belief-card:nth-child(1) .belief-card-icon { background: rgba(192,112,96,0.15); color: var(--coral-text); }
         .belief-card:nth-child(2) .belief-card-icon { background: rgba(78,152,152,0.15); color: var(--teal-dark); }
         .belief-card:nth-child(3) .belief-card-icon { background: rgba(78,136,96,0.15);  color: #4E8860; }
@@ -512,7 +458,7 @@
     </style>
     <link rel="stylesheet" href="shared.css">
     <link rel="stylesheet" href="transitions.css">
-    <link rel="icon" type="image/png" href="image/logo-icon.png">
+    <link rel="icon" type="image/png" href="image/favicon.png">
 </head>
 <body>
 
@@ -522,15 +468,61 @@
             <a href="index.html" class="logo">
                 <img src="image/download-2.jpg" alt="Project EquiFlow" style="height:52px;width:auto;display:block;" />
             </a>
-            <ul class="nav-links" id="nav-links">
-                <li class="has-dropdown">
-                    <a href="index.html">About</a>
-                    <ul class="nav-dropdown">
-                        <li><a href="mission.html">Our Mission</a></li>
-                    </ul>
+                        <ul class="nav-links" id="nav-links">
+                <li class="has-mega">
+                    <a href="index.html" class="active-page">About <span class="nav-chevron">▾</span></a>
+                    <div class="mega-drop">
+                        <div class="container mega-drop-inner">
+                            <div class="mega-col mega-col-intro">
+                                <p class="mega-label">About Us</p>
+                                <p class="mega-desc">Learn who we are, what we believe, and why we fight for girls' education.</p>
+                                <a href="mission.html" class="mega-see-all">Learn More →</a>
+                            </div>
+                            <div class="mega-col">
+                                <p class="mega-col-heading">Our Story</p>
+                                <ul>
+                                    <li><a href="mission.html">Our Mission</a></li>
+                                    <li><a href="mission.html#beliefs">Core Beliefs</a></li>
+                                </ul>
+                            </div>
+                            <div class="mega-col">
+                                <p class="mega-col-heading">Our Work</p>
+                                <ul>
+                                    <li><a href="program.html">Our Programs</a></li>
+                                    <li><a href="why-education.html">Why Education?</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                 </li>
+                <li><a href="why-education.html">Why Education?</a></li>
                 <li><a href="program.html">Programs</a></li>
-                <li><a href="volunteer.html">Get Involved</a></li>
+                <li class="has-mega">
+                    <a href="volunteer.html">Get Involved <span class="nav-chevron">▾</span></a>
+                    <div class="mega-drop">
+                        <div class="container mega-drop-inner">
+                            <div class="mega-col mega-col-intro">
+                                <p class="mega-label">Take Action</p>
+                                <p class="mega-desc">Every action — big or small — keeps a girl in school and in leadership.</p>
+                                <a href="volunteer.html" class="mega-see-all">See All Ways to Help →</a>
+                            </div>
+                            <div class="mega-col">
+                                <p class="mega-col-heading">Volunteer</p>
+                                <ul>
+                                    <li><a href="volunteer.html">Volunteer</a></li>
+                                    <li><a href="https://docs.google.com/forms/d/e/1FAIpQLScfsn3H9LZ4NnRd0ORk6OgTbW1NsHnHxJmTMsAm6yLCFaHRUA/viewform?usp=publish-editor" target="_blank" rel="noopener">Start a Chapter</a></li>
+                                </ul>
+                            </div>
+                            <div class="mega-col">
+                                <p class="mega-col-heading">Support</p>
+                                <ul>
+                                    <li><a href="https://docs.google.com/forms/d/1ufZauH4xaZ37Nz5kRHjh_QIL51TuNn06vASEfGitVos/viewform" target="_blank" rel="noopener">Donate</a></li>
+                                    <li><a href="partner.html">Partner With Us</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </li>
                 <li><a href="https://docs.google.com/forms/d/1ufZauH4xaZ37Nz5kRHjh_QIL51TuNn06vASEfGitVos/viewform" target="_blank" rel="noopener" class="btn-donate">Donate</a></li>
             </ul>
             <button class="nav-hamburger" id="hamburger" aria-label="Open menu">
@@ -797,14 +789,15 @@
                 : '<span></span><span></span><span></span>';
         });
 
-        /* ── Mobile dropdown toggles ── */
-        document.querySelectorAll('.nav-links .has-dropdown > a').forEach(a => {
+                /* ── Mobile mega dropdown toggles ── */
+        document.querySelectorAll('.nav-links .has-mega > a').forEach(a => {
             a.addEventListener('click', e => {
                 if (window.innerWidth <= 900) {
                     e.preventDefault();
                     a.parentElement.classList.toggle('open');
                 }
             });
+        });
         });
 
         /* ── Scroll reveal ── */
