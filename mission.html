@@ -415,8 +415,28 @@
         /* =============================================
            CTA BANNER
            ============================================= */
+        /* ── Our Values ── */
+        .our-values { background: #f5f3ee; padding: 96px 0; }
+        .our-values .section-eyebrow { color: var(--teal-dark); }
+        .our-values h2 { font-size: clamp(2rem, 4vw, 2.8rem); color: var(--ink); margin-bottom: 56px; }
+        .values-list { display: flex; flex-direction: column; gap: 52px; max-width: 760px; margin: 0 auto; }
+        .value-row { display: flex; gap: 28px; align-items: flex-start; }
+        .value-icon {
+            flex-shrink: 0;
+            width: 48px; height: 48px;
+            border: 2px solid var(--teal-dark);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            opacity: 0.55;
+        }
+        .value-icon svg { width: 22px; height: 22px; stroke: var(--teal-dark); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+        .value-body h3 { font-size: 1.25rem; font-weight: 700; color: var(--ink); margin-bottom: 10px; }
+        .value-body p { font-size: 1rem; color: var(--ink-mid); line-height: 1.8; }
+        @media (max-width: 600px) { .value-row { gap: 18px; } .value-icon { width: 38px; height: 38px; } }
+
+        /* ── CTA Banner ── */
         .cta-banner {
-            background: linear-gradient(135deg, var(--deep-teal) 0%, var(--teal-dark) 100%);
+            background: #2E7D7D;
             padding: 100px 0;
             text-align: center;
             position: relative;
@@ -426,8 +446,22 @@
             content: '';
             position: absolute;
             inset: 0;
-            background-image: radial-gradient(circle, rgba(255,255,255,0.05) 1.5px, transparent 1.5px);
-            background-size: 30px 30px;
+            /* Malala-style interlocking diamond/circle tile pattern */
+            background-image:
+                radial-gradient(circle at 50% 50%, rgba(255,255,255,0.12) 18%, transparent 18%),
+                radial-gradient(circle at 0% 50%, rgba(255,255,255,0.07) 18%, transparent 18%),
+                radial-gradient(circle at 100% 50%, rgba(255,255,255,0.07) 18%, transparent 18%),
+                radial-gradient(circle at 50% 0%, rgba(255,255,255,0.07) 18%, transparent 18%),
+                radial-gradient(circle at 50% 100%, rgba(255,255,255,0.07) 18%, transparent 18%);
+            background-size: 44px 44px;
+        }
+        .cta-banner::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.06) 8%, transparent 8%);
+            background-size: 22px 22px;
+            background-position: 11px 11px;
         }
         .cta-banner-inner { position: relative; z-index: 1; max-width: 680px; margin: 0 auto; }
         .cta-banner h2 { font-size: clamp(2rem, 4vw, 3.2rem); color: #fff; margin-bottom: 20px; }
@@ -652,6 +686,57 @@
                     <h3>Silence is a barrier we <em>refuse to keep.</em></h3>
                     <p>We speak openly about menstrual health because a period should never be the reason a girl stops going to school.</p>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- OUR VALUES -->
+    <section class="our-values">
+        <div class="container" style="text-align:center;">
+            <span class="section-eyebrow our-values">Our Values</span>
+            <h2>What guides everything we do</h2>
+            <div class="values-list">
+
+                <div class="value-row reveal">
+                    <div class="value-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg>
+                    </div>
+                    <div class="value-body">
+                        <h3>We dare to be brave.</h3>
+                        <p>We invest in challenging contexts even when this means a slower path to impact, and we hold leaders accountable, supporting our partners to speak truth to power and standing with them when they face backlash.</p>
+                    </div>
+                </div>
+
+                <div class="value-row reveal">
+                    <div class="value-icon">
+                        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+                    </div>
+                    <div class="value-body">
+                        <h3>We seek and amplify diverse perspectives.</h3>
+                        <p>We aim to reach girls in all their diversity, centre the expertise of girls and local activists in our work and through our platforms, and strengthen collective action for girls' secondary education.</p>
+                    </div>
+                </div>
+
+                <div class="value-row reveal">
+                    <div class="value-icon">
+                        <svg viewBox="0 0 24 24"><path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+                    </div>
+                    <div class="value-body">
+                        <h3>We think creatively.</h3>
+                        <p>We support partners to test innovative tactics and strategies and use our networks, funds, and influence flexibly and nimbly to react to new challenges. We use creative approaches to communicate across different audiences.</p>
+                    </div>
+                </div>
+
+                <div class="value-row reveal">
+                    <div class="value-icon">
+                        <svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    </div>
+                    <div class="value-body">
+                        <h3>We act with integrity.</h3>
+                        <p>We hold ourselves ultimately accountable to girls, prioritising meaningful impact for them when deciding how we invest our time and money. We shift power and resources to work that centres their priorities and enables them to drive change.</p>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
