@@ -830,10 +830,10 @@
             margin-top: 56px;
         }
         .involved-card {
-            background: #fff;
+            background: rgba(255,255,255,0.96);
             border-radius: 20px;
             padding: 40px 32px 36px;
-            box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+            box-shadow: 0 4px 32px rgba(0,0,0,0.18);
             display: flex;
             flex-direction: column;
             align-items: flex-start;
@@ -1246,12 +1246,24 @@
     </section>
 
     <!-- GET INVOLVED -->
-    <section class="section" id="involved" style="background:#e8f4f4;">
-        <div class="container">
+    <section class="section" id="involved" style="background:#2E7D7D;position:relative;overflow:hidden;">
+        <!-- tile pattern -->
+        <div style="position:absolute;inset:0;pointer-events:none;
+            background-image:
+                radial-gradient(circle at 50% 50%,rgba(255,255,255,0.12) 18%,transparent 18%),
+                radial-gradient(circle at 0% 50%,rgba(255,255,255,0.07) 18%,transparent 18%),
+                radial-gradient(circle at 100% 50%,rgba(255,255,255,0.07) 18%,transparent 18%),
+                radial-gradient(circle at 50% 0%,rgba(255,255,255,0.07) 18%,transparent 18%),
+                radial-gradient(circle at 50% 100%,rgba(255,255,255,0.07) 18%,transparent 18%);
+            background-size:44px 44px;"></div>
+        <div style="position:absolute;inset:0;pointer-events:none;
+            background-image:radial-gradient(circle at 50% 50%,rgba(255,255,255,0.06) 8%,transparent 8%);
+            background-size:22px 22px;background-position:11px 11px;"></div>
+        <div class="container" style="position:relative;z-index:1;">
             <div class="section-header-center reveal">
-                <span class="eyebrow">Take Action</span>
-                <h2 class="section-title">Be Part of the Change</h2>
-                <p class="section-intro">Every action you take keeps a girl in school.</p>
+                <span class="eyebrow" style="color:var(--coral);">Take Action</span>
+                <h2 class="section-title" style="color:#fff;">Be Part of the Change</h2>
+                <p class="section-intro" style="color:rgba(255,255,255,0.8);">Every action you take keeps a girl in school.</p>
             </div>
             <div class="involved-grid">
                 <div class="involved-card card-anim">
