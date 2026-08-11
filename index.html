@@ -483,7 +483,7 @@
             margin-top: 32px;
         }
         .stats-band-inner {
-            background: #2E7D7D;
+            background: #3A9494;
             padding: 20px 40px;
             max-width: 1400px;
             margin: 0 auto;
@@ -867,24 +867,57 @@
             margin-top: 56px;
         }
         .involved-card {
-            background: rgba(255,255,255,0.96);
+            background: rgba(255,255,255,0.10);
+            border: 1px solid rgba(255,255,255,0.18);
             border-radius: 20px;
-            padding: 40px 32px 36px;
-            box-shadow: 0 4px 32px rgba(0,0,0,0.18);
+            padding: 44px 32px 40px;
             display: flex;
             flex-direction: column;
-            align-items: flex-start;
-            gap: 0;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            align-items: center;
+            text-align: center;
+            backdrop-filter: blur(4px);
+            transition: background 0.25s ease, transform 0.25s ease;
         }
         .involved-card:hover {
-            transform: translateY(-6px) rotate(-0.8deg);
-            box-shadow: 0 20px 48px rgba(0,0,0,0.15);
+            background: rgba(255,255,255,0.17);
+            transform: translateY(-4px);
         }
-        .involved-card .pillar-eyebrow { margin-bottom: 16px; color: #3A6E6E; }
-        .involved-card .pillar-title { font-size: 1.2rem; margin-bottom: 12px; flex: 1; }
-        .involved-card .pillar-desc { margin-bottom: 24px; color: #666; font-size: 0.9rem; }
-        .involved-card .pillar-arrow { align-self: flex-end; flex-shrink: 0; }
+        .involved-icon-wrap {
+            width: 80px; height: 80px;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            margin-bottom: 24px;
+            flex-shrink: 0;
+        }
+        .involved-icon-wrap svg {
+            width: 38px; height: 38px;
+            stroke: #fff; fill: none;
+            stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round;
+        }
+        .involved-card:nth-child(1) .involved-icon-wrap { background: var(--coral-text); }
+        .involved-card:nth-child(2) .involved-icon-wrap { background: #4E9898; }
+        .involved-card:nth-child(3) .involved-icon-wrap { background: #5A9E72; }
+        .involved-label {
+            font-family: var(--ff-sans);
+            font-size: 0.62rem; font-weight: 800;
+            letter-spacing: 0.2em; text-transform: uppercase;
+            color: rgba(255,255,255,0.6);
+            margin-bottom: 10px;
+        }
+        .involved-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.25rem; font-weight: 700;
+            color: #fff; line-height: 1.3; margin-bottom: 12px;
+        }
+        .involved-desc { font-size: 0.92rem; color: rgba(255,255,255,0.75); line-height: 1.65; margin-bottom: 24px; flex: 1; }
+        .involved-link {
+            display: inline-flex; align-items: center; gap: 6px;
+            font-family: var(--ff-sans); font-size: 0.78rem;
+            font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+            color: #fff; border-bottom: 1px solid rgba(255,255,255,0.4);
+            padding-bottom: 2px; transition: border-color 0.2s;
+        }
+        .involved-link:hover { border-color: #fff; }
 
         /* =============================================
            MISSION BANNER
@@ -1289,7 +1322,7 @@
     </section>
 
     <!-- GET INVOLVED -->
-    <section class="section" id="involved" style="background:#2E7D7D;position:relative;overflow:hidden;">
+    <section class="section" id="involved" style="background:#3A9494;position:relative;overflow:hidden;">
         <!-- tile pattern -->
         <div style="position:absolute;inset:0;pointer-events:none;
             background-image:
@@ -1310,19 +1343,31 @@
             </div>
             <div class="involved-grid">
                 <div class="involved-card card-anim">
-                    <p class="pillar-eyebrow">Give</p>
-                    <div><div class="pillar-title">Every dollar keeps a girl in school.</div><div class="pillar-desc">Donate once or fundraise with your community — every contribution goes directly to girls who need it.</div></div>
-                    <a href="https://docs.google.com/forms/d/1ufZauH4xaZ37Nz5kRHjh_QIL51TuNn06vASEfGitVos/viewform" target="_blank" rel="noopener" class="pillar-arrow">→</a>
+                    <div class="involved-icon-wrap">
+                        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+                    </div>
+                    <p class="involved-label">Donate</p>
+                    <div class="involved-title">Fund a girl's future.</div>
+                    <p class="involved-desc">Your contribution provides pads, school supplies, and program resources that keep girls in class and on track.</p>
+                    <a href="https://docs.google.com/forms/d/1ufZauH4xaZ37Nz5kRHjh_QIL51TuNn06vASEfGitVos/viewform" target="_blank" rel="noopener" class="involved-link">Give now →</a>
                 </div>
                 <div class="involved-card card-anim">
-                    <p class="pillar-eyebrow">Join Us</p>
-                    <div><div class="pillar-title">Show up for the girls who need you most.</div><div class="pillar-desc">Volunteer your time, start a chapter at your school, or become a peer mentor in your community.</div></div>
-                    <a href="volunteer.html" class="pillar-arrow">→</a>
+                    <div class="involved-icon-wrap">
+                        <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+                    </div>
+                    <p class="involved-label">Volunteer</p>
+                    <div class="involved-title">Show up for her.</div>
+                    <p class="involved-desc">Lead workshops, mentor girls in your community, or start a Project EquiFlow chapter at your school.</p>
+                    <a href="volunteer.html" class="involved-link">Get involved →</a>
                 </div>
                 <div class="involved-card card-anim">
-                    <p class="pillar-eyebrow">Partner</p>
-                    <div><div class="pillar-title">Grow this movement alongside us.</div><div class="pillar-desc">Collaborate as an organization, sponsor a program, or bring EquiFlow's work to your network.</div></div>
-                    <a href="partner.html" class="pillar-arrow">→</a>
+                    <div class="involved-icon-wrap">
+                        <svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 11l-3-3-3 3M19 8v8"/></svg>
+                    </div>
+                    <p class="involved-label">Partner</p>
+                    <div class="involved-title">Build this movement with us.</div>
+                    <p class="involved-desc">Organizations, schools, and donors — partner with us to scale what works and reach more girls.</p>
+                    <a href="partner.html" class="involved-link">Partner with us →</a>
                 </div>
             </div>
         </div>
