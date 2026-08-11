@@ -483,11 +483,26 @@
             margin-top: 32px;
         }
         .stats-band-inner {
-            background: #e8f4f4;
+            background: #2E7D7D;
             padding: 20px 40px;
             max-width: 1400px;
             margin: 0 auto;
             border-radius: 6px;
+            position: relative;
+            overflow: hidden;
+        }
+        .stats-band-inner::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                radial-gradient(circle at 50% 50%,rgba(255,255,255,0.12) 18%,transparent 18%),
+                radial-gradient(circle at 0% 50%,rgba(255,255,255,0.07) 18%,transparent 18%),
+                radial-gradient(circle at 100% 50%,rgba(255,255,255,0.07) 18%,transparent 18%),
+                radial-gradient(circle at 50% 0%,rgba(255,255,255,0.07) 18%,transparent 18%),
+                radial-gradient(circle at 50% 100%,rgba(255,255,255,0.07) 18%,transparent 18%);
+            background-size: 44px 44px;
+            pointer-events: none;
         }
         .stats-grid {
             display: grid;
@@ -497,7 +512,7 @@
         }
         .stat-item {
             padding: 12px 32px;
-            border-right: 1px solid rgba(180,100,110,0.2);
+            border-right: 1px solid rgba(255,255,255,0.15);
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -516,19 +531,21 @@
             font-weight: 800;
             letter-spacing: 0.2em;
             text-transform: uppercase;
-            color: #C07878;
+            color: rgba(255,255,255,0.6);
             margin: 0;
         }
         .stat-desc {
             font-family: 'Outfit', sans-serif;
             font-size: clamp(1rem, 1.4vw, 1.2rem);
             font-weight: 600;
-            color: #3a3a3a;
+            color: #fff;
             line-height: 1.4;
             margin: 0;
             max-width: 260px;
         }
-        .stat-desc strong { color: var(--coral-text); }
+        .stat-desc strong { color: var(--coral); }
+        .stat-link { color: rgba(255,255,255,0.7); }
+        .stat-link:hover { opacity: 0.85; }
         .stat-link {
             font-family: var(--ff-sans);
             font-size: 0.75rem;
@@ -1157,21 +1174,21 @@
                 <div class="pillar-num">01</div>
                 <p class="pillar-eyebrow">Health &amp; Dignity</p>
                 <div class="pillar-title">No girl should miss school because of her period.</div>
-                <div class="pillar-desc">We donate pads, build safe facilities, and run health education programs that break stigma and keep girls in class.</div>
+                <div class="pillar-desc">We donate pads and run educational programs that break stigma and keep girls in class.</div>
                 <a href="program.html" class="pillar-arrow">Learn more →</a>
             </div>
             <div class="pillar-card card-anim">
                 <div class="pillar-num">02</div>
                 <p class="pillar-eyebrow">Leadership &amp; Community</p>
                 <div class="pillar-title">Girls connect, lead, and lift each other up.</div>
-                <div class="pillar-desc">Public speaking workshops, peer mentorship networks, and school supplies that give girls the tools and confidence to thrive.</div>
+                <div class="pillar-desc">We run workshops and teach girls the confidence and skills they need to stand up for themselves.</div>
                 <a href="program.html" class="pillar-arrow">Learn more →</a>
             </div>
             <div class="pillar-card card-anim">
                 <div class="pillar-num">03</div>
                 <p class="pillar-eyebrow">Advocacy</p>
                 <div class="pillar-title">We turn ground-level work into real policy change.</div>
-                <div class="pillar-desc">We engage schools, communities, and local officials with program data that moves the needle on girls' attendance and rights.</div>
+                <div class="pillar-desc">We engage in schools, talk to girls, and help them understand how to stand up for themselves.</div>
                 <a href="program.html" class="pillar-arrow">Learn more →</a>
             </div>
         </div>
