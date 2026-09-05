@@ -274,8 +274,56 @@
     <link rel="stylesheet" href="shared.css">
     <link rel="stylesheet" href="transitions.css">
     <link rel="icon" type="image/png" href="image/logo-icon.png">
+<style>
+#dev-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    background: #f5f3ee;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    font-family: "Outfit", sans-serif;
+}
+#dev-overlay img { height: 64px; width: auto; margin-bottom: 8px; }
+#dev-overlay .dev-tag {
+    background: #F0906E;
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 4px 16px;
+    border-radius: 999px;
+}
+#dev-overlay h1 {
+    font-family: "Anton", sans-serif;
+    font-size: clamp(2rem, 6vw, 3.5rem);
+    color: #2E4E4E;
+    letter-spacing: 0.04em;
+    margin: 0;
+    text-align: center;
+}
+#dev-overlay p {
+    font-size: 1.05rem;
+    color: #4A6464;
+    margin: 0;
+    text-align: center;
+    max-width: 360px;
+    line-height: 1.6;
+}
+</style>
 </head>
 <body>
+<div id="dev-overlay">
+  <img src="image/logo-icon.png" alt="Project EquiFlow" />
+  <span class="dev-tag">Coming Soon</span>
+  <h1>Currently Under Development</h1>
+  <p>We&#8217;re working hard to bring something amazing. Check back soon!</p>
+</div>
+
 
     <!-- NAVIGATION -->
     <header class="site-header" id="site-header">
